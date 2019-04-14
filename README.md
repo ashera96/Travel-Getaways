@@ -32,8 +32,6 @@ Development of the web application is done using the below mentioned technology 
 
 ## Installation
 
-### Clone and run repo
-
 ``` bash
 # clone the repo
 $ git clone https://github.com/ashera96/Travel-Getaways.git
