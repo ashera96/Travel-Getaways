@@ -5,8 +5,7 @@ var app = express();
 const MongoClient = require("mongodb").MongoClient;
 const assert = require("assert");
 
-const uri =
-  "mongodb+srv://admin:marper96@cluster0-dtohb.gcp.mongodb.net/test?retryWrites=true";
+const uri = "<<MongoURI>>";
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
 app.post("/GetUsers", (req, res) => {
