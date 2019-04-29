@@ -1,0 +1,19 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "express": "^4.16.4",
+    "mongod": "^2.2.33",
+    "mongodb": "^3.2.3",
+    "mongoose": "^5.3.8",
+    "nodemon": "^1.18.11"
+  }
+}
