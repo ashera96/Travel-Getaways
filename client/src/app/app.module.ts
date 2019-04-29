@@ -1,28 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { ModuleWithProviders } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { DashboardModule } from './dashboard/dashboard.module';
-import { SharedModule } from './shared/shared.module';
-import { FooterComponent } from './shared/layout/footer/footer.component';
-import { HeaderComponent } from './shared/layout/header/header.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-
-const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: true });
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { HomeComponent } from './pages/home/home.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { HomeContentComponent } from './pages/home/home-content/home-content.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    PageNotFoundComponent,
+    HomeComponent,
+    HeaderComponent,
     FooterComponent,
-    HeaderComponent
+    HomeContentComponent
   ],
   imports: [
     BrowserModule,
-    rootRouting,
-    DashboardModule,
-    SharedModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
