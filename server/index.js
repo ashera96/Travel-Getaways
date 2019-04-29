@@ -1,15 +1,36 @@
 var express = require("express");
+var cors = require("cors");
+var bodyParser = require("body-parser");
 //const MongoClient = require("mongodb");
 //var mongoose = require(__dirname + "/mlab.js");
 var app = express();
+app.use(cors());
+//json parser
+var jsonParser = bodyParser.json();
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+//setting parser for express
+app.use(jsonParser);
+app.use(urlencodedParser);
+//Cors setup
+var allowCrossDomain = function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  next();
+};
+app.use(allowCrossDomain);
+
+// end of setup
 const MongoClient = require("mongodb").MongoClient;
 const assert = require("assert");
 
 const uri =
   "mongodb+srv://admin:marper96@cluster0-dtohb.gcp.mongodb.net/test?retryWrites=true";
-const client = new MongoClient(uri, { useNewUrlParser: true });
 
 app.post("/GetUsers", (req, res) => {
+  console.log("get users called");
+  const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("travelGetaway").collection("users");
     // perform actions on the collection object
@@ -25,6 +46,8 @@ app.post("/GetUsers", (req, res) => {
 });
 
 app.post("/GetPosts", (req, res) => {
+  console.log("get posts called");
+  const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("travelGetaway").collection("posts");
     // perform actions on the collection object
@@ -33,10 +56,72 @@ app.post("/GetPosts", (req, res) => {
       console.log("found following users");
       console.log(posts);
       res.send(posts);
+      client.close();
     });
-
-    client.close();
   });
+});
+
+app.post("/UpdateUser", function(req, res) {
+  console.log("updating user");
+  var id = req.body.id;
+  console.log("id : " + id);
+  var act = req.body.val;
+  console.log(act);
+
+  if (act === "accept") {
+    const client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err => {
+      const collection = client.db("travelGetaway").collection("users");
+      // perform actions on the collection object
+      collection.updateOne(
+        { _id: id },
+        { $set: { _status: "Active" } },
+        (err, res) => {
+          if (err) console.log(err.errmsg);
+          else {
+            console.log(res.result);
+          }
+        }
+      );
+      res.send({ status: "ok" });
+    });
+  } else if (act === "ban") {
+    const client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err => {
+      const collection = client.db("travelGetaway").collection("users");
+      // perform actions on the collection object
+      collection.updateOne(
+        { _id: id },
+        { $set: { _status: "Banned" } },
+        (err, res) => {
+          if (err) console.log(err.errmsg);
+          else {
+            console.log(res.result);
+          }
+        }
+      );
+      res.send({ status: "ok" });
+    });
+  } else if (act === "unban") {
+    const client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err => {
+      const collection = client.db("travelGetaway").collection("users");
+      // perform actions on the collection object
+      collection.updateOne(
+        { _id: id },
+        { $set: { _status: "Active" } },
+        (err, res) => {
+          if (err) console.log(err.errmsg);
+          else {
+            console.log(res.result);
+          }
+        }
+      );
+      res.send({ status: "ok" });
+    });
+  } else {
+    res.send("error");
+  }
 });
 
 app.listen(3000, function() {

@@ -11,6 +11,7 @@ export class HttpService {
   realizarHttpPost(requestType: string, bodyObject: Object) {
     const headers = new HttpHeaders();
     headers.append("Content-Type", "application/json");
+    headers.append("Access-Control-Allow-Origin", "*");
     return this.http.post(requestType, bodyObject, {
       headers: headers
     });
