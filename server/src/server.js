@@ -3,6 +3,7 @@ const { json, urlencoded } = require("body-parser");
 const cors = require("cors");
 const morgan = require("morgan");
 const { connect } = require("./util/db");
+const users = require("./resources/users/users.router");
 
 const app = express();
 
@@ -13,6 +14,8 @@ app.use(cors());
 app.use(json());
 app.use(urlencoded({ extended: true }));
 app.use(morgan("dev"));
+
+app.use("/users", users);
 
 // bootstrap the application
 const start = async () => {
