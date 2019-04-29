@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HomeContentComponent } from './pages/home/home-content/home-content.component';
+import { AboutComponent } from './pages/about/about.component';
+import { AboutContentComponent } from './pages/about/about-content/about-content.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { HomeContentComponent } from './pages/home/home-content/home-content.com
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    HomeContentComponent
+    HomeContentComponent,
+    AboutComponent,
+    AboutContentComponent
   ],
   imports: [
     BrowserModule,

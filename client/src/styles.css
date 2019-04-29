@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+.btn-custom {
+    border-radius: 10rem;
+    padding: 1.25rem 2.25rem;
+    font-size: .85rem;
+    font-weight: 700;
+
+}
+
+.service-icon {
+    color: #f4623a;
+}
