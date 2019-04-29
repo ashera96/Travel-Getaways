@@ -1,17 +1,20 @@
 # Travel-Getaways
+
 Website for a travel agency
 
 ## Introduction
 
 Stakeholders identified are;
+
 - Admininstrator
 - Registered Customer
 - Unregistered Customer
 
 Folders of this project are structed as follows;
+
 - Admin application ( Angular )
 - Client application ( Angular )
-- Backend application 
+- Backend application
 
 ### Functionalities
 
@@ -25,14 +28,15 @@ Folders of this project are structed as follows;
 ## Technological Overview
 
 Development of the web application is done using the below mentioned technology stack.
+
 - Angular
 - Node
 - Express
-- Firebase ( Cloud Firestore ) 
+- Firebase ( Cloud Firestore )
 
 ## Installation
 
-``` bash
+```bash
 # clone the repo
 $ git clone https://github.com/ashera96/Travel-Getaways.git
 
