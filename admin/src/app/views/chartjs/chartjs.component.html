@@ -19,8 +19,8 @@
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody *ngFor="let Post of postslist">
-              <tr>
+            <tbody>
+              <tr *ngFor="let Post of postslist">
                 <td>{{ Post._title }}</td>
                 <td>{{ Post._body }}</td>
                 <td>{{ Post._date }}</td>
