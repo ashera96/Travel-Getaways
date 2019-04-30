@@ -1,6 +1,8 @@
 var express = require("express");
 var cors = require("cors");
 var bodyParser = require("body-parser");
+const MongoClient = require("mongodb").MongoClient;
+const assert = require("assert");
 //const MongoClient = require("mongodb");
 //var mongoose = require(__dirname + "/mlab.js");
 var app = express();
@@ -22,8 +24,6 @@ var allowCrossDomain = function(req, res, next) {
 app.use(allowCrossDomain);
 
 // end of setup
-const MongoClient = require("mongodb").MongoClient;
-const assert = require("assert");
 
 const uri =
   "mongodb+srv://admin:marper96@cluster0-dtohb.gcp.mongodb.net/test?retryWrites=true";
