@@ -10,6 +10,11 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HomeContentComponent } from './pages/home/home-content/home-content.component';
 import { AboutComponent } from './pages/about/about.component';
 import { AboutContentComponent } from './pages/about/about-content/about-content.component';
+import { ToursComponent } from './pages/tours/tours.component';
+import { TestimonialsComponent } from './pages/testimonials/testimonials.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +25,12 @@ import { AboutContentComponent } from './pages/about/about-content/about-content
     FooterComponent,
     HomeContentComponent,
     AboutComponent,
-    AboutContentComponent
+    AboutContentComponent,
+    ToursComponent,
+    TestimonialsComponent,
+    ContactComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
