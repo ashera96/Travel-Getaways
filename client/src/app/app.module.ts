@@ -16,6 +16,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ContactContentComponent } from './pages/contact/contact-content/contact-content.component';
+import { TestimonialsContentComponent } from './pages/testimonials/testimonials-content/testimonials-content.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ContactContentComponent } from './pages/contact/contact-content/contact
     ContactComponent,
     LoginComponent,
     RegisterComponent,
-    ContactContentComponent
+    ContactContentComponent,
+    TestimonialsContentComponent
   ],
   imports: [
     BrowserModule,
