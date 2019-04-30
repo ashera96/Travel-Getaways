@@ -13,8 +13,6 @@ export class TablesComponent {
   private getUserURL = HttpEnum.baseURL + "GetUsers";
   private updateUserURL = HttpEnum.baseURL + "UpdateUser";
   private BanUserURL = HttpEnum.baseURL + "deleteUser";
-  private getPostsURL = HttpEnum.baseURL + "GetPosts";
-  private deletePosts = HttpEnum.baseURL + "deletePosts";
 
   constructor(private httpService: HttpService) {}
   ngOnInit(): void {
