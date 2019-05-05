@@ -76,7 +76,7 @@ app.post("/UpdateUser", function(req, res) {
       const collection = client.db("travelGetaway").collection("users");
       // perform actions on the collection object
       collection.updateOne(
-        { _id: id },
+        { _uname: id },
         { $set: { _status: "Active" } },
         (err, res) => {
           if (err) console.log(err.errmsg);
@@ -93,7 +93,7 @@ app.post("/UpdateUser", function(req, res) {
       const collection = client.db("travelGetaway").collection("users");
       // perform actions on the collection object
       collection.updateOne(
-        { _id: id },
+        { _uname: id },
         { $set: { _status: "Banned" } },
         (err, res) => {
           if (err) console.log(err.errmsg);
@@ -110,7 +110,7 @@ app.post("/UpdateUser", function(req, res) {
       const collection = client.db("travelGetaway").collection("users");
       // perform actions on the collection object
       collection.updateOne(
-        { _id: id },
+        { _uname: id },
         { $set: { _status: "Active" } },
         (err, res) => {
           if (err) console.log(err.errmsg);
@@ -124,6 +124,21 @@ app.post("/UpdateUser", function(req, res) {
   } else {
     res.send("error");
   }
+});
+//delete posts route
+app.post("/deletePosts", (req, res) => {
+  console.log("delete posts called");
+  const client = new MongoClient(uri, { useNewUrlParser: true });
+  client.connect(err => {
+    const collection = client.db("travelGetaway").collection("posts");
+    // perform actions on the collection object
+    try {
+      collection.deleteOne({ _title: req.body.val });
+    } catch (e) {
+      console.log(e);
+    }
+    res.send("OK");
+  });
 });
 
 app.listen(3000, function() {

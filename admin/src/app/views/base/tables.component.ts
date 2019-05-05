@@ -38,12 +38,12 @@ export class TablesComponent {
       });
   }
 
-  ChangeStatus(id, status) {
-    console.log(id);
+  ChangeStatus(uname, status) {
+    console.log(uname);
     var action = "undefined";
     let req = {
       val: action,
-      id: id
+      id: uname
     };
     if (status == "Banned") {
       req.val = "unban";
