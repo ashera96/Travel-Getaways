@@ -1,1 +1,154 @@
 /* You can add global styles to this file, and also import other style files */
+
+.btn-custom {
+    border-radius: 10rem;
+    padding: 1.25rem 2.25rem;
+    font-size: .85rem;
+    font-weight: 700;
+
+}
+
+.service-icon {
+    color: #f4623a;
+}
+
+.icon-color {
+    color: #f4623a;
+}
+
+.portfolio-box .portfolio-img {
+    padding: 10px;
+    width: 650px;
+    height: 350px;
+}
+
+/* Breadcrumb styling start */
+
+header.about-breadcrumb {
+    padding-top: 10rem;
+    padding-bottom: calc(10rem - 72px);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(92, 77, 66, 0.8)), to(rgba(92, 77, 66, 0.8))), url("src/assets/img/bg-1.jpg");
+    background: linear-gradient(to bottom, rgba(92, 77, 66, 0.096) 0%, rgba(92, 77, 66, 0.8) 100%), url("src/assets/img/bg-1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    height: 100px;
+  }
+  
+  header.about-breadcrumb h1 {
+    font-size: 2.25rem;
+  }
+  
+  @media (min-width: 992px) {
+    header.about-breadcrumb {
+      height: 100vh;
+      min-height: 40rem;
+      padding-top: 72px;
+      padding-bottom: 0;
+    }
+    header.about-breadcrumb p {
+      font-size: 1.15rem;
+    }
+    header.about-breadcrumb h1 {
+      font-size: 3rem;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    header.about-breadcrumb h1 {
+      font-size: 3.5rem;
+    }
+  }
+
+  header.contact-breadcrumb {
+    padding-top: 10rem;
+    padding-bottom: calc(10rem - 72px);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(92, 77, 66, 0.8)), to(rgba(92, 77, 66, 0.8))), url("src/assets/img/bg-3.jpg");
+    background: linear-gradient(to bottom, rgba(92, 77, 66, 0.6) 0%, rgba(92, 77, 66, 0.8) 100%), url("src/assets/img/bg-3.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    height: 100px;
+  }
+  
+  header.contact-breadcrumb h1 {
+    font-size: 2.25rem;
+  }
+  
+  @media (min-width: 992px) {
+    header.contact-breadcrumb {
+      height: 100vh;
+      min-height: 40rem;
+      padding-top: 72px;
+      padding-bottom: 0;
+    }
+    header.contact-breadcrumb p {
+      font-size: 1.15rem;
+    }
+    header.contact-breadcrumb h1 {
+      font-size: 3rem;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    header.contact-breadcrumb h1 {
+      font-size: 3.5rem;
+    }
+  }
+
+  header.testimonials-breadcrumb {
+    padding-top: 10rem;
+    padding-bottom: calc(10rem - 72px);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(92, 77, 66, 0.8)), to(rgba(92, 77, 66, 0.8))), url("src/assets/img/bg-4.jpg");
+    background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("src/assets/img/bg-4.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    height: 100px;
+  }
+  
+  header.testimonials-breadcrumb h1 {
+    font-size: 2.25rem;
+  }
+  
+  @media (min-width: 992px) {
+    header.testimonials-breadcrumb {
+      height: 100vh;
+      min-height: 40rem;
+      padding-top: 72px;
+      padding-bottom: 0;
+    }
+    header.testimonials-breadcrumb p {
+      font-size: 1.15rem;
+    }
+    header.testimonials-breadcrumb h1 {
+      font-size: 3rem;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    header.testimonials-breadcrumb h1 {
+      font-size: 3.5rem;
+    }
+  }
+
+  /* Breadcrumb styling end */
+  
+  .card-style:hover {
+    -webkit-transform: scale(1.1) rotate(0deg);
+    transform: scale(1.1) rotate(0deg);
+  }
+
+  .crop {
+    height: 150px;
+    width: 150px;
+    overflow: hidden;
+   }
+   .crop img {
+    height: auto;
+    width: 150px;
+    margin: 0 10px 0 0;
+   }
