@@ -2,10 +2,12 @@ var express = require("express");
 var cors = require("cors");
 var bodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
+var dialogflow = require("./dialogflow");
 const assert = require("assert");
 const multer = require("multer");
 //const MongoClient = require("mongodb");
 //var mongoose = require(__dirname + "/mlab.js");
+//var dgflow = new dialogflow();
 var app = express();
 app.use(cors());
 //json parser
@@ -154,6 +156,12 @@ app.post("/deletePosts", (req, res) => {
     }
     res.send("OK");
   });
+});
+app.post("/bot", (req, res) => {
+  let val = req.body.query;
+  console.log(val);
+
+  var result = dialogflow.getReply(res, req.body.query);
 });
 
 app.listen(3000, function() {

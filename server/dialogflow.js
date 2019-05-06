@@ -11,16 +11,17 @@ let config = {
 };
 var bodyParameters = {
   queryInput: { text: {} },
-  query: "hi hello",
+  query: "",
   languageCode: "en",
   sessionId: "12345",
   timezone: "Asia/Colombo"
 };
-function getReply(query) {
-  this.bodyParameters.query = query;
+module.exports.getReply = function getReply(res, query) {
+  bodyParameters.query = query;
+  console.log(bodyParameters);
   fetch(URL + "query?v=20150910", {
     body: JSON.stringify({
-      query: "new york city",
+      query: query,
       lang: "en",
       sessionId: "12345"
     }),
@@ -33,7 +34,8 @@ function getReply(query) {
     .then(response => response.json())
     .then(data => {
       console.log(data.result.fulfillment.speech);
+      res.send({ result: data.result.fulfillment.speech });
       return data.result.fulfillment.speech;
     })
     .catch(error => console.error(error));
-}
+};
