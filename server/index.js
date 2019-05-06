@@ -3,6 +3,7 @@ var cors = require("cors");
 var bodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
 const assert = require("assert");
+const multer = require("multer");
 //const MongoClient = require("mongodb");
 //var mongoose = require(__dirname + "/mlab.js");
 var app = express();
@@ -22,6 +23,17 @@ var allowCrossDomain = function(req, res, next) {
   next();
 };
 app.use(allowCrossDomain);
+
+const multerconfig = {
+  storage: multer.diskStorage({
+    destination: function(req, file, next) {
+      next(null, "/public/images");
+    },
+    filename: function(req, file, next) {
+      console.log(file);
+    }
+  })
+};
 
 // end of setup
 
@@ -61,6 +73,9 @@ app.post("/GetPosts", (req, res) => {
       client.close();
     });
   });
+});
+app.post("/Uploads", multer(multerconfig).single("photo"), function(req, res) {
+  res.send("photo uploaded");
 });
 
 app.post("/UpdateUser", function(req, res) {
