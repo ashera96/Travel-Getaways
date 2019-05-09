@@ -1,83 +1,56 @@
 <div class="animated fadeIn">
-  <div class="card">
-    <div class="card-header">
-      Bootstrap Pagination
-      <div class="card-header-actions">
-        <a href="https://valor-software.com/ngx-bootstrap/#/pagination" target="_blank">
-          <small className="text-muted">docs</small>
-        </a>
-      </div>
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-xs-12 col-12 d-sm-down-none">
-          <pagination [totalItems]="totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
-        </div>
-        <div class="col-xs-12 col-12">
-          <pagination [boundaryLinks]="true" [totalItems]="totalItems" [(ngModel)]="currentPage" class="pagination-sm" [maxSize]="6"
-                      previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
-        </div>
-        <div class="col-xs-12 col-12 d-sm-down-none">
-          <pagination [directionLinks]="false" [boundaryLinks]="true" [totalItems]="totalItems"
-                      [(ngModel)]="currentPage"></pagination>
-        </div>
-        <div class="col-xs-12 col-12">
-          <pagination [directionLinks]="false" [totalItems]="totalItems" [(ngModel)]="currentPage"
-                      (numPages)="smallnumPages = $event"></pagination>
-        </div>
-      </div>
-      <pre class="card card-body card-header mb-3">The selected page no: {{currentPage}}/{{smallnumPages}}</pre>
-    </div>
-    <div class="card-footer">
-      <button type="button" class="btn btn-info" (click)="setPage(3)">Set current page to: 3</button>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header">
-      Pagination <small>states & limits</small>
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-xs-12 col-12">
-          <pagination [totalItems]="bigTotalItems" [(ngModel)]="bigCurrentPage" [maxSize]="maxSize" class="pagination-sm"
-                      previousText="&lsaquo;" nextText="&rsaquo;" [boundaryLinks]="true"></pagination>
-        </div>
+  <!--/.row-->
 
-        <div class="col-xs-12 col-12">
-          <pagination [totalItems]="bigTotalItems" [(ngModel)]="bigCurrentPage" [maxSize]="maxSize" class="pagination-sm"
-                      previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
-                      [boundaryLinks]="true" [rotate]="false" (numPages)="numPages = $event"></pagination>
+  <!--/.row-->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Combined All Table
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered table-striped table-sm">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Post body</th>
+                <th>date published</th>
+                <th>Publisher</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let post of postslist">
+                <td>{{ post._title }}</td>
+                <td>{{ post._body }}</td>
+                <td>{{ post._date }}</td>
+                <td>{{ post._owner }}</td>
+                <td>
+                  <span
+                    class="badge badge-success"
+                    (click)="DeletePosts(post._title)"
+                    >Delete</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <nav>
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+              <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">4</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+          </nav>
         </div>
       </div>
-      <pre class="card card-body card-header">Page: {{bigCurrentPage}} / {{numPages}}</pre>
     </div>
+    <!--/.col-->
   </div>
-  <div class="card">
-    <div class="card-header">
-      Pager
-    </div>
-    <div class="card-body">
-      <div class="row">
-        <div class="col-xs-12 col-12 col-md-6">
-          <pagination
-            [directionLinks]="false"
-            [totalItems]="totalItems"
-            [(ngModel)]="currentPager"
-            (numPages)="smallnumPages = $event">
-          </pagination>
-        </div>
-
-        <div class="col-xs-12 col-12 col-md-6">
-          <pager
-            [totalItems]="totalItems"
-            [(ngModel)]="currentPager"
-            (pageChanged)="pageChanged($event)"
-            pageBtnClass="btn"
-            [itemsPerPage]="10"
-            class="pull-left">
-          </pager>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!--/.row-->
 </div>

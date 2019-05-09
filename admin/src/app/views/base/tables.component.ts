@@ -13,8 +13,6 @@ export class TablesComponent {
   private getUserURL = HttpEnum.baseURL + "GetUsers";
   private updateUserURL = HttpEnum.baseURL + "UpdateUser";
   private BanUserURL = HttpEnum.baseURL + "deleteUser";
-  private getPostsURL = HttpEnum.baseURL + "GetPosts";
-  private deletePosts = HttpEnum.baseURL + "deletePosts";
 
   constructor(private httpService: HttpService) {}
   ngOnInit(): void {
@@ -40,12 +38,12 @@ export class TablesComponent {
       });
   }
 
-  ChangeStatus(id, status) {
-    console.log(id);
+  ChangeStatus(uname, status) {
+    console.log(uname);
     var action = "undefined";
     let req = {
       val: action,
-      id: id
+      id: uname
     };
     if (status == "Banned") {
       req.val = "unban";

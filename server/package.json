@@ -10,12 +10,15 @@
   "license": "ISC",
   "dependencies": {
     "assert": "^1.4.1",
+    "axios": "^0.18.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
-    "mongod": "^2.2.33",
+    "iconv-lite": "^0.4.24",
     "mongodb": "^3.2.3",
     "mongoose": "^5.3.8",
-    "nodemon": "^1.18.11"
+    "node-fetch": "^2.5.0",
+    "nodemon": "^1.18.11",
+    "raw-body": "^2.4.0"
   }
 }

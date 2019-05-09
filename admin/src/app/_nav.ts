@@ -41,7 +41,7 @@ export const navItems: NavData[] = [
   },
   {
     name: "Posts",
-    url: "/charts",
+    url: "/base/paginations",
     icon: "icon-cursor"
   },
   {
