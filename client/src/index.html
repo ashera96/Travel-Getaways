@@ -20,8 +20,11 @@
 
   <!-- Theme CSS - Includes Bootstrap -->
   <link href="./assets/css/creative.min.css" rel="stylesheet">
+
 </head>
 <body>
+  <!-- Return to Top -->
+  <a href="javascript:" id="return-to-top"><i class="fas fa-chevron-up"></i></a>
 
   <app-root></app-root>
 
@@ -47,6 +50,20 @@
             $('.fixed-top').css('background', 'rgba(255, 255, 255, 0.7)');
             $('.fixed-top a').css('color', 'rgba(0, 0, 0, 0.7)');
         }
+    });
+
+    // scroll to top
+    $(window).scroll(function() {
+        if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+            $('#return-to-top').fadeIn(200);    // Fade in the arrow
+        } else {
+            $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+        }
+    });
+    $('#return-to-top').click(function() {      // When arrow is clicked
+        $('body,html').animate({
+            scrollTop : 0                       // Scroll to top of body
+        }, 500);
     });
   </script>
 
