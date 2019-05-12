@@ -30,9 +30,9 @@ Folders of this project are structed as follows;
 Development of the web application is done using the below mentioned technology stack.
 
 - Angular
-- Node
-- Express
-- Firebase ( Cloud Firestore )
+- Node.js
+- Express.js
+- MongoDB
 
 ## Installation
 
