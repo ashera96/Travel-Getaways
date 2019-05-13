@@ -6,6 +6,8 @@
   margin: 200px 200px 200px 200px;
   background-color: hsl(0, 33%, 99%);
   outline: black;
+  border-color: black;
+  border-width: 10px;
 }
 /* Chat containers */
 .container {
