@@ -1,0 +1,35 @@
+<div class="pagecontainer" #pagecontainer>
+  <div class="jumbotron">
+    <div class="container">
+      <img src="../../assets/img/bot2.svg" alt="Avatar" />
+      <p>Hello. How are you today?</p>
+      <span class="time-right">11:00</span>
+    </div>
+
+    <div class="container darker">
+      <img src="../../assets/img/bot2.svg" alt="Avatar" class="right" />
+      <p>Hey! I'm fine. Thanks for asking!</p>
+      <span class="time-left">11:01</span>
+    </div>
+
+    <!-- chat component start -->
+
+    <!-- chat component end -->
+  </div>
+
+  <!-- <script>
+  document.querySelector(".chattoggle").onclick = function() {
+    document.querySelector(".pagecontainer").classList.toggle("expand");
+    document.querySelector("#chat").classList.toggle("hide");
+  };
+</script> -->
+</div>
+<div class="chatcontainer">
+  <div *ngIf="toggle" id="chat" class="hide"></div>
+  <img
+    src="../../assets/img/bot1.svg"
+    (click)="ToggleChat()"
+    class="chattoggle"
+  />
+  <i class="fas fa-robot"></i>
+</div>

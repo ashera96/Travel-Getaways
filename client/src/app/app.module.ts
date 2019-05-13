@@ -17,6 +17,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ContactContentComponent } from './pages/contact/contact-content/contact-content.component';
 import { TestimonialsContentComponent } from './pages/testimonials/testimonials-content/testimonials-content.component';
+import { ChatBotComponent } from './chat-bot/chat-bot.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { TestimonialsContentComponent } from './pages/testimonials/testimonials-
     LoginComponent,
     RegisterComponent,
     ContactContentComponent,
-    TestimonialsContentComponent
+    TestimonialsContentComponent,
+    ChatBotComponent
   ],
   imports: [
     BrowserModule,
