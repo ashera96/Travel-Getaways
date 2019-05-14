@@ -2,9 +2,12 @@ var express = require("express");
 var cors = require("cors");
 var bodyParser = require("body-parser");
 const MongoClient = require("mongodb").MongoClient;
+var dialogflow = require("./dialogflow");
 const assert = require("assert");
+const multer = require("multer");
 //const MongoClient = require("mongodb");
 //var mongoose = require(__dirname + "/mlab.js");
+//var dgflow = new dialogflow();
 var app = express();
 app.use(cors());
 //json parser
@@ -22,6 +25,17 @@ var allowCrossDomain = function(req, res, next) {
   next();
 };
 app.use(allowCrossDomain);
+
+const multerconfig = {
+  storage: multer.diskStorage({
+    destination: function(req, file, next) {
+      next(null, "/public/images");
+    },
+    filename: function(req, file, next) {
+      console.log(file);
+    }
+  })
+};
 
 // end of setup
 
@@ -61,6 +75,9 @@ app.post("/GetPosts", (req, res) => {
       client.close();
     });
   });
+});
+app.post("/Uploads", multer(multerconfig).single("photo"), function(req, res) {
+  res.send("photo uploaded");
 });
 
 app.post("/UpdateUser", function(req, res) {
@@ -139,6 +156,12 @@ app.post("/deletePosts", (req, res) => {
     }
     res.send("OK");
   });
+});
+app.post("/bot", (req, res) => {
+  let val = req.body.query;
+  console.log(val);
+
+  var result = dialogflow.getReply(res, req.body.query);
 });
 
 app.listen(3000, function() {

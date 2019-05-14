@@ -1,0 +1,105 @@
+/* chat ui start */
+
+/* Jumbotron */
+
+.jumbotron {
+  margin: 200px 200px 200px 200px;
+  background-color: hsl(0, 33%, 99%);
+  outline: black;
+  border-color: black;
+  border-width: 10px;
+}
+/* Chat containers */
+.container {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+/* Darker chat container */
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+/* Clear floats */
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.container {
+  width: 50%px;
+}
+/* Style images */
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 70%;
+  margin-right: -50px;
+  border-radius: 50%;
+}
+
+/* Style the right image */
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right: 0;
+}
+
+/* Style time text */
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+/* Style time text */
+.time-left {
+  float: left;
+  color: #999;
+}
+
+/* chat ui end */
+
+.chattoggle {
+  position: fixed;
+  bottom: 30px;
+  width: 100px;
+  height: 100px;
+  color: red;
+  margin: 50px auto 10px 30px;
+  background-color: transparent;
+}
+
+.chatcontainer {
+  background: #555;
+  color: #df4c4c;
+}
+
+#chat {
+  position: fixed;
+  bottom: 26px;
+  border: none;
+  width: 100%;
+  height: 50vh;
+  z-index: 100;
+}
+
+.pagecontainer {
+  padding-bottom: 33px;
+  position: relative;
+}
+
+.pagecontainer {
+  padding-bottom: 33px;
+}
+
+.expand {
+  padding-bottom: 0vh;
+}
+
+.hide {
+  display: none;
+}
