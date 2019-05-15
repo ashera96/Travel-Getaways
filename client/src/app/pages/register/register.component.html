@@ -7,28 +7,53 @@
           <h2 class="text-center mt-0">Register</h2>
           <hr class="divider my-4" />
           <div>
-            <form (ngSubmit)="onSignin(f)" #f="ngForm">
+            <form [formGroup]="registrationForm">
               <div class="form-group text-left">
                 <label for="email">Your Name</label>
-                <input type="text" id="name" name="name" ngModel class="form-control">
+                <input 
+                  type="text" 
+                  id="name" 
+                  formControlName="name" 
+                  class="form-control">
+                <span
+                  *ngIf="!registrationForm.get('name').valid && registrationForm.get('name').touched"
+                  class="help-block text-muted">Please enter a valid name</span>
               </div>
               <div class="form-group text-left">
                 <label for="email">Your Email</label>
-                <input type="email" id="email" name="email" ngModel class="form-control">
+                <input 
+                  type="email" 
+                  id="email" 
+                  formControlName="email"
+                  class="form-control">
+                <span
+                  *ngIf="!registrationForm.get('email').valid && registrationForm.get('email').touched"
+                  class="help-block text-muted">Please enter a valid email</span>
               </div>
               <div class="form-group text-left">
                 <label for="password">Your Password</label>
-                <input type="password" id="password" name="password" ngModel class="form-control">
+                <input 
+                  type="password" 
+                  id="password" 
+                  formControlName="password"
+                  class="form-control">
               </div>
               <div class="form-group text-left">
                 <label for="password">Confirm Password</label>
-                <input type="password" id="password" name="password" ngModel class="form-control">
+                <input 
+                  type="password" 
+                  id="password" 
+                  formControlName="confirmPassword"
+                  class="form-control">
+                <span
+                  *ngIf="!registrationForm.get('confirmPassword').valid && registrationForm.get('confirmPassword').touched || registrationForm.get('password').value!=registrationForm.get('confirmPassword').value"
+                  class="help-block text-muted">Your password and confirmation password do not match</span>
               </div>
               <button 
                 class="btn btn-light btn-xl btn-block pt-3 pb-3 js-scroll-trigger btn-custom btn-submit" 
                 style="margin-top:40px;" 
-                type="submit" 
-                [disabled]="!f.valid">Register Now!</button>
+                type="submit"
+                (click)="onRegister()">Register Now!</button>
               <p class="text-center pt-1">Already have an account?<a routerLink="/login" class="btn theme-orange">Sign In</a></p>
             </form>
           </div>

@@ -47,3 +47,7 @@ input[type=checkbox]:after {
     display: block;
     opacity: 1;
 }
+
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
