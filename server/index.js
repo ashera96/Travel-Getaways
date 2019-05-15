@@ -158,10 +158,10 @@ app.post("/deletePosts", (req, res) => {
   });
 });
 app.post("/bot", (req, res) => {
-  let val = req.body.query;
+  let val = req.body.result;
   console.log(val);
 
-  var result = dialogflow.getReply(res, req.body.query);
+  var result = dialogflow.getReply(res, req.body.result);
 });
 
 app.listen(3000, function() {

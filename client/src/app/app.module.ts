@@ -19,8 +19,9 @@ import { ContactContentComponent } from "./pages/contact/contact-content/contact
 import { TestimonialsContentComponent } from "./pages/testimonials/testimonials-content/testimonials-content.component";
 import { ChatBotComponent } from "./chat-bot/chat-bot.component";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
-import { MatFormFieldModule } from "@angular/material";
+import { MatFormFieldModule, MatInputModule } from "@angular/material";
 import { HttpClientModule } from "@angular/common/http";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -42,6 +43,8 @@ import { HttpClientModule } from "@angular/common/http";
     ChatBotComponent
   ],
   imports: [
+    BrowserAnimationsModule,
+    MatInputModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     BrowserModule,

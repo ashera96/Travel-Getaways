@@ -5,10 +5,15 @@
       <p>Hello. How are you today?</p>
       <span class="time-right">11:00</span>
     </div>
-
-    <div class="container darker">
+    <!-- class="container darker" -->
+    <div
+      *ngFor="let message of chatList"
+      [ngStyle]="{
+        class: message.id === 'bot' ? 'container' : 'container darker'
+      }"
+    >
       <img src="../../assets/img/bot2.svg" alt="Avatar" class="right" />
-      <p>Hey! I'm fine. Thanks for asking!</p>
+      <p>{{ message.result }}</p>
       <span class="time-left">11:01</span>
     </div>
     <br />

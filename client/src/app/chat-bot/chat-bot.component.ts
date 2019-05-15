@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { element } from "@angular/core/src/render3";
 import { FormControl, Validators } from "@angular/forms";
 import { HttpService } from "../http.service";
+import { HttpEnum } from "../../utils/httpEnum";
 
 @Component({
   selector: "app-chat-bot",
@@ -14,6 +15,7 @@ export class ChatBotComponent implements OnInit {
   public pagecontainer: HTMLElement;
   public input = new FormControl("", [Validators.required]);
   public chatList = new Array();
+  public chatUrl = HttpEnum.baseURL + "bot";
 
   constructor(private httpService: HttpService) {}
 
@@ -36,15 +38,20 @@ export class ChatBotComponent implements OnInit {
     }
   }
 
-  getReply() {
+  async getReply() {
     let sendObj = {
       id: "user",
-      val: this.input.value
+      result: this.input.value
     };
     this.chatList.push(sendObj);
-    this.httpService.realizarHttpPost("URL", sendObj).subscribe(res => {
-      let resObj = { id: "bot", val: res };
+    this.httpService.realizarHttpPost(this.chatUrl, sendObj).subscribe(res => {
+      console.log(res);
+      let obj: any = res;
+      let ress = obj.result;
+
+      let resObj = { id: "bot", result: ress };
       this.chatList.push(resObj);
     });
+    console.log(this.chatList);
   }
 }
