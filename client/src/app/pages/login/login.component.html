@@ -1,3 +1,52 @@
-<p>
-  login works!
-</p>
+<!-- Login Section -->
+
+<section id="services" style="overflow: hidden;">
+  <div class="row">
+    <div class="col-md-6 col-lg-5" style="padding-top: 100px;">
+      <div class="text-center text-container" style="padding: 0 10px;">
+        <h2 class="text-center mt-0">Login</h2>
+        <hr class="divider my-4" />
+        <div>
+          <form [formGroup]="loginForm">
+            <div class="form-group text-left">
+              <label for="email">Email</label>
+              <input 
+                type="email" 
+                id="email"
+                formControlName="email"
+                class="form-control">
+            </div>
+            <div class="form-group text-left">
+              <label for="password">Password</label>
+              <input 
+                type="password" 
+                id="password" 
+                formControlName="password"
+                class="form-control">
+            </div>
+            <div class="row pb-5 d-flex justify-content-between">
+              <div class="ml-3" style="margin-top: 6px;">
+                <input type="checkbox" name="remember-me" id="">
+                <label for="">Remember me</label>
+              </div>
+              <div>
+                <a href="#" class="btn theme-orange">Forgot Password?</a>
+              </div>
+            </div> 
+            <button 
+              class="btn btn-light btn-xl btn-block pt-3 pb-3 js-scroll-trigger btn-custom btn-submit" 
+              type="submit" 
+              (click)="onLogin()">Login</button>
+            <p class="text-center pt-1">New to Travel Getaway?<a routerLink="/register" class="btn theme-orange">Sign up!</a></p>
+          </form>
+        </div>
+        <div class="small text-center text-muted pt-5">Copyright &copy; Travel Getaway 2019 | All rights reserved</div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-7">
+      <div class="login-page-image">
+        <img src="assets/img/bg-7.jpeg" alt="login-page-image">
+      </div>
+    </div>
+  </div>
+</section>
