@@ -140,6 +140,7 @@ header.about-breadcrumb {
   .card-style:hover {
     -webkit-transform: scale(1.1) rotate(0deg);
     transform: scale(1.1) rotate(0deg);
+    transition-duration: 1s;
   }
 
   .crop {
@@ -199,3 +200,12 @@ header.about-breadcrumb {
    /* Scroll down styling end */
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.btn-submit {
+  background-color: #f4623a;
+  color: white;
+}
+
+.theme-orange {
+  color: #f4623a;
+}
