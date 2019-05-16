@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { UserService } from 'src/app/services/auth/user.service';
+import { error } from 'util';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +17,8 @@ export class RegisterComponent implements OnInit {
     password: new FormControl(null, Validators.required),
     confirmPassword: new FormControl(null, [Validators.required])
   })
-  constructor() { }
+  constructor(private userService: UserService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -24,7 +29,17 @@ export class RegisterComponent implements OnInit {
     if (!this.registrationForm.valid || password != confirmPassword) {
       console.log("Invalid");
     } else {
-      console.log(JSON.stringify(this.registrationForm.value));
+      this.userService.signupUser(JSON.stringify(this.registrationForm.value))
+        .subscribe(
+          (data) =>  {
+            console.log(data);
+            this.router.navigate(['/home']);
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+      // console.log(JSON.stringify(this.registrationForm.value));
     }
   }
 }

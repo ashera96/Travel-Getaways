@@ -9,6 +9,7 @@ import { TestimonialsComponent } from './pages/testimonials/testimonials.compone
 import { ContactComponent } from './pages/contact/contact.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
     { path: 'contact', component: ContactComponent},
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},
+    { path: 'home', component: ProfileComponent},
     { path: 'not-found', component: PageNotFoundComponent},
     { path: '**', redirectTo: '/not-found'}
 ];
