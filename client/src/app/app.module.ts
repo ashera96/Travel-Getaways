@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule, MatInputModule } from "@angular/material";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgFlashMessagesModule } from 'ng-flash-messages';
 
 import { AppComponent } from "./app.component";
 import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
@@ -22,8 +23,9 @@ import { RegisterComponent } from "./pages/register/register.component";
 import { ContactContentComponent } from "./pages/contact/contact-content/contact-content.component";
 import { TestimonialsContentComponent } from "./pages/testimonials/testimonials-content/testimonials-content.component";
 import { ChatBotComponent } from "./chat-bot/chat-bot.component";
-import { UserService } from './services/auth/user.service';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { AuthService } from './services/auth/auth.service';
+import { AuthGuardService } from './services/auth-guard/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -53,9 +55,10 @@ import { ProfileComponent } from './pages/profile/profile.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgFlashMessagesModule.forRoot()
   ],
-  providers: [UserService],
+  providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

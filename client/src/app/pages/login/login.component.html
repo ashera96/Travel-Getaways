@@ -15,6 +15,9 @@
                 id="email"
                 formControlName="email"
                 class="form-control">
+              <span
+                *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched"
+                class="help-block text-muted">Please enter a valid email</span>
             </div>
             <div class="form-group text-left">
               <label for="password">Password</label>
