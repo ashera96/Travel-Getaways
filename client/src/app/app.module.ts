@@ -5,6 +5,7 @@ import { MatFormFieldModule, MatInputModule } from "@angular/material";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgFlashMessagesModule } from 'ng-flash-messages';
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from "./app.component";
 import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
@@ -26,6 +27,7 @@ import { ChatBotComponent } from "./chat-bot/chat-bot.component";
 import { ProfileComponent } from './pages/profile/profile.component';
 import { AuthService } from './services/auth/auth.service';
 import { AuthGuardService } from './services/auth-guard/auth-guard.service';
+import { ContactService } from './services/contact/contact.service';
 
 @NgModule({
   declarations: [
@@ -56,9 +58,10 @@ import { AuthGuardService } from './services/auth-guard/auth-guard.service';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgFlashMessagesModule.forRoot()
+    NgFlashMessagesModule.forRoot(),
+    NgbAlertModule
   ],
-  providers: [AuthService, AuthGuardService],
+  providers: [AuthService, AuthGuardService, ContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
