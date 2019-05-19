@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
           (error: any) => {
             console.log("Invalid");
             this.ngFlashMessageService.showFlashMessage({
-              messages: ["Registration Failed! Please try again"], 
+              messages: ["Sorry this email is taken! Please try again"], 
               type: 'danger'
             });
           }
