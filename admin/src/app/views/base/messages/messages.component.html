@@ -1,0 +1,46 @@
+<!-- Loading messages sent by the user through the contact us page -->
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <strong>Inbox</strong>
+        </div>
+        <div class="card-body">
+          <div *ngFor="let message of messages">
+            <div class="row">
+              <p class="pl-3"><strong>{{ message.firstname }} {{ message.lastname }}</strong></p>
+              <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
+                <button type="button" class="btn btn-pill btn-primary pull-right"><i class="fa fa-reply"></i>&nbsp;Reply to this message</button>
+              </div>
+            </div>
+            <div class="text-muted d-flex flex-row bd-highlight mb-3"> 
+              <div class="pr-5 bd-highlight"><strong>Email :</strong> {{ message.email }}</div>
+              <div class="pr-5 bd-highlight"><strong>Contact Number :</strong> 0{{ message.telephone }}</div>
+            </div>
+            <p>{{ message.message }}</p>
+            <hr>
+          </div>
+
+          <!-- Pagination Section start -->
+          <nav>
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link">Prev</a></li>
+              <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item"><a class="page-link">2</a></li>
+              <li class="page-item"><a class="page-link">3</a></li>
+              <li class="page-item"><a class="page-link">4</a></li>
+              <li class="page-item"><a class="page-link">Next</a></li>
+            </ul>
+          </nav>
+          <!-- Pagingation Section end -->
+                    
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+</div>

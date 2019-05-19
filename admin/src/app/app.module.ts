@@ -6,6 +6,8 @@ import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
 import { PERFECT_SCROLLBAR_CONFIG } from "ngx-perfect-scrollbar";
 import { PerfectScrollbarConfigInterface } from "ngx-perfect-scrollbar";
 import { HttpClientModule } from "@angular/common/http";
+import {NgxPaginationModule} from 'ngx-pagination';
+import  { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -40,6 +42,10 @@ import { TabsModule } from "ngx-bootstrap/tabs";
 import { ChartsModule } from "ng2-charts/ng2-charts";
 import { UtilsComponent } from "./utils/utils.component";
 
+// Import services
+import { MessageService } from './views/base/messages/message.service';
+import { from } from 'rxjs';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -53,7 +59,9 @@ import { UtilsComponent } from "./utils/utils.component";
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule,
+    NgbModule.forRoot()
   ],
   declarations: [
     AppComponent,
@@ -68,7 +76,8 @@ import { UtilsComponent } from "./utils/utils.component";
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
-    }
+    },
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

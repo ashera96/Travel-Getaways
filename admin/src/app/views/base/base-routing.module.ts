@@ -9,6 +9,7 @@ import { TablesComponent } from "./tables.component";
 //import { CarouselsComponent } from './carousels.component';
 //import { CollapsesComponent } from './collapses.component';
 import { PaginationsComponent } from "./paginations.component";
+import { MessagesComponent } from './messages/messages.component';
 //import {PopoversComponent} from './popovers.component';
 //import {ProgressComponent} from './progress.component';
 //import {TooltipsComponent} from './tooltips.component';
@@ -43,6 +44,13 @@ const routes: Routes = [
         component: PaginationsComponent,
         data: {
           title: "Pagination"
+        }
+      },
+      {
+        path: "messages",
+        component: MessagesComponent,
+        data: {
+          title: "Messages"
         }
       }
     ]

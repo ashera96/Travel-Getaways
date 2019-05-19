@@ -44,6 +44,7 @@ import { TooltipModule } from "ngx-bootstrap/tooltip";
 
 // Components Routing
 import { BaseRoutingModule } from "./base-routing.module";
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   imports: [
@@ -59,6 +60,6 @@ import { BaseRoutingModule } from "./base-routing.module";
     ProgressbarModule.forRoot(),
     TooltipModule.forRoot()
   ],
-  declarations: [FormsComponent, TablesComponent, PaginationsComponent]
+  declarations: [FormsComponent, TablesComponent, PaginationsComponent, MessagesComponent]
 })
 export class BaseModule {}
