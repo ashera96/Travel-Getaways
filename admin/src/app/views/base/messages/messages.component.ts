@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {ModalDirective} from 'ngx-bootstrap/modal';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { MessageService } from './message.service';
 import { Message } from './message.model';
@@ -11,8 +10,7 @@ import { Message } from './message.model';
 })
 export class MessagesComponent implements OnInit {
   messages: Message[] = [];
-  @ViewChild('myModal') public myModal: ModalDirective;
-
+  
   constructor(private messageService: MessageService) { }
 
   ngOnInit() {

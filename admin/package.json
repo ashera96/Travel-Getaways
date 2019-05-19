@@ -48,6 +48,7 @@
     "font-awesome": "^4.7.0",
     "moment": "^2.24.0",
     "mutationobserver-shim": "^0.3.3",
+    "ng-bootstrap": "^1.6.3",
     "ng2-charts": "^1.6.0",
     "ngx-bootstrap": "^3.2.0",
     "ngx-pagination": "^3.2.1",
