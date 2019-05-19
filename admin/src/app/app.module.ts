@@ -6,7 +6,6 @@ import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
 import { PERFECT_SCROLLBAR_CONFIG } from "ngx-perfect-scrollbar";
 import { PerfectScrollbarConfigInterface } from "ngx-perfect-scrollbar";
 import { HttpClientModule } from "@angular/common/http";
-import {NgxPaginationModule} from 'ngx-pagination';
 import  { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -60,7 +59,6 @@ import { from } from 'rxjs';
     TabsModule.forRoot(),
     ChartsModule,
     HttpClientModule,
-    NgxPaginationModule,
     NgbModule.forRoot()
   ],
   declarations: [

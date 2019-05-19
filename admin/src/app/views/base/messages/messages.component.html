@@ -7,7 +7,7 @@
           <strong>Inbox</strong>
         </div>
         <div class="card-body">
-          <div *ngFor="let message of messages">
+          <div *ngFor="let message of returnedArray">
             <div class="row">
               <p class="pl-3"><strong>{{ message.firstname }} {{ message.lastname }}</strong></p>
               <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
@@ -21,9 +21,11 @@
             <p>{{ message.message }}</p>
             <hr>
           </div>
-
+          
+          <pagination [totalItems]="messages.length" (pageChanged)="pageChanged($event)" [itemsPerPage]="itemsPerPage"></pagination>
+          <!-- <pagination [totalItems]=7 [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" [itemsPerPage]="5"></pagination> -->
           <!-- Pagination Section start -->
-          <nav>
+          <!-- <nav>
             <ul class="pagination">
               <li class="page-item"><a class="page-link">Prev</a></li>
               <li class="page-item active">
@@ -34,7 +36,7 @@
               <li class="page-item"><a class="page-link">4</a></li>
               <li class="page-item"><a class="page-link">Next</a></li>
             </ul>
-          </nav>
+          </nav> -->
           <!-- Pagingation Section end -->
                     
         </div>
