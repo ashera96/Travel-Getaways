@@ -15,6 +15,7 @@ export class MessagesComponent implements OnInit {
   messages: Message[] = [];
   returnedArray: Message[];
   itemsPerPage: number = 5;
+  currentPage: number = 1;
   replyBody: String = '';
 
   constructor(private messageService: MessageService) { }
@@ -44,12 +45,32 @@ export class MessagesComponent implements OnInit {
     console.log(this.returnedArray);
   }
 
-  onReset() {
+  onSubmit(index: number) {
+    // Retrieving the user sent message and email which admin is replying to
+    let i = index + this.itemsPerPage * (this.currentPage - 1);
+    const message = this.messages[i].message;
+    const email = this.messages[i].email;
+    const obj = {
+      "message" : message,
+      "reply" : this.replyBody,
+      "email" : email
+    }
+    // console.log(obj);
+    // console.log(this.messages[index]);
+    this.messageService.sendReply(obj)
+      .subscribe(
+        (data: any) => {
+          console.log('Reply sent successfully');
+        },
+        errror => {
+          console.log("Error occurred");
+        }
+      );
     this.replyBody = '';
   }
 
-  onSubmit() {
-    console.log(this.replyBody);
+  modalClosed() {
+    this.replyBody = '';
   }
 
 }

@@ -26,6 +26,7 @@ const app = express();
 // Required Routes
 const users = require('./routes/users');
 const messages = require('./routes/messages');
+const mail = require('./routes/email');
 
 // Port Number
 const port = 3000;
@@ -47,6 +48,7 @@ require('./config/passport')(passport);
 // Application Routes
 app.use('/users', users);
 app.use('/messages', messages);
+app.use('/reply', mail);
 
 // Index Route
 app.get('/', (req, res) => {
