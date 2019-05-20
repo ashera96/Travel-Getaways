@@ -11,7 +11,7 @@
             <div class="row">
               <p class="pl-3"><strong>{{ message.firstname }} {{ message.lastname }}</strong></p>
               <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
-                <button type="button" class="btn btn-pill btn-primary pull-right"><i class="fa fa-reply"></i>&nbsp;Reply to this message</button>
+                <button type="button" class="btn btn-pill btn-primary pull-right" data-toggle="modal" (click)="primaryModal.show()"><i class="fa fa-reply"></i>&nbsp;Reply to this message</button>
               </div>
             </div>
             <div class="text-muted d-flex flex-row bd-highlight mb-3"> 
@@ -21,22 +21,9 @@
             <p>{{ message.message }}</p>
             <hr>
           </div>
-          
-          <pagination [totalItems]="messages.length" (pageChanged)="pageChanged($event)" [itemsPerPage]="itemsPerPage"></pagination>
-          <!-- <pagination [totalItems]=7 [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" [itemsPerPage]="5"></pagination> -->
+        
           <!-- Pagination Section start -->
-          <!-- <nav>
-            <ul class="pagination">
-              <li class="page-item"><a class="page-link">Prev</a></li>
-              <li class="page-item active">
-                <a class="page-link" href="#">1</a>
-              </li>
-              <li class="page-item"><a class="page-link">2</a></li>
-              <li class="page-item"><a class="page-link">3</a></li>
-              <li class="page-item"><a class="page-link">4</a></li>
-              <li class="page-item"><a class="page-link">Next</a></li>
-            </ul>
-          </nav> -->
+          <pagination class="d-flex justify-content-center" [totalItems]="messages.length" (pageChanged)="pageChanged($event)" [itemsPerPage]="itemsPerPage"></pagination>
           <!-- Pagingation Section end -->
                     
         </div>
@@ -46,3 +33,27 @@
   </div>
   <!--/.row-->
 </div>
+
+
+<!-- Modal start -->
+<div bsModal #primaryModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-primary" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Enter your reply</h4>
+        <button type="button" class="close" (click)="primaryModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="text" [(ngModel)]="replyBody" class="form-control">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="primaryModal.hide()">Close</button>
+        <button type="button" class="btn btn-danger" (click)="onReset()">Reset</button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()">Send Email</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal end -->

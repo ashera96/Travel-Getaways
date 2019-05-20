@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { PageChangedEvent } from 'ngx-bootstrap/pagination';
+import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import {ModalDirective} from 'ngx-bootstrap/modal';
 
 import { MessageService } from './message.service';
 import { Message } from './message.model';
@@ -11,9 +11,11 @@ import { Message } from './message.model';
   encapsulation: ViewEncapsulation.None
 })
 export class MessagesComponent implements OnInit {
+  @ViewChild('primaryModal') public primaryModal: ModalDirective;
   messages: Message[] = [];
   returnedArray: Message[];
   itemsPerPage: number = 5;
+  replyBody: String = '';
 
   constructor(private messageService: MessageService) { }
 
@@ -24,7 +26,7 @@ export class MessagesComponent implements OnInit {
           console.log('Messages retreived successsfully');
           // console.log(data);
           this.messages = data.messages;
-          this.returnedArray = this.messages.slice(0, 5);
+          this.returnedArray = this.messages.slice(0, this.itemsPerPage);
           console.log(this.returnedArray);
           // this.totalItems = this.messages.length;
         },
@@ -40,8 +42,14 @@ export class MessagesComponent implements OnInit {
     const endItem = event.page * event.itemsPerPage;
     this.returnedArray = this.messages.slice(startItem, endItem);
     console.log(this.returnedArray);
-    // console.log('Page changed to: ' + event.page);
-    // console.log('Number items per page: ' + event.itemsPerPage);
+  }
+
+  onReset() {
+    this.replyBody = '';
+  }
+
+  onSubmit() {
+    console.log(this.replyBody);
   }
 
 }
