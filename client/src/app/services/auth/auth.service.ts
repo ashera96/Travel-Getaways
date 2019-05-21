@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
-  authToken: any;
+  authToken: any = null;
   user: any;
 
   constructor(private http: HttpClient,
@@ -42,19 +42,18 @@ export class AuthService {
     this.user = user;
   }
 
-  // getProfile()  {
-  //   // if (localStorage.getItem('id_token') != null) {
-  //   //   const token = localStorage.getItem('id_token');
-  //     // this.authToken = token;
-  //   //   return this.http.get('http://localhost:3000/users/profile', {headers: new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json')});
-  //   // }
-  //   // else {
+  getProfile()  {
+    // if (localStorage.getItem('id_token') != null) {
+    //   const token = localStorage.getItem('id_token');
+      // this.authToken = token;
+    //   return this.http.get('http://localhost:3000/users/profile', {headers: new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json')});
+    // }
+    // else {
 
-  //   // }
-  //     const token = localStorage.getItem('id_token');
-  //     this.authToken = token;
-  //     return this.http.get('http://localhost:3000/users/profile', {headers: new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json')});
-  // }
+    // }
+      this.getToken();
+      return this.http.get('http://localhost:3000/users/profile', {headers: new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json')});
+  }
 
   getToken() {
     const token = localStorage.getItem('id_token');

@@ -5,7 +5,7 @@ import { MatFormFieldModule, MatInputModule } from "@angular/material";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgFlashMessagesModule } from 'ng-flash-messages';
-import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from "./app.component";
 import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
@@ -27,6 +27,10 @@ import { ChatBotComponent } from "./chat-bot/chat-bot.component";
 import { AuthService } from './services/auth/auth.service';
 import { AuthGuardService } from './services/auth-guard/auth-guard.service';
 import { ContactService } from './services/contact/contact.service';
+import { BookmarkComponent } from './pages/bookmark/bookmark.component';
+import { BookmarkContentComponent } from './pages/bookmark/bookmark-content/bookmark-content.component';
+import { BookingsComponent } from './pages/bookings/bookings.component';
+import { BookingsContentComponent } from './pages/bookings/bookings-content/bookings-content.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +49,11 @@ import { ContactService } from './services/contact/contact.service';
     RegisterComponent,
     ContactContentComponent,
     TestimonialsContentComponent,
-    ChatBotComponent
+    ChatBotComponent,
+    BookmarkComponent,
+    BookmarkContentComponent,
+    BookingsComponent,
+    BookingsContentComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -57,7 +65,7 @@ import { ContactService } from './services/contact/contact.service';
     FormsModule,
     HttpClientModule,
     NgFlashMessagesModule.forRoot(),
-    NgbAlertModule
+    NgbModule
   ],
   providers: [AuthService, AuthGuardService, ContactService],
   bootstrap: [AppComponent]

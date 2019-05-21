@@ -9,11 +9,21 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  username: string = '';
 
   constructor(private authService: AuthService,
               private router: Router) { }
 
   ngOnInit() {
+    this.authService.getProfile()
+    .subscribe(
+      (data:any) => {
+        this.username = data.user.name.split(" ")[0];
+      },
+      (error: any) => {
+        console.log("Error occured : " + error);
+      }
+    );
   }
 
   onLogout() {

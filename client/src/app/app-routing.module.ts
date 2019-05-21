@@ -10,6 +10,8 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthGuardService } from './services/auth-guard/auth-guard.service';
+import { BookingsComponent } from './pages/bookings/bookings.component';
+import { BookmarkComponent } from './pages/bookmark/bookmark.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -19,7 +21,8 @@ const appRoutes: Routes = [
     { path: 'contact', component: ContactComponent},
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},
-    // { path: 'home', component: ProfileComponent, canActivate: [AuthGuardService]},
+    { path: 'bookings', component: BookingsComponent, canActivate: [AuthGuardService]},
+    { path: 'bookmarks', component: BookmarkComponent, canActivate: [AuthGuardService]},
     { path: 'not-found', component: PageNotFoundComponent},
     { path: '**', redirectTo: '/not-found'}
 ];
