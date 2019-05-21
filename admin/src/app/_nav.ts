@@ -45,6 +45,11 @@ export const navItems: NavData[] = [
     icon: "icon-cursor"
   },
   {
+    name: "Messages",
+    url: "/base/messages",
+    icon: "icon-envelope-open"
+  },
+  {
     name: "Widgets",
     url: "/widgets",
     icon: "icon-calculator",

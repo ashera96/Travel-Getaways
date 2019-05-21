@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgFlashMessageService } from 'ng-flash-messages';
+
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +15,9 @@ export class LoginComponent implements OnInit {
     email: new FormControl(null, [Validators.email, Validators.required]),
     password: new FormControl(null, Validators.required)
   })
-  constructor() { }
+  constructor(private authService: AuthService,
+              private router: Router,
+              private ngFlashMessageService: NgFlashMessageService) { }
 
   ngOnInit() {
   }
@@ -19,8 +25,27 @@ export class LoginComponent implements OnInit {
   onLogin() {
     if (!this.loginForm.valid) {
       console.log('Invalid');
+      this.ngFlashMessageService.showFlashMessage({
+        messages: ["Login Failed! Please try again"], 
+        type: 'danger'
+      });
     } else {
-      console.log(JSON.stringify(this.loginForm.value));
+      this.authService.authenticateUser(JSON.stringify(this.loginForm.value))
+        .subscribe(
+          (data: any) => {
+            this.authService.storeUserData(data.token, data.user);
+            console.log('Successfully logged in!');
+            this.router.navigate(['/']);
+          },
+          error => {
+            console.log("Invalid");
+            this.ngFlashMessageService.showFlashMessage({
+              messages: ["Registration Failed! Please try again"], 
+              type: 'danger'
+            });  
+          }
+        );
+      // console.log(JSON.stringify(this.loginForm.value));
     }
   }
 }

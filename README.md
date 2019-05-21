@@ -50,7 +50,7 @@ $ cd admin
 $ npm install
 
 # Launch the server for the admin app
-$ ng serve --open
+$ ng serve --port=8080 --open
 
 #go into client directory
 $ cd client
@@ -59,5 +59,14 @@ $ cd client
 $ npm install
 
 # Launch the server for the client app
-$ ng serve --port=8080 --open
+$ ng serve --open
+
+#go into server directory
+$ cd server 
+
+#install the server file dependencies
+$ npm install
+
+#Launch the server
+$ npm start 
 ```

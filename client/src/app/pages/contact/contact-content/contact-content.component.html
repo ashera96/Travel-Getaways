@@ -41,24 +41,57 @@
           <a class="d-block" href="mailto:travel_getaway@gmail.com" style="color:#4d4d4d">travel_getaway@gmail.com</a>
         </div>
       </div>
+
+      <!-- Flash Messages start -->
+      <div class="row">
+        <div class="container mt-3">
+          <ngb-alert type="success" *ngIf="showSuccessMessage" (close)="showSuccessMessage=false">
+              Message sent successfully
+          </ngb-alert>
+          <ngb-alert type="danger" *ngIf="showErrorMessage" (close)="showErrorMessage=false">
+              Error occured! Please try again
+          </ngb-alert>
+        </div>
+      </div>
+      <!-- Flash Messages end -->
+
+      
       <div class="row mt-5">
         <div class="col-md-6" style="display:flex">
           <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2175.560860173476!2d79.86408987723885!3d6.8556516116305986!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x872509bc103506f8!2sTravelco+Holidays!5e0!3m2!1sen!2slk!4v1556621899794!5m2!1sen!2slk" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
         </div>
         <div class="col-md-6">
           <h3>Send a message</h3>
-          <form>
+
+          <!-- Form to send a message start -->
+          <form [formGroup]="contactForm">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label>Name</label>
-                  <input class="form-control" type="text" id="name_contact" name="name_contact">
+                  <label>First Name</label>
+                  <input 
+                    placeholder="Marco"
+                    class="form-control" 
+                    type="text" 
+                    id="firstname"
+                    formControlName="firstname">
+                  <span
+                    *ngIf="!contactForm.get('firstname').valid && contactForm.get('firstname').touched"
+                    class="help-block text-muted">Please enter your first name</span>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Last name</label>
-                  <input class="form-control" type="text" id="lastname_contact" name="lastname_contact">
+                  <input 
+                    placeholder="Fernando"
+                    class="form-control" 
+                    type="text" 
+                    id="lastname" 
+                    formControlName="lastname">
+                  <span
+                    *ngIf="!contactForm.get('lastname').valid && contactForm.get('lastname').touched"
+                    class="help-block text-muted">Please enter your last name</span>
                 </div>
               </div>
             </div>
@@ -67,27 +100,58 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Email</label>
-                  <input class="form-control" type="email" id="email_contact" name="email_contact">
+                  <input 
+                    placeholder="example@example.com"
+                    class="form-control" 
+                    type="email" 
+                    id="email" 
+                    formControlName="email">
+                  <span
+                    *ngIf="!contactForm.get('email').valid && contactForm.get('email').touched"
+                    class="help-block text-muted">Please enter a valid email</span>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Telephone</label>
-                  <input class="form-control" type="text" id="phone_contact" name="phone_contact">
+                  <input 
+                    placeholder="0771231231"
+                    class="form-control" 
+                    type="text" 
+                    id="telephone"
+                    pattern="[0]{1}[0-9]{9}" 
+                    formControlName="telephone">
+                  <span
+                    *ngIf="!contactForm.get('telephone').valid && contactForm.get('telephone').touched"
+                    class="help-block text-muted">Please enter a valid telephone number</span>
                 </div>
               </div>
             </div>
             <!-- /row -->
             <div class="form-group">
               <label>Message</label>
-              <textarea class="form-control" id="message_contact" name="message_contact" style="height:130px;"></textarea>
+              <textarea 
+                placeholder="Type your message here ..."
+                class="form-control" 
+                id="message" 
+                formControlName="message" 
+                style="height:130px;"></textarea>
+              <span
+                *ngIf="!contactForm.get('message').valid && contactForm.get('message').touched"
+                class="help-block text-muted">Please enter a message</span>
             </div>
-            <!-- <p><input type="submit" value="Submit" class="btn_1 rounded" id="submit-contact"></p> -->
-            <a class="btn btn-light btn-xl js-scroll-trigger btn-custom" href="#" style="background-color:#f4623a; color: #ffffff">Submit</a>
+            <button 
+                class="btn btn-light btn-xl js-scroll-trigger btn-custom" 
+                style="background-color:#f4623a; color: #ffffff" 
+                type="submit"
+                (click)="onSubmit()"
+                [disabled]="!contactForm.valid">Submit</button>
           </form>
+          <!-- Form to send a message end -->
+
         </div>
       </div>
-    </div>
+    </div>          
   </section>
   
   

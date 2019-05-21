@@ -1,0 +1,58 @@
+<!-- Loading messages sent by the user through the contact us page -->
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <strong>Inbox</strong>
+        </div>
+        <div class="card-body">
+          <div *ngFor="let message of returnedArray; let i = index">
+            <div class="row">
+              <p class="pl-3"><strong>{{ message.firstname }} {{ message.lastname }}</strong></p>
+              <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
+                <button type="button" class="btn btn-pill btn-primary pull-right" data-toggle="modal" (click)="primaryModal.show()"><i class="fa fa-reply"></i>&nbsp;Reply to this message</button>
+              </div>
+            </div>
+            <div class="text-muted d-flex flex-row bd-highlight mb-3"> 
+              <div class="pr-5 bd-highlight"><strong>Email :</strong> {{ message.email }}</div>
+              <div class="pr-5 bd-highlight"><strong>Contact Number :</strong> 0{{ message.telephone }}</div>
+            </div>
+            <p>{{ message.message }}</p>
+            <hr>
+
+            <!-- Modal start -->
+            <div bsModal #primaryModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-primary" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Enter your reply</h4>
+                    <button type="button" class="close" (click)="primaryModal.hide(); modalClosed()" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <input type="text" [(ngModel)]="replyBody" class="form-control">
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" (click)="primaryModal.hide(); modalClosed()">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="onSubmit(i); primaryModal.hide()" [disabled]="replyBody == ''">Send Email</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <!-- Modal end -->
+
+          </div>
+        
+          <!-- Pagination Section start -->
+          <pagination class="d-flex justify-content-center" [totalItems]="messages.length" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" [itemsPerPage]="itemsPerPage"></pagination>
+          <!-- Pagingation Section end -->
+                    
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+</div>

@@ -135,6 +135,80 @@ header.about-breadcrumb {
     }
   }
 
+  header.bookmark-breadcrumb {
+    padding-top: 10rem;
+    padding-bottom: calc(10rem - 72px);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(92, 77, 66, 0.6)), to(rgba(92, 77, 66, 0.6))), url("src/assets/img/bg-7.jpeg");
+    background: linear-gradient(to bottom, rgba(141, 110, 87, 0.6) 0%, rgba(92, 77, 66, 0.6) 100%), url("src/assets/img/bg-13.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    height: 100px;
+  }
+  
+  header.bookmark-breadcrumb h1 {
+    font-size: 2.25rem;
+  }
+  
+  @media (min-width: 992px) {
+    header.bookmark-breadcrumb {
+      height: 100vh;
+      min-height: 40rem;
+      padding-top: 72px;
+      padding-bottom: 0;
+    }
+    header.bookmark-breadcrumb p {
+      font-size: 1.15rem;
+    }
+    header.bookmark-breadcrumb h1 {
+      font-size: 3rem;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    header.bookmark-breadcrumb h1 {
+      font-size: 3.5rem;
+    }
+  }
+
+  header.bookings-breadcrumb {
+    padding-top: 10rem;
+    padding-bottom: calc(10rem - 72px);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(92, 77, 66, 0.8)), to(rgba(92, 77, 66, 0.8))), url("src/assets/img/bg-7.jpeg");
+    background: linear-gradient(to bottom, rgba(141, 110, 87, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("src/assets/img/bg-11.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    height: 100px;
+  }
+  
+  header.bookings-breadcrumb h1 {
+    font-size: 2.25rem;
+  }
+  
+  @media (min-width: 992px) {
+    header.bookings-breadcrumb {
+      height: 100vh;
+      min-height: 40rem;
+      padding-top: 72px;
+      padding-bottom: 0;
+    }
+    header.bookings-breadcrumb p {
+      font-size: 1.15rem;
+    }
+    header.bookings-breadcrumb h1 {
+      font-size: 3rem;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    header.bookings-breadcrumb h1 {
+      font-size: 3.5rem;
+    }
+  }
+
   /* Breadcrumb styling end */
   
   .card-style:hover {

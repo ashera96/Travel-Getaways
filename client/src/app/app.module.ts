@@ -1,8 +1,11 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { MatFormFieldModule } from "@angular/material";
-// import { HttpClientModule } from "@angular/common/http";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule, MatInputModule } from "@angular/material";
+import { HttpClientModule } from "@angular/common/http";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgFlashMessagesModule } from 'ng-flash-messages';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from "./app.component";
 import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
@@ -21,10 +24,13 @@ import { RegisterComponent } from "./pages/register/register.component";
 import { ContactContentComponent } from "./pages/contact/contact-content/contact-content.component";
 import { TestimonialsContentComponent } from "./pages/testimonials/testimonials-content/testimonials-content.component";
 import { ChatBotComponent } from "./chat-bot/chat-bot.component";
-import { ReactiveFormsModule, FormsModule } from "@angular/forms";
-import { MatFormFieldModule, MatInputModule } from "@angular/material";
-import { HttpClientModule } from "@angular/common/http";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AuthService } from './services/auth/auth.service';
+import { AuthGuardService } from './services/auth-guard/auth-guard.service';
+import { ContactService } from './services/contact/contact.service';
+import { BookmarkComponent } from './pages/bookmark/bookmark.component';
+import { BookmarkContentComponent } from './pages/bookmark/bookmark-content/bookmark-content.component';
+import { BookingsComponent } from './pages/bookings/bookings.component';
+import { BookingsContentComponent } from './pages/bookings/bookings-content/bookings-content.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +49,11 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     RegisterComponent,
     ContactContentComponent,
     TestimonialsContentComponent,
-    ChatBotComponent
+    ChatBotComponent,
+    BookmarkComponent,
+    BookmarkContentComponent,
+    BookingsComponent,
+    BookingsContentComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -53,9 +63,11 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgFlashMessagesModule.forRoot(),
+    NgbModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuardService, ContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

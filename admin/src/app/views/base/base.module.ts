@@ -30,6 +30,9 @@ import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 import { PaginationModule } from "ngx-bootstrap/pagination";
 //import { PopoversComponent } from './popovers.component';
 
+// Modal Component
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 // Popover Component
 import { PopoverModule } from "ngx-bootstrap/popover";
 import { PaginationsComponent } from "./paginations.component";
@@ -44,6 +47,7 @@ import { TooltipModule } from "ngx-bootstrap/tooltip";
 
 // Components Routing
 import { BaseRoutingModule } from "./base-routing.module";
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   imports: [
@@ -57,8 +61,9 @@ import { BaseRoutingModule } from "./base-routing.module";
     PaginationModule.forRoot(),
     PopoverModule.forRoot(),
     ProgressbarModule.forRoot(),
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    ModalModule
   ],
-  declarations: [FormsComponent, TablesComponent, PaginationsComponent]
+  declarations: [FormsComponent, TablesComponent, PaginationsComponent, MessagesComponent]
 })
 export class BaseModule {}
