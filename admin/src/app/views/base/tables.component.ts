@@ -10,6 +10,7 @@ export class TablesComponent {
   public Userlist = new Array();
   public Postlist = new Array();
   public returnedArray = new Array();
+  public showLoader = false;
   public len = 0;
   itemsPerPage: number = 5;
   currentPage: number = 1;
@@ -26,6 +27,7 @@ export class TablesComponent {
   }
   getPosts() {
     console.log(this.getUserURL);
+    this.showLoader = true;
 
     this.httpService
       .realizarHttpPost(this.getUserURL, null)
@@ -40,6 +42,7 @@ export class TablesComponent {
           this.returnedArray = this.Userlist;
           this.len = this.Userlist.length;
           console.log(this.Userlist);
+          this.showLoader = false;
         }
       });
   }
