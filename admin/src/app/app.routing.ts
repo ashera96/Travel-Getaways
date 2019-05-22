@@ -11,6 +11,11 @@ import { RegisterComponent } from "./views/register/register.component";
 
 export const routes: Routes = [
   {
+    path: "login",
+    redirectTo: "login",
+    pathMatch: "full"
+  },
+  {
     path: "",
     redirectTo: "dashboard",
     pathMatch: "full"
