@@ -6,44 +6,46 @@
     <div class="col-lg-12">
       <div class="card">
         <div class="card-header">
-          <i class="fa fa-align-justify"></i> Combined All Table
+          <i class="fa fa-align-justify"></i> <b> Users Menu</b>
         </div>
         <div class="card-body">
-          <table class="table table-bordered table-striped table-sm">
-            <thead>
-              <tr>
-                <th>Username</th>
-                <th>Date registered</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let user of Userlist">
-                <td>{{ user._uname }}</td>
-                <td>2012/01/01</td>
+          <div *ngFor="let user of Userlist">
+            <div class="row">
+              <p class="pl-3">
+                <strong>{{ user._uname }}</strong>
+              </p>
+              <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
+                <button
+                  type="button"
+                  class="btn btn-pill btn-primary pull-right"
+                  data-toggle="modal"
+                  (click)="ChangeStatus(user._uname, user._status)"
+                >
+                  <i class="fa fa-reply"></i>&nbsp;Change Status
+                </button>
+              </div>
+            </div>
+            <div class="text-muted d-flex flex-row bd-highlight mb-3">
+              <div class="pr-5 bd-highlight">
+                <strong>Date Joined :</strong>2012/01/01
+              </div>
+              <div class="pr-5 bd-highlight">
+                <strong>User Status :</strong> {{ user._status }}
+              </div>
+            </div>
+            <!-- <p>{{ message.message }}</p> -->
+            <hr />
+          </div>
 
-                <td>
-                  <span
-                    class="badge badge-success"
-                    (click)="ChangeStatus(user._uname, user._status)"
-                    >{{ user._status }}</span
-                  >
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <nav>
-            <ul class="pagination">
-              <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-              <li class="page-item active">
-                <a class="page-link" href="#">1</a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">4</a></li>
-              <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-          </nav>
+          <!-- Pagination Section start -->
+          <pagination
+            class="d-flex justify-content-center"
+            [totalItems]="len"
+            [(ngModel)]="currentPage"
+            (pageChanged)="pageChanged($event)"
+            [itemsPerPage]="itemsPerPage"
+          ></pagination>
+          <!-- Pagingation Section end -->
         </div>
       </div>
     </div>
