@@ -6,7 +6,7 @@ import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
 import { PERFECT_SCROLLBAR_CONFIG } from "ngx-perfect-scrollbar";
 import { PerfectScrollbarConfigInterface } from "ngx-perfect-scrollbar";
 import { HttpClientModule } from "@angular/common/http";
-import  { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -42,8 +42,9 @@ import { ChartsModule } from "ng2-charts/ng2-charts";
 import { UtilsComponent } from "./utils/utils.component";
 
 // Import services
-import { MessageService } from './views/base/messages/message.service';
-import { from } from 'rxjs';
+import { MessageService } from "./views/base/messages/message.service";
+import { from } from "rxjs";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 @NgModule({
   imports: [
@@ -59,6 +60,8 @@ import { from } from 'rxjs';
     TabsModule.forRoot(),
     ChartsModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
     NgbModule.forRoot()
   ],
   declarations: [
