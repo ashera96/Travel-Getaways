@@ -1,6 +1,6 @@
 // Angular
 import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
 
 //import { CardsComponent } from './cards.component';
@@ -48,6 +48,8 @@ import { TooltipModule } from "ngx-bootstrap/tooltip";
 // Components Routing
 import { BaseRoutingModule } from "./base-routing.module";
 import { MessagesComponent } from './messages/messages.component';
+import { AddToursComponent } from './tours/add-tours/add-tours.component';
+import { ToursComponent } from './tours/tours.component';
 
 @NgModule({
   imports: [
@@ -62,8 +64,10 @@ import { MessagesComponent } from './messages/messages.component';
     PopoverModule.forRoot(),
     ProgressbarModule.forRoot(),
     TooltipModule.forRoot(),
-    ModalModule
+    ModalModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  declarations: [FormsComponent, TablesComponent, PaginationsComponent, MessagesComponent]
+  declarations: [FormsComponent, TablesComponent, PaginationsComponent, MessagesComponent, AddToursComponent, ToursComponent]
 })
 export class BaseModule {}

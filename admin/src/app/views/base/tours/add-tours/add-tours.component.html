@@ -1,0 +1,171 @@
+<form [formGroup]="tourForm">
+  <div class="animated fadeIn">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header">
+            <strong>Basic Info</strong>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Tour Title</label>
+                  <input type="text" class="form-control" placeholder="Hiking, Hanthana" id="title" formControlName="title">
+                  <span
+                    *ngIf="!tourForm.get('title').valid && tourForm.get('title').touched"
+                    class="help-block text-muted">Please enter the tour title</span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Duration ( in days )</label>
+                  <input type="number" class="form-control" placeholder="2" id="duration" formControlName="duration">
+                  <span
+                    *ngIf="!tourForm.get('duration').valid && tourForm.get('duration').touched"
+                    class="help-block text-muted">Please enter the duartion in days</span>
+                </div>
+              </div>
+              <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Description</label>
+                    <textarea
+                      placeholder="Enter the tour description here ..."
+                      class="form-control"
+                      id="description"
+                      formControlName="description"
+                      style="height: 130px;"
+                      formControlName="description"></textarea>
+                    <span
+                      *ngIf="!tourForm.get('description').valid && tourForm.get('description').touched"
+                      class="help-block text-muted">Please enter a description for the tour</span>
+                  </div>
+                </div>
+                <h2>Photos here</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <strong>Location</strong>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>City</label>
+                  <input type="text" class="form-control" placeholder="Kandy" id="city" formControlName="city">
+                  <span
+                    *ngIf="!tourForm.get('city').valid && tourForm.get('city').touched"
+                    class="help-block text-muted">Please enter a city</span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Address</label>
+                  <input type="text" class="form-control" placeholder="No 20000 Kandy, Kandy 20000, Sri Lanka" id="address" formControlName="address">
+                  <span
+                    *ngIf="!tourForm.get('address').valid && tourForm.get('address').touched"
+                    class="help-block text-muted">Please enter the address</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <strong>Program</strong>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12" formArrayName="program">
+                <div 
+                  class="row mt-2 mb-2" 
+                  *ngFor="let programCtrl of getControls(); let i = index"
+                  [formGroupName]="i">
+                  <div class="col-md-5">
+                    <input 
+                      type="text"
+                      class="form-control"
+                      placeholder="Title"
+                      formControlName="title">
+                  </div>
+                  <div class="col-md-5">
+                    <input 
+                      type="text"
+                      class="form-control"
+                      placeholder="Description"
+                      formControlName="description">
+                  </div>
+                  <div class="col-md-2">
+                    <button 
+                      type="button" 
+                      style="width: 50px;"
+                      class="btn btn-block btn-ghost-info"
+                      (click)="onDeleteProgram(i)">X</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <button 
+                      type="button" 
+                      class="btn btn-pill btn-primary ml-3" 
+                      (click)="onAddProgram()">
+                      <i class="fa fa-plus-circle"></i>&nbsp;Add Program
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <strong>Pricing</strong>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Entire tour price for an adult ( Rs. )</label>
+                  <input type="number" class="form-control" placeholder="3000" id="price_adult" formControlName="price_adult">
+                  <span
+                    *ngIf="!tourForm.get('price_adult').valid && tourForm.get('price_adult').touched"
+                    class="help-block text-muted">Please enter the tour price for an adult</span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Entire tour price for a child ( Rs. )</label>
+                  <input type="number" class="form-control" placeholder="1500" id="price_child" formControlName="price_child">
+                  <span
+                    *ngIf="!tourForm.get('price_child').valid && tourForm.get('price_child').touched"
+                    class="help-block text-muted">Please enter the tour price for a child</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button 
+          type="submit" 
+          class="btn btn-pill btn-primary mb-3" 
+          style="width: 100px;"
+          (click)="onSubmit()"
+          [disabled]="!tourForm.valid">Save</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- <label>Category</label>
+<select id="category" formControlName="category" class="form-control">
+  <option>Select a category</option>
+  <option [ngValue]="trip">Trip</option>
+  <option [ngValue]="hotel">Hotel</option>
+</select> -->
+
+<!-- [disabled]="!recipeForm.valid" -->
