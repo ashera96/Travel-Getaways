@@ -10,9 +10,9 @@ export class TablesComponent {
   public Userlist = new Array();
   public Postlist = new Array();
 
-  private getUserURL = HttpEnum.baseURL + "GetUsers";
-  private updateUserURL = HttpEnum.baseURL + "UpdateUser";
-  private BanUserURL = HttpEnum.baseURL + "deleteUser";
+  private getUserURL = HttpEnum.baseURL + "adminusers/GetUsers";
+  private updateUserURL = HttpEnum.baseURL + "adminusers/UpdateUser";
+  //private BanUserURL = HttpEnum.baseURL + "deleteUser";
 
   constructor(private httpService: HttpService) {}
   ngOnInit(): void {

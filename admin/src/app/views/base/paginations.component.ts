@@ -8,8 +8,8 @@ import { HttpService } from "../../http.service";
   encapsulation: ViewEncapsulation.None
 })
 export class PaginationsComponent {
-  private getPostsURL = HttpEnum.baseURL + "GetPosts";
-  private deletePosts = HttpEnum.baseURL + "deletePosts";
+  private getPostsURL = HttpEnum.baseURL + "adminposts/GetPosts";
+  private deletePosts = HttpEnum.baseURL + "adminposts/deletePosts";
   public postslist = new Array();
 
   constructor(private httpService: HttpService) {}

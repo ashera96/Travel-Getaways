@@ -8,7 +8,7 @@
     <!-- class="container darker" -->
     <div
       *ngFor="let message of chatList"
-      [ngStyle]="{
+      [ngClass]="{
         class: message.id === 'bot' ? 'container' : 'container darker'
       }"
     >

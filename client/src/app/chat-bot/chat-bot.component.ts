@@ -15,7 +15,7 @@ export class ChatBotComponent implements OnInit {
   public pagecontainer: HTMLElement;
   public input = new FormControl("", [Validators.required]);
   public chatList = new Array();
-  public chatUrl = HttpEnum.baseURL + "bot";
+  public chatUrl = HttpEnum.baseURL + "botservice/bot";
 
   constructor(private httpService: HttpService) {}
 
