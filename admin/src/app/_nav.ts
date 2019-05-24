@@ -50,6 +50,16 @@ export const navItems: NavData[] = [
     icon: "icon-envelope-open"
   },
   {
+    name: "Tours",
+    url: "/base/tours",
+    icon: "icon-directions"
+  },
+  {
+    name: "Add Tours",
+    url: "/base/add-tour",
+    icon: "icon-plus"
+  },
+  {
     name: "Widgets",
     url: "/widgets",
     icon: "icon-calculator",
