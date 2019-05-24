@@ -5,6 +5,7 @@ const assert = require("assert");
 const multer = require("multer");
 var adminUser = require("../models/adminuser");
 var jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 // const passport = require("passport");
 // const jwt = require("jsonwebtoken");
@@ -17,7 +18,7 @@ router.post("/register", function(req, res, next) {
   var adminuser = new adminUser({
     email: req.body.email,
     _uname: req.body.username,
-    _pwd: User.hashPassword(req.body.password),
+    _pwd: bcrypt.hashSync(req.body.password, 10),
     _status: "Pending",
     creation_dt: Date.now()
   });
@@ -32,6 +33,36 @@ router.post("/register", function(req, res, next) {
     return res.status(501).json({ message: "Error registering user." });
   });
 });
+// #######################################
+//USER LOGIN
+//########################################
+router.post("/login", function(req, res, next) {
+  let promise = User.findOne({ email: req.body.email }).exec();
+
+  promise.then(function(doc) {
+    if (doc) {
+      if (doc.isValid(req.body._uname)) {
+        // generate token
+        let token = jwt.sign({ username: doc._uname }, "secret", {
+          expiresIn: "3h"
+        });
+
+        return res.status(200).json(token);
+      } else {
+        return res.status(501).json({ message: " Invalid Credentials" });
+      }
+    } else {
+      return res.status(501).json({ message: "User email is not registered." });
+    }
+  });
+
+  promise.catch(function(err) {
+    return res.status(501).json({ message: "Some internal error" });
+  });
+});
+//#######################################
+//UTIL ROUTES
+//#######################################
 
 router.post("/GetUsers", (req, res) => {
   console.log("get users called");

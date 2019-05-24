@@ -7,6 +7,7 @@ import { PERFECT_SCROLLBAR_CONFIG } from "ngx-perfect-scrollbar";
 import { PerfectScrollbarConfigInterface } from "ngx-perfect-scrollbar";
 import { HttpClientModule } from "@angular/common/http";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { MatFormFieldModule } from "@angular/material";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -61,6 +62,7 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
     ChartsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
     FormsModule,
     NgbModule.forRoot()
   ],
