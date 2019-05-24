@@ -5,26 +5,45 @@ import { admin_login_model } from "./admin.login.model";
 import { FormControl, Validators, FormGroup } from "@angular/forms";
 import { HttpService } from "../../http.service";
 import { log } from "util";
+import { RegisterServiceService } from "../../register-service.service";
 
 @Component({
   selector: "app-dashboard",
   templateUrl: "login.component.html"
 })
 export class LoginComponent {
-  public username = new FormControl(this.username, [Validators.required]);
-  public password = new FormControl(this.password, [Validators.required]);
+  loginForm: FormGroup;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private _myservice: RegisterServiceService
+  ) {}
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
+    this.loginForm = new FormGroup({
+      username: new FormControl("", [Validators.required]),
+      password: new FormControl("", [Validators.required])
+    });
   }
-  login() {
-    console.log("====================================");
-    console.log(this.username.value);
-    console.log(this.password.value);
+  isValid(controlName) {
+    return (
+      this.loginForm.get(controlName).invalid &&
+      this.loginForm.get(controlName).touched
+    );
+  }
 
-    console.log("====================================");
+  login() {
+    console.log(this.loginForm.value);
+
+    if (this.loginForm.valid) {
+      this._myservice.login(this.loginForm.value).subscribe(
+        data => {
+          console.log(data);
+          localStorage.setItem("token", data.toString());
+          this.router.navigate(["/dashboard"]);
+        },
+        error => {}
+      );
+    }
   }
 
   route_to_register() {

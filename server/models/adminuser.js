@@ -15,7 +15,9 @@ schema.statics.hashPassword = function(password) {
 };
 
 schema.methods.isValid = function(hashPassword) {
-  return bcrypt.compareSync(hashPassword, this.password);
+  return bcrypt.compareSync(hashPassword, this.password).then(function(res) {
+    console.log(res);
+  });
 };
 
 module.exports = mongoose.model("adminuser", schema);

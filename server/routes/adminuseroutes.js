@@ -37,12 +37,14 @@ router.post("/register", function(req, res, next) {
 //USER LOGIN
 //########################################
 router.post("/login", function(req, res, next) {
-  let promise = User.findOne({ email: req.body.email }).exec();
+  let promise = adminUser.findOne({ _uname: req.body.username }).exec();
 
   promise.then(function(doc) {
     if (doc) {
-      if (doc.isValid(req.body._uname)) {
+      console.log(doc);
+      if (bcrypt.compareSync(req.body.password, doc._pwd)) {
         // generate token
+
         let token = jwt.sign({ username: doc._uname }, "secret", {
           expiresIn: "3h"
         });
@@ -52,11 +54,12 @@ router.post("/login", function(req, res, next) {
         return res.status(501).json({ message: " Invalid Credentials" });
       }
     } else {
-      return res.status(501).json({ message: "User email is not registered." });
+      return res.status(501).json({ message: "User is not registered." });
     }
   });
 
   promise.catch(function(err) {
+    console.log(err);
     return res.status(501).json({ message: "Some internal error" });
   });
 });
