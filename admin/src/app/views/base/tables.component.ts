@@ -9,6 +9,11 @@ import { HttpEnum } from "../../utils/httpenum";
 export class TablesComponent {
   public Userlist = new Array();
   public Postlist = new Array();
+  public returnedArray = new Array();
+  public showLoader = false;
+  public len = 0;
+  itemsPerPage: number = 5;
+  currentPage: number = 1;
 
   private getUserURL = HttpEnum.baseURL + "adminusers/GetUsers";
   private updateUserURL = HttpEnum.baseURL + "adminusers/UpdateUser";
@@ -22,6 +27,7 @@ export class TablesComponent {
   }
   getPosts() {
     console.log(this.getUserURL);
+    this.showLoader = true;
 
     this.httpService
       .realizarHttpPost(this.getUserURL, null)
@@ -33,9 +39,19 @@ export class TablesComponent {
           for (let i = 0; i < results.length; i++) {
             this.Userlist.push(results[i]);
           }
+          this.returnedArray = this.Userlist;
+          this.len = this.Userlist.length;
           console.log(this.Userlist);
+          this.showLoader = false;
         }
       });
+  }
+
+  pageChanged(event: any): void {
+    const startItem = (event.page - 1) * event.itemsPerPage;
+    const endItem = event.page * event.itemsPerPage;
+    this.returnedArray = this.Userlist.slice(startItem, endItem);
+    console.log(this.returnedArray);
   }
 
   ChangeStatus(uname, status) {

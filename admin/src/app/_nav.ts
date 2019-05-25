@@ -36,12 +36,12 @@ export const navItems: NavData[] = [
   },
   {
     name: "Users",
-    url: "/base/tables",
+    url: "/base/users",
     icon: "icon-puzzle"
   },
   {
     name: "Posts",
-    url: "/base/paginations",
+    url: "/base/posts",
     icon: "icon-cursor"
   },
   {
