@@ -1,3 +1,30 @@
-<p>
-  tours works!
-</p>
+<!-- Loading tours -->
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <strong>Tours</strong>
+        </div>
+        <div class="card-body">
+          <div *ngFor="let tour of returnedArray; let i = index">
+            <div class="row">
+              <p class="pl-3"><strong>{{ tour.title }}</strong></p>
+              <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
+                <button type="button" class="btn btn-pill btn-primary pull-right" data-toggle="modal" (click)="primaryModal.show()"><i class="fa fa-reply"></i>&nbsp;Reply to this message</button>
+              </div>
+            </div>
+            <p>{{ tour.description }}</p>
+            <hr>
+          </div>
+        
+          <!-- Pagination Section start -->
+          <pagination class="d-flex justify-content-center" [totalItems]="tours.length" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" [itemsPerPage]="itemsPerPage"></pagination>
+          <!-- Pagingation Section end -->
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+</div>

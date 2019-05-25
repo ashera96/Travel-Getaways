@@ -40,8 +40,14 @@
                       *ngIf="!tourForm.get('description').valid && tourForm.get('description').touched"
                       class="help-block text-muted">Please enter a description for the tour</span>
                   </div>
+                  <div class="form-group">
+                    <label>Upload cover image for the tour <i class="fa fa-cloud-upload"></i></label>
+                    <input 
+                      class="ml-5"
+                      type="file" 
+                      (change)="createFormData($event)">
+                  </div>
                 </div>
-                <h2>Photos here</h2>
             </div>
           </div>
         </div>

@@ -21,6 +21,7 @@ mongoose.connection.on("error", err => {
   console.log("Database error " + err);
 });
 
+// Init app
 const app = express();
 
 // Required Routes
@@ -30,6 +31,7 @@ const mail = require("./routes/email");
 const adminusers = require("./routes/adminuseroutes");
 const adminposts = require("./routes/adminpostsroutes");
 const bot = require("./routes/bot");
+const tours = require("./routes/tours");
 
 // Port Number
 const port = 3000;
@@ -55,6 +57,10 @@ app.use("/reply", mail);
 app.use("/adminusers", adminusers);
 app.use("/adminposts", adminposts);
 app.use("/botservice", bot);
+app.use("/tours", tours)
+
+// Image URL path configuration
+app.use('/uploads', express.static('uploads'));
 
 // Index Route
 app.get("/", (req, res) => {

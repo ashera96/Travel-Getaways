@@ -2,6 +2,7 @@
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 //import { CardsComponent } from './cards.component';
 
@@ -29,6 +30,9 @@ import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 // Pagination Component
 import { PaginationModule } from "ngx-bootstrap/pagination";
 //import { PopoversComponent } from './popovers.component';
+
+// Alert Component
+import { AlertModule } from "ngx-bootstrap/alert";
 
 // Modal Component
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -66,7 +70,9 @@ import { ToursComponent } from './tours/tours.component';
     TooltipModule.forRoot(),
     ModalModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AlertModule,
+    NgxDropzoneModule
   ],
   declarations: [FormsComponent, TablesComponent, PaginationsComponent, MessagesComponent, AddToursComponent, ToursComponent]
 })
