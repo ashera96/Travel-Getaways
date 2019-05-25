@@ -11,8 +11,6 @@ import { TourService } from '../tour.service';
   styleUrls: ['./add-tours.component.scss']
 })
 export class AddToursComponent implements OnInit {
-  id: string;
-  editMode = false;
   tourForm: FormGroup;
   image;
   imagename: string = '';
@@ -25,9 +23,6 @@ export class AddToursComponent implements OnInit {
     this.route.params
       .subscribe(
         (params: Params) => {
-          this.id = params['id'];
-          // this.editMode = params['id'] != null;
-          // console.log(this.editMode);
           this.initForm();
         }
       );
@@ -42,23 +37,6 @@ export class AddToursComponent implements OnInit {
     let price_adult = null;
     let price_child = null;
     let program = new FormArray([]);
-
-    // if (this.editMode){
-    //   const recipe = this.recipeService.getRecipe(this.id);
-    //   recipeName = recipe.name;
-    //   recipeImagePath = recipe.imagePath;
-    //   recipeDescription = recipe.description;
-    //   if (recipe['ingredients']) {
-    //     for (let ingredient of recipe.ingredients) {
-    //       recipeIngredients.push(
-    //         new FormGroup({
-    //           'name': new FormControl(ingredient.name, Validators.required),
-    //           'amount': new FormControl(ingredient.amount, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)])
-    //         })
-    //       );
-    //     }
-    //   }
-    // }
 
     this.tourForm = new FormGroup({
       'title': new FormControl(title, Validators.required),

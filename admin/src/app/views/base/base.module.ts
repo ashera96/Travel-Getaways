@@ -74,6 +74,13 @@ import { ToursComponent } from './tours/tours.component';
     AlertModule,
     NgxDropzoneModule
   ],
-  declarations: [FormsComponent, TablesComponent, PaginationsComponent, MessagesComponent, AddToursComponent, ToursComponent]
+  declarations: [
+    FormsComponent, 
+    TablesComponent, 
+    PaginationsComponent, 
+    MessagesComponent, 
+    AddToursComponent, 
+    ToursComponent
+  ]
 })
 export class BaseModule {}

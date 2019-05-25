@@ -114,4 +114,22 @@ router.get('/:tourId', (req, res, next) => {
         });
 })
 
+// Delete tour
+router.delete('/:tourId', (req, res, next) => {
+    const id = req.params.tourId;
+    Tour.remove({_id: id})
+        .exec()
+        .then(result => {
+            res.status(200).json({
+                message: 'Deleted tour successfully'
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+})
+
 module.exports = router;
