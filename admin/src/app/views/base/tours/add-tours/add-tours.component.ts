@@ -33,7 +33,7 @@ export class AddToursComponent implements OnInit {
     let duration = 0;
     let description = '';
     let city = '';
-    let address = '';
+    let address = '-';
     let price_adult = null;
     let price_child = null;
     let program = new FormArray([]);
