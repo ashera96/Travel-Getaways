@@ -155,6 +155,7 @@
                         <input 
                           class="ml-5"
                           type="file"
+                          accept="image/png, image/jpeg, image/jpg" 
                           (change)="createFormData($event)">
                       </ng-template>
                       <ng-template [ngIf]="imageChanges===0">

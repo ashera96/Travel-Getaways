@@ -48,6 +48,7 @@ export class ToursComponent implements OnInit {
 
   pageChanged(event: any): void {
     const startItem = (event.page - 1) * event.itemsPerPage;
+    this.currentPage = event.page;
     const endItem = event.page * event.itemsPerPage;
     this.returnedArray = this.tours.slice(startItem, endItem);
     console.log(this.returnedArray);
