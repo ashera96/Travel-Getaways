@@ -31,6 +31,9 @@ import { BookmarkComponent } from './pages/bookmark/bookmark.component';
 import { BookmarkContentComponent } from './pages/bookmark/bookmark-content/bookmark-content.component';
 import { BookingsComponent } from './pages/bookings/bookings.component';
 import { BookingsContentComponent } from './pages/bookings/bookings-content/bookings-content.component';
+import { ToursContentComponent } from './pages/tours/tours-content/tours-content.component';
+import { TourService } from './services/tour/tour.service';
+import { TourDetailComponent } from './pages/tours/tours-content/tour-detail/tour-detail.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,9 @@ import { BookingsContentComponent } from './pages/bookings/bookings-content/book
     BookmarkComponent,
     BookmarkContentComponent,
     BookingsComponent,
-    BookingsContentComponent
+    BookingsContentComponent,
+    ToursContentComponent,
+    TourDetailComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -67,7 +72,7 @@ import { BookingsContentComponent } from './pages/bookings/bookings-content/book
     NgFlashMessagesModule.forRoot(),
     NgbModule
   ],
-  providers: [AuthService, AuthGuardService, ContactService],
+  providers: [AuthService, AuthGuardService, ContactService, TourService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
