@@ -17,7 +17,57 @@
   </div>
 </header>
 <!-- Breadcrumb end -->
-  
+
+<!-- Displaying tour details start -->
+<section class="page-section" id="contact">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <h2 class="mt-0">{{ tour.title }}</h2>
+        <hr class="divider my-4">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <h4>Description</h4>
+      <p>{{ tour.description }}</p>
+    </div>
+    <div class="row mb-3">
+      <h4>Duration : {{ tour.duration }} day</h4>
+    </div>
+    <div class="row mb-3">
+      <h4>Program</h4>
+      <div class="text-element content-element circles-list">
+        <ol *ngFor="let program of tour.program">
+          <li>
+            <p><strong>{{ program.title }}</strong></p>
+            <p>{{ program.description }}</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <h4>Locations</h4>
+      <div class="container">
+        <ul *ngFor="let city of cities">
+            <li>{{ city }}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <h4>Pricing</h4>
+      <div class="container">
+        <p>Price for an adult : Rs. <strong>{{ tour.price_adult }}</strong></p>
+        <p>Price for a child : Rs. <strong>{{ tour.price_child }}</strong></p>
+      </div>
+    </div>
+    <div class="container">
+      <div class="img-responsive">
+        <img src="http://localhost:3000/uploads//{{tour.tour_image}}" alt="Tour Image" class="rounded mx-auto d-block">
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Displaying tour details end -->
 
 <!-- Loading Footer Component start -->
 <app-footer></app-footer>

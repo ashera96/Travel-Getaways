@@ -12,6 +12,7 @@ import { TourService } from 'src/app/services/tour/tour.service';
 export class TourDetailComponent implements OnInit {
   id: string;
   tour: Tour;
+  cities: string[];
 
   constructor(private route: ActivatedRoute,
               private tourService: TourService) { }
@@ -27,6 +28,7 @@ export class TourDetailComponent implements OnInit {
               (data: any) => {
                 this.tour = data.message;
                 console.log(this.tour);
+                this.cities = this.tour.city.split(',');
               },
               (error: any) => {
                 console.log('Error occured');

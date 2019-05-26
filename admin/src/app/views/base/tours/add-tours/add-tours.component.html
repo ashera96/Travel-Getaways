@@ -61,7 +61,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label>City</label>
+                  <label>Cities</label>
                   <input type="text" class="form-control" placeholder="Kandy" id="city" formControlName="city">
                   <span
                     *ngIf="!tourForm.get('city').valid && tourForm.get('city').touched"
@@ -70,11 +70,11 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label>Address ( If any )</label>
-                  <input type="text" class="form-control" placeholder="No 20000 Kandy, Kandy 20000, Sri Lanka" id="address" formControlName="address">
-                  <span
+                  <!-- <label>Address ( If any )</label> -->
+                  <input type="hidden" class="form-control" placeholder="No 20000 Kandy, Kandy 20000, Sri Lanka" id="address" formControlName="address">
+                  <!-- <span
                     *ngIf="!tourForm.get('address').valid && tourForm.get('address').touched"
-                    class="help-block text-muted">Please enter the address</span>
+                    class="help-block text-muted">Please enter the address</span> -->
                 </div>
               </div>
             </div>
