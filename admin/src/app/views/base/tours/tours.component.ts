@@ -24,6 +24,7 @@ export class ToursComponent implements OnInit {
   editTour: Tour;
   image;
   imagename: string = '';
+  imageChanges: number = 0;
 
   constructor(private tourService: TourService,
               private router: Router,
@@ -74,7 +75,7 @@ export class ToursComponent implements OnInit {
         }
       );
     window.location.reload()
-    // this.router.navigate(['./'], {relativeTo: this.route})
+    // this.router.navigate(['/'], {relativeTo: this.route})
   }
 
   private createUpdateForm() {
@@ -133,7 +134,7 @@ export class ToursComponent implements OnInit {
   createFormData(event) {
     this.image = event.target.files[0];
     this.imagename = event.target.files[0].name;
-    console.log(this.imagename);
+    this.imageChanges += 1;
   }
   
   addTour() {
@@ -146,6 +147,7 @@ export class ToursComponent implements OnInit {
 
   onAddNewImage() {
     this.imagename = '';
+    this.imageChanges += 1;
   }
 
   onUpdate() {
@@ -153,11 +155,47 @@ export class ToursComponent implements OnInit {
       console.log("Image not found");
       alert("Please upload an image");
     } else {
-
+      const newTour = new Tour(
+        this.updateTourForm.value['title'],
+        this.updateTourForm.value['duration'],
+        this.updateTourForm.value['description'],
+        this.updateTourForm.value['city'],
+        this.updateTourForm.value['address'],
+        this.updateTourForm.value['price_adult'],
+        this.updateTourForm.value['price_child'],
+        this.updateTourForm.value['program'],
+        this.imagename
+      );
+      this.tourService.updateTour(this.editTour['_id'], JSON.stringify(newTour))
+        .subscribe(
+          (data: any) => {
+            console.log('Tour updated successfully');
+            if (this.imagename === this.editTour['tour_image']) {
+              console.log('Image was not updated since it was not updated by admin');
+            } else {
+              this.tourService.uploadImage(this.image)
+                .subscribe(
+                  (result) => {
+                    console.log('Image upload completed');
+                  },
+                  (error) => {
+                    console.log('Error occured in image upload');
+                  } 
+                );
+            }
+          },
+          (error: any) => {
+            console.log('Error occuered');
+            console.log(error);
+          }
+        );
     }
 
     // Updating property values
     this.imagename = '';
     this.editMode = false;
+
+    window.location.reload();
+    // this.router.navigate(['/'], {relativeTo: this.route});
   }
 }

@@ -150,14 +150,14 @@
                         class="help-block text-muted">Please enter a description for the tour</span>
                     </div>
                     <div class="form-group">
-                      <ng-template [ngIf]="!imagename">
+                      <ng-template [ngIf]="imageChanges != 0">
                         <label>Upload cover image for the tour <i class="fa fa-cloud-upload"></i></label>
                         <input 
                           class="ml-5"
                           type="file"
                           (change)="createFormData($event)">
                       </ng-template>
-                      <ng-template [ngIf]="imagename">
+                      <ng-template [ngIf]="imageChanges===0">
                         <img 
                           [src]="'http://localhost:3000/uploads//' + imagename" 
                           alt="cover_image"

@@ -114,6 +114,25 @@ router.get('/:tourId', (req, res, next) => {
         });
 })
 
+// Update tour
+router.patch('/:tourId', (req, res, next) => {
+    const id = req.params.tourId;
+    Tour.update({_id: id}, { $set: req.body })
+        .exec()
+        .then(result => {
+            console.log(result);
+            res.status(200).json({
+                message: 'Tour updated'
+            })
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+});
+
 // Delete tour
 router.delete('/:tourId', (req, res, next) => {
     const id = req.params.tourId;

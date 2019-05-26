@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import { Tour } from './tour.model';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -29,6 +31,18 @@ export class TourService {
   // Get all tours
   getTours() {
     return this.http.get('http://localhost:3000/tours');
+  }
+
+  // Update tour
+  updateTour(id: string, body) {
+    return this.http.patch(
+      'http://localhost:3000/tours' + `/${id}`,
+      body,
+      {
+        observe: 'body',
+        headers: new HttpHeaders().append('Content-Type', 'application/json')
+      }
+    );
   }
 
   // Delete tour
