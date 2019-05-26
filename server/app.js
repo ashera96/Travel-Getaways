@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const passport = require("passport");
 const mongoose = require("mongoose");
+var cookieParser = require("cookie-parser");
 
 const config = require("./config/database");
 
@@ -38,6 +39,7 @@ const port = 3000;
 
 // CORS Middleware
 app.use(cors());
+app.use(cookieParser());
 
 // Body Parser Midleware
 app.use(morgan("dev"));
