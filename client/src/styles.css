@@ -209,6 +209,80 @@ header.about-breadcrumb {
     }
   }
 
+  header.tours-breadcrumb {
+    padding-top: 10rem;
+    padding-bottom: calc(10rem - 72px);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(92, 77, 66, 0.8)), to(rgba(92, 77, 66, 0.8))), url("src/assets/img/bg-4.jpg");
+    background: linear-gradient(to bottom, rgba(141, 110, 87, 0.6) 0%, rgba(92, 77, 66, 0.8) 100%), url("src/assets/img/bg-4.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    height: 100px;
+  }
+  
+  header.tours-breadcrumb h1 {
+    font-size: 2.25rem;
+  }
+  
+  @media (min-width: 992px) {
+    header.tours-breadcrumb {
+      height: 100vh;
+      min-height: 40rem;
+      padding-top: 72px;
+      padding-bottom: 0;
+    }
+    header.tours-breadcrumb p {
+      font-size: 1.15rem;
+    }
+    header.tours-breadcrumb h1 {
+      font-size: 3rem;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    header.tours-breadcrumb h1 {
+      font-size: 3.5rem;
+    }
+  }
+
+  header.tour-detail-breadcrumb {
+    padding-top: 10rem;
+    padding-bottom: calc(10rem - 72px);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(92, 77, 66, 0.7)), to(rgba(92, 77, 66, 0.7))), url("src/assets/img/bg-3.jpg");
+    background: linear-gradient(to bottom, rgba(92, 77, 66, 0.7) 0%, rgba(92, 77, 66, 0.7) 100%), url("src/assets/img/bg-3.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    height: 100px;
+  }
+  
+  header.tour-detail-breadcrumb h1 {
+    font-size: 2.25rem;
+  }
+  
+  @media (min-width: 992px) {
+    header.tour-detail-breadcrumb {
+      height: 100vh;
+      min-height: 40rem;
+      padding-top: 72px;
+      padding-bottom: 0;
+    }
+    header.tour-detail-breadcrumb p {
+      font-size: 1.15rem;
+    }
+    header.tour-detail-breadcrumb h1 {
+      font-size: 3rem;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    header.tour-detail-breadcrumb h1 {
+      font-size: 3.5rem;
+    }
+  }
+
   /* Breadcrumb styling end */
   
   .card-style:hover {

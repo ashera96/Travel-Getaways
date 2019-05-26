@@ -40,8 +40,15 @@
                       *ngIf="!tourForm.get('description').valid && tourForm.get('description').touched"
                       class="help-block text-muted">Please enter a description for the tour</span>
                   </div>
+                  <div class="form-group">
+                    <label>Upload cover image for the tour <i class="fa fa-cloud-upload"></i></label>
+                    <input 
+                      class="ml-5"
+                      type="file"
+                      accept="image/png, image/jpeg, image/jpg" 
+                      (change)="createFormData($event)">
+                  </div>
                 </div>
-                <h2>Photos here</h2>
             </div>
           </div>
         </div>
@@ -63,7 +70,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label>Address</label>
+                  <label>Address ( If any )</label>
                   <input type="text" class="form-control" placeholder="No 20000 Kandy, Kandy 20000, Sri Lanka" id="address" formControlName="address">
                   <span
                     *ngIf="!tourForm.get('address').valid && tourForm.get('address').touched"

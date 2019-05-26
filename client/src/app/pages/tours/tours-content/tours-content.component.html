@@ -1,0 +1,63 @@
+<!-- Loading Header Component start -->
+<app-header></app-header>
+<!-- Loading Header Component end -->
+
+<!-- Breadcrumb start -->
+<header class="tours-breadcrumb">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center justify-content-center text-center">
+      <div class="col-lg-10 align-self-end">
+        <h1 class="text-uppercase text-white font-weight-bold">Tours</h1>
+        <hr class="divider my-4">
+      </div>
+      <div class="col-lg-8 align-self-baseline">
+        <p class="text-white-75 font-weight-light mb-5"><a routerLink="/" style="color: #f4623a">Home</a> | Tours</p>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- Breadcrumb end -->
+
+<!-- Listing tours start -->
+<section class="page-section" id="contact">
+  <div class="container">
+    <!-- <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <h2 class="mt-0">Why Choose Travel Getaway?</h2>
+        <hr class="divider my-4">
+      </div>
+    </div> -->
+    <div class="row justify-content-center">
+      <div *ngFor="let tour of tours; let i = index">
+        <div class="col-lg-4 col-md-6 mb-5">
+          <div class="card card-style" style="width: 18rem;" routerLink="/tours/{{tour._id}}">
+            <div class="card" style="width: 18rem;">
+              <img 
+                class="card-img-top" 
+                src="http://localhost:3000/uploads//{{tour.tour_image}}"
+                alt="Tour image">
+              <div class="card-body">
+                <h5 class="card-title font-weight-bold">{{ tour.title }}</h5>
+                <!-- <p class="card-text"><i class="fas fa-map-marker-alt icon-color"></i> Locations : {{ tour.city}}</p> -->
+                <p class="card-text"><i class="far fa-clock icon-color"></i> Duration : {{ tour.duration }} day</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <i class="fas fa-dollar-sign icon-color"></i>
+                  Pricing <br> 
+                  Rs. {{ tour.price_adult }} / per adult <br>
+                  Rs. {{ tour.price_child }} / per child
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Listing tours end -->
+
+<!-- Loading Footer Component start -->
+<app-footer></app-footer>
+<!-- Loading Footer Component end -->

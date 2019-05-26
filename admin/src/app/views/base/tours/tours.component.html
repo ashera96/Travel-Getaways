@@ -1,3 +1,294 @@
-<p>
-  tours works!
-</p>
+<ng-template [ngIf]="!editMode">
+  <!-- Loading tours -->
+  <div class="animated fadeIn">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header">
+            <strong>Tours</strong>
+            <button 
+              type="button" 
+              class="btn btn-pill btn-primary pull-right custom-button mr-2" 
+              (click)="addTour()">
+              <i class="fa fa-plus-circle"></i>&nbsp;Add Tour
+            </button>
+          </div>
+          <div class="card-body">
+            <div *ngFor="let tour of returnedArray; let i = index">
+              <div class="row">
+                <p class="pl-3"><strong>{{ tour.title }}</strong></p>
+                <div class="col-6 col-sm-4 col-md mb-3 mb-xl-0 text-center">
+                  <button 
+                    type="button" 
+                    class="btn btn-pill btn-danger pull-right custom-button" 
+                    data-toggle="modal" 
+                    (click)="dangerModal.show()">
+                    <i class="fa fa-trash"></i>&nbsp;Delete
+                  </button>
+                  <button 
+                    type="button" 
+                    class="btn btn-pill btn-primary pull-right custom-button mr-2" 
+                    data-toggle="modal" 
+                    (click)="largeModal.show(); createUpdateForm(i)">
+                    <i class="fa fa-pencil"></i>&nbsp;Update
+                  </button>
+                </div>
+              </div>
+              <div class="text-muted d-flex flex-row bd-highlight mb-3"> 
+                <div class="pr-5 bd-highlight">Price for adults - Rs. {{ tour.price_adult }}</div>
+                <div class="pr-5 bd-highlight">Price for children - Rs. {{ tour.price_child }}</div>
+              </div>
+              <p>{{ tour.description }}</p>
+              <hr>
+  
+              <!-- Large Modal start -->
+              <div bsModal #largeModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Edit Tour</h4>
+                      <button type="button" class="close" (click)="largeModal.hide()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      Are you sure you want to update <strong>{{ tour.title }}</strong> tour?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" (click)="largeModal.hide()">Close</button>
+                      <button type="submit" class="btn btn-primary" (click)="updateTour(i); largeModal.hide()">Update Tour</button>
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+              <!-- Large Modal end -->
+  
+              <!-- Danger Modal Start -->
+              <div bsModal #dangerModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-danger" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Modal title</h4>
+                      <button type="button" class="close" (click)="dangerModal.hide()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete <strong>{{ tour.title }}</strong> tour?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" (click)="dangerModal.hide()">Close</button>
+                      <button type="button" class="btn btn-danger" (click)="deleteTour(i); dangerModal.hide()">Delete</button>
+                    </div>
+                  </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+              </div><!-- /.modal -->
+              <!-- Danger Modal End -->
+  
+            </div>
+          
+            <!-- Pagination Section start -->
+            <pagination class="d-flex justify-content-center" [totalItems]="tours.length" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" [itemsPerPage]="itemsPerPage"></pagination>
+            <!-- Pagingation Section end -->
+          </div>
+        </div>
+      </div>
+      <!--/.col-->
+    </div>
+    <!--/.row-->
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="editMode">
+  <!-- Edit Section -->
+  <form [formGroup]="updateTourForm">
+    <div class="animated fadeIn">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header">
+              <strong>Basic Info</strong>
+              <button 
+                type="button" 
+                class="btn btn-pill btn-primary pull-right custom-button mr-2" 
+                (click)="quitEditMode()">
+                <i class="fa fa-chevron-circle-left"></i>&nbsp;Back
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Tour Title</label>
+                    <input type="text" class="form-control" placeholder="Hiking, Hanthana" id="title" formControlName="title">
+                    <span
+                      *ngIf="!updateTourForm.get('title').valid && updateTourForm.get('title').touched"
+                      class="help-block text-muted">Please enter the tour title</span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Duration ( in days )</label>
+                    <input type="number" class="form-control" placeholder="2" id="duration" formControlName="duration">
+                    <span
+                      *ngIf="!updateTourForm.get('duration').valid && updateTourForm.get('duration').touched"
+                      class="help-block text-muted">Please enter the duartion in days</span>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Description</label>
+                      <textarea
+                        placeholder="Enter the tour description here ..."
+                        class="form-control"
+                        id="description"
+                        formControlName="description"
+                        style="height: 130px;"
+                        formControlName="description"></textarea>
+                      <span
+                        *ngIf="!updateTourForm.get('description').valid && updateTourForm.get('description').touched"
+                        class="help-block text-muted">Please enter a description for the tour</span>
+                    </div>
+                    <div class="form-group">
+                      <ng-template [ngIf]="imageChanges != 0">
+                        <label>Upload cover image for the tour <i class="fa fa-cloud-upload"></i></label>
+                        <input 
+                          class="ml-5"
+                          type="file"
+                          accept="image/png, image/jpeg, image/jpg" 
+                          (change)="createFormData($event)">
+                      </ng-template>
+                      <ng-template [ngIf]="imageChanges===0">
+                        <img 
+                          [src]="'http://localhost:3000/uploads//' + imagename" 
+                          alt="cover_image"
+                          class="rounded mx-auto d-block"
+                          style="border-radius: 15px;">
+                        <button 
+                          type="button" 
+                          class="btn btn-pill btn-primary ml-3 pull-right" 
+                          (click)="onAddNewImage()">
+                          <i class="fa fa-camera"></i>&nbsp;Add New Image
+                        </button>
+                      </ng-template>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="card">
+            <div class="card-header">
+              <strong>Location</strong>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>City</label>
+                    <input type="text" class="form-control" placeholder="Kandy" id="city" formControlName="city">
+                    <span
+                      *ngIf="!updateTourForm.get('city').valid && updateTourForm.get('city').touched"
+                      class="help-block text-muted">Please enter a city</span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" class="form-control" placeholder="No 20000 Kandy, Kandy 20000, Sri Lanka" id="address" formControlName="address">
+                    <span
+                      *ngIf="!updateTourForm.get('address').valid && updateTourForm.get('address').touched"
+                      class="help-block text-muted">Please enter the address</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="card">
+            <div class="card-header">
+              <strong>Program</strong>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12" formArrayName="program">
+                  <div 
+                    class="row mt-2 mb-2" 
+                    *ngFor="let programCtrl of getControls(); let i = index"
+                    [formGroupName]="i">
+                    <div class="col-md-5">
+                      <input 
+                        type="text"
+                        class="form-control"
+                        placeholder="Title"
+                        formControlName="title">
+                    </div>
+                    <div class="col-md-5">
+                      <input 
+                        type="text"
+                        class="form-control"
+                        placeholder="Description"
+                        formControlName="description">
+                    </div>
+                    <div class="col-md-2">
+                      <button 
+                        type="button" 
+                        style="width: 50px;"
+                        class="btn btn-block btn-ghost-info"
+                        (click)="onDeleteProgram(i)">X</button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <button 
+                        type="button" 
+                        class="btn btn-pill btn-primary ml-3" 
+                        (click)="onAddProgram()">
+                        <i class="fa fa-plus-circle"></i>&nbsp;Add Program
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="card">
+            <div class="card-header">
+              <strong>Pricing</strong>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Entire tour price for an adult ( Rs. )</label>
+                    <input type="number" class="form-control" placeholder="3000" id="price_adult" formControlName="price_adult">
+                    <span
+                      *ngIf="!updateTourForm.get('price_adult').valid && updateTourForm.get('price_adult').touched"
+                      class="help-block text-muted">Please enter the tour price for an adult</span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Entire tour price for a child ( Rs. )</label>
+                    <input type="number" class="form-control" placeholder="1500" id="price_child" formControlName="price_child">
+                    <span
+                      *ngIf="!updateTourForm.get('price_child').valid && updateTourForm.get('price_child').touched"
+                      class="help-block text-muted">Please enter the tour price for a child</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <button 
+            type="submit" 
+            class="btn btn-pill btn-primary mb-3" 
+            style="width: 100px;"
+            (click)="onUpdate()"
+            [disabled]="!updateTourForm.valid">Save</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</ng-template>

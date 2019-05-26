@@ -2,33 +2,27 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
+import { Tour } from '../tour.model';
+import { TourService } from '../tour.service';
+
 @Component({
   selector: 'app-add-tours',
   templateUrl: './add-tours.component.html',
   styleUrls: ['./add-tours.component.scss']
 })
 export class AddToursComponent implements OnInit {
-  id: string;
-  editMode = false;
   tourForm: FormGroup;
-  // tourForm: FormGroup = new FormGroup({
-  //   title: FormControl(null, [Validators.required]),
-  //   duration: FormControl(null, [Validators.required, Validators.pattern('^[1-9]+[0-9]*$')]),
-  //   description: FormControl(null, [Validators.required]),
-  //   city: FormControl(null, [Validators.required]),
-  //   address: FormControl(null, [Validators.required]),
-  //   price_adult: FormControl(null, [Validators.required]),
-  //   // program: FormArray([])
-  // })
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  image;
+  imagename: string = '';
+
+  constructor(private route: ActivatedRoute, 
+              private router: Router,
+              private tourService: TourService) { }
 
   ngOnInit() {
     this.route.params
       .subscribe(
         (params: Params) => {
-          this.id = params['id'];
-          // this.editMode = params['id'] != null;
-          // console.log(this.editMode);
           this.initForm();
         }
       );
@@ -39,27 +33,10 @@ export class AddToursComponent implements OnInit {
     let duration = 0;
     let description = '';
     let city = '';
-    let address = '';
+    let address = '-';
     let price_adult = null;
     let price_child = null;
     let program = new FormArray([]);
-
-    // if (this.editMode){
-    //   const recipe = this.recipeService.getRecipe(this.id);
-    //   recipeName = recipe.name;
-    //   recipeImagePath = recipe.imagePath;
-    //   recipeDescription = recipe.description;
-    //   if (recipe['ingredients']) {
-    //     for (let ingredient of recipe.ingredients) {
-    //       recipeIngredients.push(
-    //         new FormGroup({
-    //           'name': new FormControl(ingredient.name, Validators.required),
-    //           'amount': new FormControl(ingredient.amount, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)])
-    //         })
-    //       );
-    //     }
-    //   }
-    // }
 
     this.tourForm = new FormGroup({
       'title': new FormControl(title, Validators.required),
@@ -67,9 +44,10 @@ export class AddToursComponent implements OnInit {
       'description': new FormControl(description, Validators.required),
       'city': new FormControl(city, Validators.required),
       'address': new FormControl(address, Validators.required),
-      'price_adult': new FormControl(price_adult, [Validators.required, Validators.pattern(/^[0-9]+[0-9]*$/)]),
-      'price_child': new FormControl(price_child, [Validators.required, Validators.pattern(/^[0-9]+[0-9]*$/)]),
-      'program': program
+      'price_adult': new FormControl(price_adult, [Validators.required, Validators.pattern(/^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/)]),
+      'price_child': new FormControl(price_child, [Validators.required, Validators.pattern(/^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/)]),
+      'program': program,
+
     });
   }
 
@@ -90,19 +68,49 @@ export class AddToursComponent implements OnInit {
     return (<FormArray>this.tourForm.get('program')).controls;
   }
 
+  createFormData(event) {
+    this.image = event.target.files[0];
+    this.imagename = event.target.files[0].name;
+    console.log(this.imagename);
+  }
+
   onSubmit() {
-    console.log(this.tourForm.value);
-    // const newRecipe = new Recipe(
-    //   this.recipeForm.value['name'],
-    //   this.recipeForm.value['description'],
-    //   this.recipeForm.value['imagePath'],
-    //   this.recipeForm.value['ingredients']
-    // );
-    // if (this.editMode) {
-    //   this.recipeService.updateRecipe(this.id, this.recipeForm.value);
-    // } else {
-    //   this.recipeService.addRecipe(this.recipeForm.value);
-    // }
-    this.tourForm.reset();
+    if (this.imagename === '') {
+      console.log("Image not found");
+      alert("Please upload an image");
+    } else {
+      const newTour = new Tour(
+        this.tourForm.value['title'],
+        this.tourForm.value['duration'],
+        this.tourForm.value['description'],
+        this.tourForm.value['city'],
+        this.tourForm.value['address'],
+        this.tourForm.value['price_adult'],
+        this.tourForm.value['price_child'],
+        this.tourForm.value['program'],
+        this.imagename
+      );
+      // console.log(JSON.stringify(newTour));
+      this.tourService.addTour(JSON.stringify(newTour))
+        .subscribe(
+          (data: any) => {
+            console.log('Tour added successfully');
+            this.tourService.uploadImage(this.image)
+              .subscribe(
+                (result) => {
+                  console.log('Image upload completed');
+                },
+                (error) => {
+                  console.log('Error occured in image upload');
+                } 
+              );
+          },
+          (error: any) => {
+            console.log('Error occured');
+            console.log(error);
+          }
+        );
+      this.tourForm.reset();
+    }
   }
 }

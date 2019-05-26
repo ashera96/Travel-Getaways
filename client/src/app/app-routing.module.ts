@@ -12,11 +12,16 @@ import { LoginComponent } from './pages/login/login.component';
 import { AuthGuardService } from './services/auth-guard/auth-guard.service';
 import { BookingsComponent } from './pages/bookings/bookings.component';
 import { BookmarkComponent } from './pages/bookmark/bookmark.component';
+import { TourDetailComponent } from './pages/tours/tours-content/tour-detail/tour-detail.component';
+import { ToursContentComponent } from './pages/tours/tours-content/tours-content.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent},
     { path: 'about', component: AboutComponent},
-    { path: 'tours', component: ToursComponent},
+    { path: 'tours', component: ToursComponent, children: [
+        { path: '', component: ToursContentComponent},
+        { path: ':id', component: TourDetailComponent}
+    ]},
     { path: 'testimonials', component: TestimonialsComponent},
     { path: 'contact', component: ContactComponent},
     { path: 'login', component: LoginComponent},
