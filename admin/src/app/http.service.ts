@@ -1,19 +1,24 @@
 import { Injectable } from "@angular/core";
 //import { Routes, RouterModule } from "@angular/router";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: "root"
 })
 export class HttpService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   realizarHttpPost(requestType: string, bodyObject: Object) {
-    const headers = new HttpHeaders();
-    headers.append("Content-Type", "application/json");
-    headers.append("Access-Control-Allow-Origin", "*");
-    return this.http.post(requestType, bodyObject, {
-      headers: headers
-    });
+    if (localStorage.getItem("token")) {
+      // const headers = new HttpHeaders();
+      // headers.append("token", localStorage.getItem("token"));
+      return this.http.post(requestType, {
+        bodyObject,
+        params: new HttpParams().append("token", localStorage.getItem("token"))
+      });
+    } else {
+      this.router.navigate(["/login"]);
+    }
   }
 }
