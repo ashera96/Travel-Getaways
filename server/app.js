@@ -33,6 +33,7 @@ const adminusers = require("./routes/adminuseroutes");
 const adminposts = require("./routes/adminpostsroutes");
 const bot = require("./routes/bot");
 const tours = require("./routes/tours");
+const bookmarks = require("./routes/bookmarks");
 
 // Port Number
 const port = 3000;
@@ -59,7 +60,8 @@ app.use("/reply", mail);
 app.use("/adminusers", adminusers);
 app.use("/adminposts", adminposts);
 app.use("/botservice", bot);
-app.use("/tours", tours)
+app.use("/tours", tours);
+app.use("/bookmarks", bookmarks);
 
 // Image URL path configuration
 app.use('/uploads', express.static('uploads'));
