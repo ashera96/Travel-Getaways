@@ -34,6 +34,7 @@ import { BookingsContentComponent } from './pages/bookings/bookings-content/book
 import { ToursContentComponent } from './pages/tours/tours-content/tours-content.component';
 import { TourService } from './services/tour/tour.service';
 import { TourDetailComponent } from './pages/tours/tours-content/tour-detail/tour-detail.component';
+import { BookmarkService } from './services/bookmark/bookmark.service';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,13 @@ import { TourDetailComponent } from './pages/tours/tours-content/tour-detail/tou
     NgFlashMessagesModule.forRoot(),
     NgbModule
   ],
-  providers: [AuthService, AuthGuardService, ContactService, TourService],
+  providers: [
+    AuthService, 
+    AuthGuardService, 
+    ContactService, 
+    TourService, 
+    BookmarkService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
