@@ -27,14 +27,14 @@ export class ChatBotComponent implements OnInit {
     if (this.toggle) {
       this.toggle = false;
       this.pagecontainer = <HTMLElement>this.pagecontainerelement.nativeElement;
-      this.pagecontainer.classList.toggle("hide");
+      this.pagecontainer.style.display = "block";
       //console.log("hide");
     } else {
       this.toggle = true;
       //console.log("hide");
 
       this.pagecontainer = <HTMLElement>this.pagecontainerelement.nativeElement;
-      this.pagecontainer.classList.toggle("expand");
+      this.pagecontainer.style.display = "none";
     }
   }
 

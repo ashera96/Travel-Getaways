@@ -82,14 +82,18 @@
   position: fixed;
   bottom: 26px;
   border: none;
-  width: 100%;
+  width: 30%;
   height: 50vh;
   z-index: 100;
 }
 
 .pagecontainer {
   padding-bottom: 33px;
-  position: relative;
+  /* position: relative; */
+  position: fixed;
+  top: 0;
+  left: -10px;
+  z-index: 1;
 }
 
 .pagecontainer {
