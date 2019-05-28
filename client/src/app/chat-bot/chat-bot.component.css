@@ -2,26 +2,32 @@
 
 /* Jumbotron */
 
-.pagecontainer .jumbotron {
-  margin: 200px 200px 200px 200px;
+.pagecontainer .main_container {
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  padding: 20px;
+  position: fixed;
+  left: 50px;
+  bottom: 50px;
   background-color: white;
   outline: black;
   border-color: black;
   border-width: 100px;
   outline-width: 100px;
-  background-image: linear-gradient(
-    to right,
-    rgba(226, 120, 49, 0),
-    rgb(209, 112, 47)
-  );
+  background-color: #f2f1ef;
+  border: 5px solid #070606;
 }
 /* Chat containers */
 .container {
+  padding: 10px;
   border: 2px solid #070606;
   background-color: #f0ebe8;
   border-radius: 5px;
   padding: 10px;
   margin: 10px 0;
+  border: 2px solid #070606;
 }
 
 /* Darker chat container */
@@ -53,6 +59,7 @@
   float: right;
   margin-left: 20px;
   margin-right: 0;
+  border: 2px solid #070606;
 }
 
 /* Style time text */
@@ -72,8 +79,8 @@
 .chattoggle {
   position: fixed;
   bottom: 30px;
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   color: red;
   margin: 50px auto 10px 30px;
   background-color: transparent;
@@ -108,6 +115,7 @@
   top: 0;
   left: -10px;
   z-index: 2;
+  border: 2px solid #070606;
 }
 /*
 .pagecontainer {
