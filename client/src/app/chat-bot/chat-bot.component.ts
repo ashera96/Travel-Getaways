@@ -16,13 +16,22 @@ export class ChatBotComponent implements OnInit {
   public input = new FormControl("", [Validators.required]);
   public chatList = new Array();
   public chatUrl = HttpEnum.baseURL + "botservice/bot";
+  public analyticsUrl = HttpEnum.baseURL + "pageviews/addView";
 
   constructor(private httpService: HttpService) {}
 
   ngOnInit() {
     this.pagecontainer = <HTMLElement>this.pagecontainerelement.nativeElement;
     this.pagecontainer.style.display = "none";
+    this.sendAnalytics();
   }
+
+  //Sending Anlytics
+  sendAnalytics() {
+    this.httpService.realizarHttpPost(this.analyticsUrl, null);
+  }
+
+  // Chat functions
 
   ToggleChat() {
     console.log("toggle called");

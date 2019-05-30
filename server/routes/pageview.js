@@ -40,4 +40,48 @@ router.post("/addView", (req, res) => {
   console.log("website user detected");
 });
 
+//get Analytics route
+
+router.post("/Get_Analytics", (req, res) => {
+  var dateObj = new Date();
+  var cnt = 1;
+  var month = dateObj.getUTCMonth() + 1; //months from 1-12
+  var day = dateObj.getUTCDate();
+  var year = dateObj.getUTCFullYear();
+  var id = day + "/" + month + "/" + year;
+  var returnList = new Array(30).fill(0);
+  //Asuming that a month has 30 days
+  var remaining = 30 - day;
+  for (let days = remaining; days < 30; days++) {
+    var id = days + "/" + month + "/" + year;
+    pageview
+      .findOne({ _id: id })
+      .exec()
+      .then(res => {
+        let viewcount = res[0].count;
+        if (viewcount) {
+          returnList[days] = viewcount;
+        } else {
+          console.log("error @line60");
+        }
+      });
+  }
+  for (let days = 0; days < day; days++) {
+    let id = days + "/" + month + "/" + year;
+    pageview
+      .findOne({ _id: id })
+      .exec()
+      .then(res => {
+        let viewcount = res[0].count;
+        if (viewcount) {
+          returnList[days] = viewcount;
+        } else {
+          console.log("error @line77");
+        }
+      });
+  }
+  console.log(returnList);
+  res.send({ result: returnList });
+});
+
 module.exports = router;
