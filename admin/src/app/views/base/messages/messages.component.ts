@@ -62,7 +62,7 @@ export class MessagesComponent implements OnInit {
         (data: any) => {
           console.log('Reply sent successfully');
         },
-        errror => {
+        error => {
           console.log("Error occurred");
         }
       );

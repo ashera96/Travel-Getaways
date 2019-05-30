@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Tour } from 'src/app/models/tour.model';
 import { TourService } from 'src/app/services/tour/tour.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { BookmarkService } from 'src/app/services/bookmark/bookmark.service';
 
 @Component({
   selector: 'app-tour-detail',
@@ -16,11 +17,13 @@ export class TourDetailComponent implements OnInit {
   tour: Tour;
   cities: string[];
   userProfile;
+  showBookmarkSuccessMessage: boolean = false;
 
   constructor(private route: ActivatedRoute,
               private tourService: TourService,
               private authService: AuthService,
-              private router: Router) { }
+              private router: Router,
+              private bookmarkService: BookmarkService) { }
 
   ngOnInit() {
     this.route.params 
@@ -71,7 +74,16 @@ export class TourDetailComponent implements OnInit {
       "tour_price_adult" : tour_price_adult,
       "tour_price_child" : tour_price_child
     }
-    console.log(obj);
+    this.bookmarkService.saveBookmark(obj)
+      .subscribe(
+        (data: any) => {
+          console.log('Bookmark added successfully');
+          this.showBookmarkSuccessMessage = true;
+        },
+        error => {
+          console.log("Error occurred");
+        }
+      );
   }
 
 }
