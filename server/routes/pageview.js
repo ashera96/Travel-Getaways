@@ -4,29 +4,38 @@ const router = express.Router();
 var pageview = require("../models/userstat");
 
 router.post("/addView", (req, res) => {
+  console.log("add view route called");
   var dateObj = new Date();
   var cnt = 1;
   var month = dateObj.getUTCMonth() + 1; //months from 1-12
   var day = dateObj.getUTCDate();
   var year = dateObj.getUTCFullYear();
   var id = day + "/" + month + "/" + year;
-  pageview
+  console.log(this.id);
+  let doc = pageview
     .findOne({ _id: id })
     .exec()
-    .then(res => {
-      if (res.length <= 0) {
+    .then(result => {
+      console.log(result);
+      if (result === null) {
         const view = new pageview({
           _id: id,
           year: year,
           month: month,
           date: day,
-          count: count
+          count: cnt
         });
-        view.save().then(res => {
-          console.log(res);
+        view.save().then((error, result) => {
+          if (error) {
+            res.send(error);
+          } else {
+            console.log(result);
+            res.send(result);
+          }
         });
       } else {
-        cnt = res[0].count;
+        console.log(result);
+        cnt = result.count;
         cnt++;
         pageview
           .findOneAndUpdate({ _id: id }, { count: cnt })
@@ -42,7 +51,11 @@ router.post("/addView", (req, res) => {
 
 //get Analytics route
 
-router.post("/Get_Analytics", (req, res) => {
+router.post("/Get_Analytics", calculate_pageViews, (req, res) => {
+  console.log("get analytics called");
+});
+
+async function calculate_pageViews(req, res) {
   var dateObj = new Date();
   var cnt = 1;
   var month = dateObj.getUTCMonth() + 1; //months from 1-12
@@ -50,38 +63,41 @@ router.post("/Get_Analytics", (req, res) => {
   var year = dateObj.getUTCFullYear();
   var id = day + "/" + month + "/" + year;
   var returnList = new Array(30).fill(0);
+  var save_i = 0;
+  var asyinc1 = false;
+  var asyinc2 = false;
   //Asuming that a month has 30 days
   var remaining = 30 - day;
-  for (let days = remaining; days < 30; days++) {
-    var id = days + "/" + month + "/" + year;
-    pageview
-      .findOne({ _id: id })
-      .exec()
-      .then(res => {
-        let viewcount = res[0].count;
-        if (viewcount) {
-          returnList[days] = viewcount;
-        } else {
-          console.log("error @line60");
-        }
-      });
-  }
-  for (let days = 0; days < day; days++) {
-    let id = days + "/" + month + "/" + year;
-    pageview
-      .findOne({ _id: id })
-      .exec()
-      .then(res => {
-        let viewcount = res[0].count;
-        if (viewcount) {
-          returnList[days] = viewcount;
-        } else {
-          console.log("error @line77");
-        }
-      });
-  }
-  console.log(returnList);
-  res.send({ result: returnList });
-});
+  let prevmonth = month - 1;
+  var id = day + "/" + prevmonth + "/" + year;
+  console.log("getting data from " + remaining + " to 30");
+  pageview
+    .find({ month: prevmonth, date: { $gt: remaining, $lte: 30 } })
+    .exec()
+    .then(result => {
+      console.log(result);
+      let len = result.length;
+      for (let i = 0; i < len; i++) {
+        returnList[i] = result[i].count;
+        save_i = i;
+      }
+      asyinc1 = true;
+      console.log(returnList);
+      console.log("getting data from 0 to" + day);
+      pageview
+        .find({ month: month, date: { $gte: 0, $lte: day } })
+        .exec()
+        .then(results => {
+          console.log(results);
+          let len = results.length;
+          for (let i = save_i; i < len; i++) {
+            returnList[i] = results[i].count;
+          }
+          asyinc2 = true;
+          console.log(returnList);
+          res.send({ result: returnList });
+        });
+    });
+}
 
 module.exports = router;
