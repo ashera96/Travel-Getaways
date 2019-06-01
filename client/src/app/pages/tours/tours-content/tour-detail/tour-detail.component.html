@@ -167,7 +167,7 @@
                       />
                       <span
                     *ngIf="!bookingForm.get('adults').valid && bookingForm.get('adults').touched"
-                    class="help-block text-muted">Please enter number of adults partisipating</span>
+                    class="help-block text-muted">Please enter the number of adults participating</span>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -176,9 +176,12 @@
                       <input
                         class="form-control"
                         type="number"
-                        id=""
-                        formControlName=""
+                        id="children"
+                        formControlName="children"
                       />
+                      <span
+                    *ngIf="!bookingForm.get('children').valid && bookingForm.get('children').touched"
+                    class="help-block text-muted">Please enter the number of children participating</span>
                     </div>
                   </div>
                 </div>
