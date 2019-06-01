@@ -139,11 +139,7 @@
                           id="dp"
                           formControlName="dp"
                         />
-                        <span
-                          *ngIf="
-                            !bookingForm.get('dp').valid && bookingForm.get('dp').touched"
-                            class="help-block text-muted"
-                          >Please select a correct date</span>
+                        
                         <div class="input-group-append">
                           <button
                             class="fas fa-calendar"
@@ -151,6 +147,11 @@
                             type="button"
                           ></button>
                         </div>
+                        <span
+                          *ngIf="
+                            !bookingForm.get('dp').valid && bookingForm.get('dp').touched"
+                            class="help-block text-muted"
+                          >Please select a correct date</span>
                       </div>
                     </div>
                   </div>
