@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Tour } from 'src/app/models/tour.model';
 import { TourService } from 'src/app/services/tour/tour.service';
@@ -12,6 +13,12 @@ import { BookmarkService } from 'src/app/services/bookmark/bookmark.service';
   styleUrls: ['./tour-detail.component.css']
 })
 export class TourDetailComponent implements OnInit {
+  bookingForm: FormGroup = new FormGroup({
+    dp: new FormControl(null, [Validators.required]),
+    adults: new FormControl(null, [Validators.required]),
+    children: new FormControl(null, [Validators.required])
+  });
+  
   loggedIn: boolean = false;
   id: string;
   tour: Tour;
