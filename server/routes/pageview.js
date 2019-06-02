@@ -9,6 +9,8 @@ router.post("/addView", (req, res) => {
   var cnt = 1;
   var month = dateObj.getUTCMonth() + 1; //months from 1-12
   var day = dateObj.getUTCDate();
+  // var month = 6;
+  // var day = 22;
   var year = dateObj.getUTCFullYear();
   var id = day + "/" + month + "/" + year;
   console.log(this.id);
@@ -40,8 +42,10 @@ router.post("/addView", (req, res) => {
         pageview
           .findOneAndUpdate({ _id: id }, { count: cnt })
           .exec()
-          .then(res => {
+          .then(result => {
             console.log("updated view count to " + cnt);
+            res.send({});
+            // res.send({ message: "count updated" });
           });
       }
     });
@@ -59,6 +63,7 @@ async function calculate_pageViews(req, res) {
   var dateObj = new Date();
   var cnt = 1;
   var month = dateObj.getUTCMonth() + 1; //months from 1-12
+
   var day = dateObj.getUTCDate();
   var year = dateObj.getUTCFullYear();
   var id = day + "/" + month + "/" + year;
@@ -70,9 +75,9 @@ async function calculate_pageViews(req, res) {
   var remaining = 30 - day;
   let prevmonth = month - 1;
   var id = day + "/" + prevmonth + "/" + year;
-  console.log("getting data from " + remaining + " to 30");
+  console.log("getting data from " + remaining + " to 30 of " + prevmonth);
   pageview
-    .find({ month: prevmonth, date: { $gt: remaining, $lte: 30 } })
+    .find({ month: prevmonth, date: { $gte: remaining, $lte: 30 } })
     .exec()
     .then(result => {
       console.log(result);
@@ -83,9 +88,9 @@ async function calculate_pageViews(req, res) {
       }
       asyinc1 = true;
       console.log(returnList);
-      console.log("getting data from 0 to" + day);
+      console.log("getting data from 0 to" + remaining + " month " + month);
       pageview
-        .find({ month: month, date: { $gte: 0, $lte: day } })
+        .find({ month: month, date: { $gte: 0, $lte: remaining } })
         .exec()
         .then(results => {
           console.log(results);
