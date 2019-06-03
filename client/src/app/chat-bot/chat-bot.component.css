@@ -14,10 +14,11 @@
   background-color: white;
   outline: black;
   border-color: black;
-  border-width: 100px;
+  border-width: 50px;
   outline-width: 100px;
-  background-color: #f2f1ef;
+  background-color: tra#f2f1ef;
   border: 5px solid #070606;
+  border-radius: 5%;
 }
 /* Chat containers */
 .container {
@@ -96,7 +97,7 @@
   position: fixed;
   bottom: 26px;
   border: none;
-  width: 30%;
+  width: 20%;
   height: 50vh;
   z-index: 100;
 }
