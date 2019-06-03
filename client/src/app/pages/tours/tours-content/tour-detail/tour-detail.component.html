@@ -191,6 +191,7 @@
                   style="background-color:#f4623a; color: #ffffff; float: right;"
                   type="submit"
                   (click)="onPurchase()"
+                  [disabled]="!bookingForm.valid"
                 >
                   <i class="fas fa-dollar-sign"></i> Purchase
                 </button>
