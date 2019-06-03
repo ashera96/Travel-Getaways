@@ -8,9 +8,6 @@
         </div>
         <!--/.col-->
         <div class="col-sm-7 d-none d-md-block">
-          <button type="button" class="btn btn-primary float-right">
-            <i class="icon-cloud-download"></i>
-          </button>
           <div
             class="btn-group btn-group-toggle float-right mr-3"
             data-toggle="buttons"
@@ -18,23 +15,9 @@
             <label
               class="btn btn-outline-secondary"
               [(ngModel)]="radioModel"
-              btnRadio="Day"
-              id="option1"
-              >Day</label
-            >
-            <label
-              class="btn btn-outline-secondary"
-              [(ngModel)]="radioModel"
               btnRadio="Month"
               id="option2"
               >Month</label
-            >
-            <label
-              class="btn btn-outline-secondary"
-              [(ngModel)]="radioModel"
-              btnRadio="Year"
-              id="option3"
-              >Year</label
             >
           </div>
         </div>
@@ -57,8 +40,8 @@
     <div class="card-footer">
       <div class="row text-center">
         <div class="col-sm-12 col-md mb-sm-2 mb-0">
-          <div class="text-muted">Unique</div>
-          <strong>24.093 Page Views </strong>
+          <div class="text-muted">Total</div>
+          <strong>{{ viewcount }} Page Views for last 30 days </strong>
           <div class="progress progress-xs mt-2">
             <div
               class="progress-bar bg-info"

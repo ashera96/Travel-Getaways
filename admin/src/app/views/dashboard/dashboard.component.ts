@@ -18,6 +18,7 @@ import { BrowserModule } from "@angular/platform-browser";
 export class DashboardComponent implements OnInit {
   public radioModel: string = "Month";
   public analyticsUrl: string = "http://localhost:3000/pageviews/Get_Analytics";
+  public viewcount = 0;
 
   constructor(
     private http: HttpClient,
@@ -223,12 +224,21 @@ export class DashboardComponent implements OnInit {
         for (let i = 0; i <= 30; i++) {
           this.mainChartData1.push(this.data2[i]);
           //this.mainChartData2.push(this.random(80, 100));
-          // this.mainChartData3.push(65);
+          // this.mainChartData3.push(65)
         }
       })
       .catch(error => {
         console.log(error);
       });
+    for (let i = 0; i <= 30; i++) {
+      this.mainChartData1.push(this.random(0, 5));
+
+      //this.mainChartData2.push(this.random(80, 100));
+      // this.mainChartData3.push(65)
+    }
+    for (let i = 0; i < 30; i++) {
+      this.viewcount += this.mainChartData1[i];
+    }
     //
     //this.mainChartData1 = this.data2;
 
