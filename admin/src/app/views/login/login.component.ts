@@ -6,6 +6,7 @@ import { FormControl, Validators, FormGroup } from "@angular/forms";
 import { HttpService } from "../../http.service";
 import { log } from "util";
 import { RegisterServiceService } from "../../register-service.service";
+import { MatFormFieldControl } from "@angular/material";
 
 @Component({
   selector: "app-dashboard",
@@ -13,6 +14,8 @@ import { RegisterServiceService } from "../../register-service.service";
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  public username = "";
+  public password = "";
 
   constructor(
     private router: Router,

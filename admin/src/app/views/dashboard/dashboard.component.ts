@@ -7,6 +7,10 @@ import { GetanalyticsService } from "./getanalytics.service";
 import { promise } from "protractor";
 import { resolve } from "path";
 import { chart } from "chart.js";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { CommonModule } from "@angular/common";
+import { BrowserModule } from "@angular/platform-browser";
+//import { Router } from "@angular/router";
 
 @Component({
   templateUrl: "dashboard.component.html"
@@ -16,8 +20,10 @@ export class DashboardComponent implements OnInit {
   public analyticsUrl: string = "http://localhost:3000/pageviews/Get_Analytics";
 
   constructor(
+    private http: HttpClient,
     private _myservice: HttpService,
-    private _anlytics: GetanalyticsService
+    private _anlytics: GetanalyticsService,
+    private router: Router
   ) {}
   // mainChart
 
@@ -171,23 +177,60 @@ export class DashboardComponent implements OnInit {
   public random(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
+  async getChartData(bodyObject: Object) {
+    if (localStorage.getItem("token")) {
+      // const headers = new HttpHeaders();
+      // headers.append("token", localStorage.getItem("token"));
+
+      await new Promise(resolve => {
+        this.http
+          .post(this.analyticsUrl, {
+            bodyObject,
+            params: new HttpParams().append(
+              "token",
+              localStorage.getItem("token")
+            )
+          })
+          .subscribe(res => {
+            //console.log(res);
+            this.data2 = res["result"];
+            //res["result"].forEach(element => this.data2.push(element));
+            //console.log(this.data);
+            console.log(this.data2);
+            resolve();
+            //return this.data2;
+          });
+      });
+
+      console.log("line 33 get");
+      console.log(this.data2);
+      // var analytics: any = data.result;
+      //console.log(data);
+    } else {
+      this.router.navigate(["/login"]);
+    }
+  }
 
   ngOnInit(): void {
     //generate random values for mainChart
-    this.data2 = this._anlytics.getChartData({});
-    console.log(this.data2);
-    // var promise = this.populateCharts();
-    // promise.finally(() => {
-    //   this.data2.forEach(element => {
-    //     this.mainChartData1.push(element);
-    //   });
-    //   console.log(this.data2);
-    // });
-    for (let i = 0; i <= 30; i++) {
-      this.mainChartData1.push(this.random(0, 15));
-      //this.mainChartData2.push(this.random(80, 100));
-      // this.mainChartData3.push(65);
-    }
+    // this.data2 = this._anlytics.getChartData({});
+    // console.log(this.data2);
+    this.getChartData({})
+      .then(val => {
+        //this.mainChartData1 = this.data2;
+        console.log(this.data2);
+        console.log(this.mainChartData1);
+        for (let i = 0; i <= 30; i++) {
+          this.mainChartData1.push(this.data2[i]);
+          //this.mainChartData2.push(this.random(80, 100));
+          // this.mainChartData3.push(65);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    //
+    //this.mainChartData1 = this.data2;
 
     // this.populateCharts();
     //console.log(this.mainChartData1);
