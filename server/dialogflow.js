@@ -1,7 +1,7 @@
 var axios = require("axios");
 var fetch = require("node-fetch");
 var URL = "https://api.dialogflow.com/v1/";
-var accessToken = "1711e3ba3d34422e996b97d965699e99";
+var accessToken = "0dc2512b43d94dbc9b08d3b94e194135";
 
 let config = {
   headers: {

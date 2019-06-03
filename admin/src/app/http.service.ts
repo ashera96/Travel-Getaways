@@ -21,4 +21,16 @@ export class HttpService {
       this.router.navigate(["/login"]);
     }
   }
+  getChartData(requestType: string, bodyObject: Object) {
+    if (localStorage.getItem("token")) {
+      // const headers = new HttpHeaders();
+      // headers.append("token", localStorage.getItem("token"));
+      return this.http.post(requestType, {
+        bodyObject,
+        params: new HttpParams().append("token", localStorage.getItem("token"))
+      });
+    } else {
+      this.router.navigate(["/login"]);
+    }
+  }
 }

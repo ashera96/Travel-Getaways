@@ -1,5 +1,5 @@
 <div class="pagecontainer" #pagecontainer>
-  <div class="jumbotron">
+  <div class="main_container">
     <div class="container">
       <img src="../../assets/img/bot2.svg" alt="Avatar" />
       <p>Hello. How are you today?</p>
@@ -47,9 +47,9 @@
 </script> -->
 </div>
 <div class="chatcontainer">
-  <div *ngIf="toggle" id="chat" class="hide"></div>
+  <div id="chat" class="hide"></div>
   <img
-    src="../../assets/img/bot1.svg"
+    src="../../assets/img/metal.png"
     (click)="ToggleChat()"
     class="chattoggle"
   />

@@ -23,9 +23,9 @@ export class TablesComponent {
   ngOnInit(): void {
     console.log("trying to get Users check tables.component.ts");
 
-    this.getPosts();
+    this.getUsers();
   }
-  getPosts() {
+  getUsers() {
     console.log(this.getUserURL);
     this.showLoader = true;
 
@@ -36,8 +36,9 @@ export class TablesComponent {
           console.log("error getting results");
         } else {
           console.log(results);
+          this.Userlist = results.results;
           for (let i = 0; i < results.length; i++) {
-            this.Userlist.push(results[i]);
+            this.Userlist.push(results.results[i]);
           }
           this.returnedArray = this.Userlist;
           this.len = this.Userlist.length;
@@ -97,5 +98,6 @@ export class TablesComponent {
           }
         });
     }
+    this.getUsers();
   }
 }

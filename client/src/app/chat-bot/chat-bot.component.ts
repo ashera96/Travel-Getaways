@@ -19,10 +19,18 @@ export class ChatBotComponent implements OnInit {
 
   constructor(private httpService: HttpService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.pagecontainer = <HTMLElement>this.pagecontainerelement.nativeElement;
+    this.pagecontainer.style.display = "none";
+  }
+
+  //Sending Anlytics
+
+  // Chat functions
 
   ToggleChat() {
     console.log("toggle called");
+    // this.sendAnalytics();
 
     if (this.toggle) {
       this.toggle = false;
