@@ -25,6 +25,8 @@ export class TourDetailComponent implements OnInit {
   cities: string[];
   userProfile;
   showBookmarkSuccessMessage: boolean = false;
+  showSuccessMessage: boolean = false;
+  showErrorMessage: boolean = false;
 
   constructor(private route: ActivatedRoute,
               private tourService: TourService,
@@ -91,6 +93,29 @@ export class TourDetailComponent implements OnInit {
           console.log("Error occurred");
         }
       );
+  }
+
+  onPurchase() {
+    if (!this.bookingForm.valid) {
+      console.log('Invalid');
+      this.bookingForm.reset();
+    } else {
+      console.log(JSON.stringify(this.bookingForm.value));
+      this.tourService.submitBooking(JSON.stringify(this.bookingForm.value))
+        .subscribe(
+          (data:any) => {
+            this.showSuccessMessage = true;
+            console.log('Booking successful');
+          },
+          (error: any) => {
+            this.showErrorMessage = true;
+            console.log("Error occured");
+            console.log(error);
+          }
+        );
+      this.bookingForm.reset();
+    }
+
   }
 
 }
