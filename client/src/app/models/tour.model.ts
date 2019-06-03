@@ -9,11 +9,11 @@ export class Tour {
     public price_child: number;
     public program: [];
     public tour_image: string;
-    public dp: string;
+    public dp: [];
     public children: number;
     public adults: number;
 
-    constructor(_id: string,title: string, duration: number, description: string, city: string, address: string, price_adult: number, price_child: number, program: [], tour_image: string, dp: string, children: number, adults: number) {
+    constructor(_id: string,title: string, duration: number, description: string, city: string, address: string, price_adult: number, price_child: number, program: [], tour_image: string, dp: [], children: number, adults: number) {
         this._id = _id;
         this.title = title;
         this.duration = duration;
