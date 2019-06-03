@@ -14,6 +14,38 @@
 </header>
 <!-- Breadcrumb end -->
 
+<!-- Show text if no bookmarks -->
 
-<!-- Bookmarks retrieved -->
+<!-- Listing bookmarked tours start -->
+<section class="page-section" id="contact">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div *ngFor="let bookmark of bookmarks; let i = index">
+        <div class="col-lg-4 col-md-6 mb-5">
+          <div class="card card-style" style="width: 18rem;">
+            <div class="card" style="width: 18rem;">
+              <img 
+                class="card-img-top" 
+                src="http://localhost:3000/uploads//{{bookmark.tour_image}}"
+                alt="Bookmark image">
+              <div class="card-body" routerLink="/tours/{{bookmark.tour_id}}">
+                <h5 class="card-title font-weight-bold">{{ bookmark.tour_title }}</h5>
+                <p class="card-text"><i class="far fa-clock icon-color"></i> Duration : {{ bookmark.duration }} day</p>
+                <ul class="list-group list-group-flush" style="margin-left: -20px">
+                  <li class="list-group-item">
+                    <i class="fas fa-dollar-sign icon-color"></i>
+                    Pricing <br> 
+                    Rs. {{ bookmark.price_adult }} / per adult <br>
+                    Rs. {{ bookmark.price_child }} / per child
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Listing bookmarked tours end -->
 <!-- Display cards with coloured hearts -->
