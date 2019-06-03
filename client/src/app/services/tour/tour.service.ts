@@ -21,4 +21,14 @@ export class TourService {
       {headers: new HttpHeaders().append('Content-Type', 'application/json')}
     );
   }
+
+  submitBooking(body) {
+    return this.http.post(
+      'http://localhost:3000/bookings',
+      body,
+      {
+        observe: 'body',
+        headers: new HttpHeaders().append('Content-Type', 'application/json')
+      });
+  }
 }
