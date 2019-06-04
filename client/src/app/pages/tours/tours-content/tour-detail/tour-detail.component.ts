@@ -96,12 +96,24 @@ export class TourDetailComponent implements OnInit {
   }
 
   onPurchase() {
+    const tour_title = this.tour.title;
+    const dp = this.bookingForm.value.dp;
+    const adults = this.bookingForm.value.adults;
+    const children = this.bookingForm.value.children;
+
+    const obj = {
+      "tour_title" : tour_title,
+      "dp" : dp,
+      "adults" : adults,
+      "children" : children
+    }
+
     if (!this.bookingForm.valid) {
       console.log('Invalid');
       this.bookingForm.reset();
     } else {
-      console.log(JSON.stringify(this.bookingForm.value));
-      this.tourService.submitBooking(JSON.stringify(this.bookingForm.value))
+      console.log(JSON.stringify(obj));
+      this.tourService.submitBooking(JSON.stringify(obj))
         .subscribe(
           (data:any) => {
             this.showSuccessMessage = true;
