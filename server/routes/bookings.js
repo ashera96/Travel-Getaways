@@ -7,6 +7,7 @@ const Booking = require('../models/booking');
 router.post('/', (req, res, next) => {
     const newBooking = new Booking({
         dp: req.body.dp,
+        tour_title: req.body.tour_title,
         adults: req.body.adults,
         children: req.body.children
     });
@@ -17,6 +18,7 @@ router.post('/', (req, res, next) => {
                 status: 'Created Booking successfully',
                 createdMessage: {
                     _id: result.id,
+                    tour_title: result.tour_title,
                     dp: result.dp,
                     adults: result.adults,
                     children: result.children
