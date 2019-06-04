@@ -8,6 +8,7 @@ const dateSchema = mongoose.Schema({
 
 const bookingSchema = mongoose.Schema({
     dp: [dateSchema],
+    tour_title: { type: String, required: true },
     adults: { type: Number, required: true },
     children: { type: Number, required: true }
 });
