@@ -96,12 +96,16 @@ export class TourDetailComponent implements OnInit {
   }
 
   onPurchase() {
+    const user_id = this.userProfile._id;
+    const tour_id = this.tour._id;
     const tour_title = this.tour.title;
     const dp = this.bookingForm.value.dp;
     const adults = this.bookingForm.value.adults;
     const children = this.bookingForm.value.children;
 
     const obj = {
+      "user_id" : user_id,
+      "tour_id" : tour_id,
       "tour_title" : tour_title,
       "dp" : dp,
       "adults" : adults,
