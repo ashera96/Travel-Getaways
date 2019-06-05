@@ -7,6 +7,8 @@ const dateSchema = mongoose.Schema({
 });
 
 const bookingSchema = mongoose.Schema({
+    user_id: { type: String, required: true },
+    tour_id: { type: String, required: true },
     dp: [dateSchema],
     tour_title: { type: String, required: true },
     adults: { type: Number, required: true },
