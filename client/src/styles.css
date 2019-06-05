@@ -8,6 +8,13 @@
 
 }
 
+.input-custom {
+  border-radius: 10rem;
+  padding: 1.25rem 2.25rem;
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
 .service-icon {
     color: #f4623a;
 }
