@@ -151,4 +151,25 @@ router.delete('/:tourId', (req, res, next) => {
         });
 })
 
+// Search tours
+router.get('/search/:city/:duration', (req, res, next) => {
+    const city = req.params.city;
+    const duration = req.params.duration;
+    Tour.find({duration: {$regex: duration}, city: {$regex: city}})
+        .exec()
+        .then(docs => {
+            const response = {
+                count: docs.length,
+                messages: docs
+            };
+            res.status(200).json(response);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+});
+
 module.exports = router;
