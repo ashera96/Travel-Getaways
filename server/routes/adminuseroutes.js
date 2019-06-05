@@ -101,6 +101,7 @@ router.post("/UpdateUser", verifyToken, function(req, res) {
           if (err) console.log(err.errmsg);
           else {
             console.log(res.result);
+            console.log("==========");
           }
         }
       );
@@ -113,6 +114,7 @@ router.post("/UpdateUser", verifyToken, function(req, res) {
           if (err) console.log(err.errmsg);
           else {
             console.log(res.result);
+            console.log("==========");
           }
         }
       );
@@ -125,6 +127,7 @@ router.post("/UpdateUser", verifyToken, function(req, res) {
           if (err) console.log(err.errmsg);
           else {
             console.log(res.result);
+            console.log("==========");
           }
         }
       );
