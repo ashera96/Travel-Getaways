@@ -52,7 +52,8 @@ export class BookmarkContentComponent implements OnInit {
         console.log('Error occured');
       }
     );
-    this.router.navigate(['/tours']);
+    this.ngOnInit();
+    // this.router.navigate(['/tours']);
   }
 
 }
