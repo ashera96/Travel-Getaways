@@ -12,7 +12,9 @@ export class HomeComponent implements OnInit {
   constructor(private httpService: HttpService) {}
 
   ngOnInit() {
-    this.httpService.realizarHttpPost(this.analyticsUrl, {});
+    this.httpService.realizarHttpPost(this.analyticsUrl, {}).subscribe(res => {
+      console.log(res);
+    });
     console.log(this.analyticsUrl);
     console.log("page view detected");
   }

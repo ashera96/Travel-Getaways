@@ -10,6 +10,7 @@ import { chart } from "chart.js";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { CommonModule } from "@angular/common";
 import { BrowserModule } from "@angular/platform-browser";
+import { objectsAnalytics } from "../../utils/analytics";
 //import { Router } from "@angular/router";
 
 @Component({
@@ -26,6 +27,42 @@ export class DashboardComponent implements OnInit {
     private _anlytics: GetanalyticsService,
     private router: Router
   ) {}
+
+  ngOnInit(): void {
+    //generate random values for mainChart
+    // this.data2 = this._anlytics.getChartData({});
+    // console.log(this.data2);
+    this.getChartData({})
+      .then(val => {
+        //this.mainChartData1 = this.data2;
+        console.log(this.data2);
+        //objectsAnalytics =this.data2;
+        //console.log(this.mainChartData1);
+        // for (let i = 0; i <= 30; i++) {
+        //   this.mainChartData1.push(this.data2[i]);
+        //   //this.mainChartData2.push(this.random(80, 100));
+        //   // this.mainChartData3.push(65)
+        // }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    var populatedata = objectsAnalytics;
+    for (let i = 0; i <= 30; i++) {
+      this.mainChartData1.push(populatedata[i]);
+
+      //this.mainChartData2.push(this.random(80, 100));
+      // this.mainChartData3.push(65)
+    }
+    for (let i = 0; i < 30; i++) {
+      this.viewcount += this.mainChartData1[i];
+    }
+    //
+    //this.mainChartData1 = this.data2;
+
+    // this.populateCharts();
+    //console.log(this.mainChartData1);
+  }
   // mainChart
 
   public mainChartElements = 27;
@@ -210,39 +247,5 @@ export class DashboardComponent implements OnInit {
     } else {
       this.router.navigate(["/login"]);
     }
-  }
-
-  ngOnInit(): void {
-    //generate random values for mainChart
-    // this.data2 = this._anlytics.getChartData({});
-    // console.log(this.data2);
-    this.getChartData({})
-      .then(val => {
-        //this.mainChartData1 = this.data2;
-        console.log(this.data2);
-        console.log(this.mainChartData1);
-        for (let i = 0; i <= 30; i++) {
-          this.mainChartData1.push(this.data2[i]);
-          //this.mainChartData2.push(this.random(80, 100));
-          // this.mainChartData3.push(65)
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    for (let i = 0; i <= 30; i++) {
-      this.mainChartData1.push(this.random(0, 5));
-
-      //this.mainChartData2.push(this.random(80, 100));
-      // this.mainChartData3.push(65)
-    }
-    for (let i = 0; i < 30; i++) {
-      this.viewcount += this.mainChartData1[i];
-    }
-    //
-    //this.mainChartData1 = this.data2;
-
-    // this.populateCharts();
-    //console.log(this.mainChartData1);
   }
 }
