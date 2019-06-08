@@ -17,6 +17,7 @@ export class TourSearchComponent implements OnInit {
   tours: Tour[];
   bookmarks: Bookmark[];
   isBookmarked: boolean[] = [];
+  isLoggedIn: boolean;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -45,6 +46,7 @@ export class TourSearchComponent implements OnInit {
                   .subscribe(
                     (data: any) => {
                       this.userProfile = data.user;
+                      this.isLoggedIn = true;
                       // console.log(this.userProfile);
                       this.bookmarkService.getBookmarks(this.userProfile._id)
                         .subscribe(
@@ -67,6 +69,7 @@ export class TourSearchComponent implements OnInit {
                         );
                     },
                     (error: any) => {
+                      this.isLoggedIn = false;
                       console.log('Error occured : ' + error ); 
                     }
                   );

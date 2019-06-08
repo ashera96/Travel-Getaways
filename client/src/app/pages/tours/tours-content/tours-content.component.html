@@ -37,20 +37,22 @@
                 src="http://localhost:3000/uploads//{{tour.tour_image}}"
                 alt="Tour image">
 
-              <!-- Bookmark section start-->
-              <ng-template [ngIf]="!isBookmarked[i]">
-                <i 
-                  (click)="addBookmark(i)"
-                  class="far fa-heart fa-2x service-icon pull-right"
-                  style="position: absolute; right: 10px; top: 10px;"></i>
+              <ng-template [ngIf]="isLoggedIn">
+                <!-- Bookmark section start-->
+                <ng-template [ngIf]="!isBookmarked[i]">
+                  <i 
+                    (click)="addBookmark(i)"
+                    class="far fa-heart fa-2x service-icon pull-right"
+                    style="position: absolute; right: 10px; top: 10px;"></i>
+                </ng-template>
+                <ng-template [ngIf]="isBookmarked[i]">
+                  <i 
+                    (click)="removeBookmark(i)"
+                    class="fas fa-heart fa-2x service-icon pull-right"
+                    style="position: absolute; right: 10px; top: 10px;"></i>
+                </ng-template>
+                <!-- Bookmark section end -->
               </ng-template>
-              <ng-template [ngIf]="isBookmarked[i]">
-                <i 
-                  (click)="removeBookmark(i)"
-                  class="fas fa-heart fa-2x service-icon pull-right"
-                  style="position: absolute; right: 10px; top: 10px;"></i>
-              </ng-template>
-              <!-- Bookmark section end -->
 
               <div class="card-body" routerLink="/tours/{{tour._id}}">
                 <h5 class="card-title font-weight-bold">{{ tour.title }}</h5>
