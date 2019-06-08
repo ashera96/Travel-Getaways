@@ -6,6 +6,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgFlashMessagesModule } from 'ng-flash-messages';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppComponent } from "./app.component";
 import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
@@ -73,7 +74,8 @@ import { TourSearchComponent } from './pages/tours/tours-content/tour-search/tou
     FormsModule,
     HttpClientModule,
     NgFlashMessagesModule.forRoot(),
-    NgbModule
+    NgbModule,
+    NgxPaginationModule
   ],
   providers: [
     AuthService, 

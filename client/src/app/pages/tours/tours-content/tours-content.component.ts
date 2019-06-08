@@ -17,6 +17,7 @@ export class ToursContentComponent implements OnInit {
   bookmarks: Bookmark[];
   isBookmarked: boolean[] = [];
   isLoggedIn: boolean;
+  p: number = 1;
 
   constructor(private tourService: TourService,
               private authService: AuthService,
