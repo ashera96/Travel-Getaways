@@ -155,7 +155,7 @@ router.delete('/:tourId', (req, res, next) => {
 router.get('/search/:city/:duration', (req, res, next) => {
     const city = req.params.city;
     const duration = req.params.duration;
-    Tour.find({duration: {$regex: duration}, city: {$regex: city}})
+    Tour.find({duration: {$regex: duration}, city: {$regex: city, $options:'i'}})
         .exec()
         .then(docs => {
             const response = {

@@ -5,13 +5,13 @@
     padding: 1.25rem 2.25rem;
     font-size: .85rem;
     font-weight: 700;
-
+    margin-top: 18px !important;  
 }
 
 .input-custom {
   border-radius: 10rem;
   padding: 1.25rem 2.25rem;
-  font-size: 1.25rem;
+  /* font-size: 1.25rem; */
   font-weight: 400;
 }
 

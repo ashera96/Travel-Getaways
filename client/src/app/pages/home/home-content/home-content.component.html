@@ -17,20 +17,30 @@
         </p>
 
         <!-- Search start -->
-        <form>
+        <form [formGroup]="searchForm">
           <div class="form-row search-form">
             <div class="col">
               <label>Destination</label>
-              <input type="text" class="form-control ml-6 search-input input-custom" placeholder="City">
+              <input 
+                type="text" 
+                class="form-control ml-6 search-input input-custom" 
+                placeholder="City"
+                formControlName="city">
             </div>
             <div class="col">
               <label>Duration in days</label>
-              <input type="number" class="form-control ml-3 search-input input-custom" placeholder="1">
+              <input 
+                type="number" 
+                class="form-control ml-1 search-input input-custom" 
+                placeholder="1"
+                formControlName="duration">
             </div>
             <div class="col">
               <button
                 type="submit"
-                class="btn btn-light btn-custom mt-2">Search</button>
+                class="btn btn-light btn-custom mt-2"
+                [disabled]="!searchForm.valid"
+                (click)="onSearch()">Search</button>
             </div>
           </div>
         </form>
@@ -40,7 +50,7 @@
     </div>
   </div>
 </header>
-<!-- <app-chat-bot></app-chat-bot> -->
+<app-chat-bot></app-chat-bot>
 
 <!-- About Section -->
 <section class="page-section" id="about" style="background-color: #f4623a">

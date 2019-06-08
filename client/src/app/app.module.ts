@@ -35,6 +35,7 @@ import { ToursContentComponent } from './pages/tours/tours-content/tours-content
 import { TourService } from './services/tour/tour.service';
 import { TourDetailComponent } from './pages/tours/tours-content/tour-detail/tour-detail.component';
 import { BookmarkService } from './services/bookmark/bookmark.service';
+import { TourSearchComponent } from './pages/tours/tours-content/tour-search/tour-search.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { BookmarkService } from './services/bookmark/bookmark.service';
     BookingsComponent,
     BookingsContentComponent,
     ToursContentComponent,
-    TourDetailComponent
+    TourDetailComponent,
+    TourSearchComponent
   ],
   imports: [
     BrowserAnimationsModule,
