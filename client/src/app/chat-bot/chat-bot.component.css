@@ -84,7 +84,7 @@
   border: none;
   width: 30%;
   height: 50vh;
-  z-index: 100;
+  z-index:1;
 }
 
 .pagecontainer {

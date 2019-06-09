@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Tour } from 'src/app/models/tour.model';
 import { TourService } from 'src/app/services/tour/tour.service';
@@ -13,12 +14,20 @@ import { Bookmark } from 'src/app/models/bookmark.model';
   styleUrls: ['./tour-detail.component.css']
 })
 export class TourDetailComponent implements OnInit {
+  bookingForm: FormGroup = new FormGroup({
+    dp: new FormControl(null, [Validators.required]),
+    adults: new FormControl(null, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
+    children: new FormControl(null, [Validators.pattern(/^[0-9]*$/)])
+  });
+  
   loggedIn: boolean = false;
   id: string;
   tour: Tour;
   cities: string[];
   userProfile;
   showBookmarkSuccessMessage: boolean = false;
+  showSuccessMessage: boolean = false;
+  showErrorMessage: boolean = false;
   bookmarks: Bookmark[]; // Already bookmarked tour list
   isBookmarked: boolean = false; // To check if tour has already been bookmarked by the customer
 
@@ -102,7 +111,7 @@ export class TourDetailComponent implements OnInit {
         }
       );
   }
-
+  
   removeBookmark() {
     this.isBookmarked = false;
     const bookmark = this.bookmarks.find(bookmarked_tour => bookmarked_tour.tour_id === this.tour._id );
@@ -115,6 +124,46 @@ export class TourDetailComponent implements OnInit {
           console.log('Error occured');
         }
       );
+  }
+
+  onPurchase() {
+    const user_id = this.userProfile._id;
+    const tour_id = this.tour._id;
+    const tour_title = this.tour.title;
+    const dp = this.bookingForm.value.dp;
+    const adults = this.bookingForm.value.adults;
+    const children = this.bookingForm.value.children;
+    const price = this.tour.price_adult * this.bookingForm.value.adults + this.tour.price_child * this.bookingForm.value.children;
+
+    const obj = {
+      "user_id" : user_id,
+      "tour_id" : tour_id,
+      "tour_title" : tour_title,
+      "dp" : dp,
+      "adults" : adults,
+      "children" : children,
+      "price" : price
+    }
+
+    if (!this.bookingForm.valid) {
+      console.log('Invalid');
+      this.bookingForm.reset();
+    } else {
+      console.log(JSON.stringify(obj));
+      this.tourService.submitBooking(JSON.stringify(obj))
+        .subscribe(
+          (data:any) => {
+            this.showSuccessMessage = true;
+            console.log('Booking successful');
+          },
+          (error: any) => {
+            this.showErrorMessage = true;
+            console.log("Error occured");
+            console.log(error);
+          }
+        );
+      this.bookingForm.reset();
+    }
   }
 
 }
