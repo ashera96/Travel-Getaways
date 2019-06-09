@@ -77,4 +77,22 @@ router.get('/:messageId', (req, res, next) => {
         });
 })
 
+// Delete message
+router.delete('/:messageId', (req, res, next) => {
+    const id = req.params.messageId;
+    Message.remove({_id: id})
+        .exec()
+        .then(result => {
+            res.status(200).json({
+                message: 'Deleted message successfully'
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+})
+
 module.exports = router;
