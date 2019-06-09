@@ -21,4 +21,32 @@ export class TourService {
       {headers: new HttpHeaders().append('Content-Type', 'application/json')}
     );
   }
+
+  submitBooking(body) {
+    return this.http.post(
+      'http://localhost:3000/bookings',
+      body,
+      {
+        observe: 'body',
+        headers: new HttpHeaders().append('Content-Type', 'application/json')
+      });
+  }
+
+  getBookings(userId: String) {
+    return this.http.get(
+      'http://localhost:3000/bookings' + `/${userId}`,
+      {headers: new HttpHeaders().append('Content-Type', 'application/json')}
+    );
+  }
+
+  removeBookings(bookingsId: String) {
+    return this.http.delete('http://localhost:3000/bookings' + `/${bookingsId}`);
+  }
+
+  searchTours(city: string, duration: number) {
+    return this.http.get(
+      'http://localhost:3000/tours/search' + `/${city}` + `/${duration}`,
+      {headers: new HttpHeaders().append('Content-Type', 'application/json')}
+    );
+  }
 }

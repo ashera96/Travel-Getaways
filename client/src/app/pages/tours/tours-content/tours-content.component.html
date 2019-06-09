@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="row justify-content-center">
-      <div *ngFor="let tour of tours; let i = index">
+      <div *ngFor="let tour of tours | paginate: { itemsPerPage: 9, currentPage: p }; let i = index">
         <div class="col-lg-4 col-md-6 mb-5">
           <div class="card card-style" style="width: 18rem;">
             <div class="card" style="width: 18rem;">
@@ -37,20 +37,22 @@
                 src="http://localhost:3000/uploads//{{tour.tour_image}}"
                 alt="Tour image">
 
-              <!-- Bookmark section start-->
-              <ng-template [ngIf]="!isBookmarked[i]">
-                <i 
-                  (click)="addBookmark(i)"
-                  class="far fa-heart fa-2x service-icon pull-right"
-                  style="position: absolute; right: 10px; top: 10px;"></i>
+              <ng-template [ngIf]="isLoggedIn">
+                <!-- Bookmark section start-->
+                <ng-template [ngIf]="!isBookmarked[i]">
+                  <i 
+                    (click)="addBookmark(i)"
+                    class="far fa-heart fa-2x service-icon pull-right"
+                    style="position: absolute; right: 10px; top: 10px;"></i>
+                </ng-template>
+                <ng-template [ngIf]="isBookmarked[i]">
+                  <i 
+                    (click)="removeBookmark(i)"
+                    class="fas fa-heart fa-2x service-icon pull-right"
+                    style="position: absolute; right: 10px; top: 10px;"></i>
+                </ng-template>
+                <!-- Bookmark section end -->
               </ng-template>
-              <ng-template [ngIf]="isBookmarked[i]">
-                <i 
-                  (click)="removeBookmark(i)"
-                  class="fas fa-heart fa-2x service-icon pull-right"
-                  style="position: absolute; right: 10px; top: 10px;"></i>
-              </ng-template>
-              <!-- Bookmark section end -->
 
               <div class="card-body" routerLink="/tours/{{tour._id}}">
                 <h5 class="card-title font-weight-bold">{{ tour.title }}</h5>
@@ -75,7 +77,11 @@
 <!-- Listing tours end -->
 
 <!-- Pagination start -->
-
+<div class="text-center mb-5" style="margin-top: -100px;">
+  <div class="container">
+    <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
 <!-- Pagination end -->
 
 <!-- Loading Footer Component start -->
