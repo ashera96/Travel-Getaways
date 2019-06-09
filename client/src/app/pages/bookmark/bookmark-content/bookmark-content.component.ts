@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Bookmark } from 'src/app/models/bookmark.model';
 import { BookmarkService } from 'src/app/services/bookmark/bookmark.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-bookmark-content',
@@ -14,7 +15,9 @@ export class BookmarkContentComponent implements OnInit {
   bookmarks: Bookmark[];
 
   constructor(private authService: AuthService,
-              private bookmarkService: BookmarkService) { }
+              private bookmarkService: BookmarkService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.authService.getProfile()
@@ -37,6 +40,20 @@ export class BookmarkContentComponent implements OnInit {
           console.log("Error occured : " + error);
         }
       );
+  }
+
+  removeBookmark(index: number) {
+    this.bookmarkService.removeBookmark(this.bookmarks[index]._id)
+    .subscribe(
+      (data: any) => {
+        console.log('Bookmark removed successfully');
+      },
+      error => {
+        console.log('Error occured');
+      }
+    );
+    this.ngOnInit();
+    // this.router.navigate(['/tours']);
   }
 
 }

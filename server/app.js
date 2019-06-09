@@ -35,6 +35,7 @@ const bot = require("./routes/bot");
 const tours = require("./routes/tours");
 const bookings = require("./routes/bookings");
 const bookmarks = require("./routes/bookmarks");
+const forum = require("./routes/forum.js");
 
 // Port Number
 const port = 3000;
@@ -64,9 +65,10 @@ app.use("/botservice", bot);
 app.use("/tours", tours);
 app.use("/bookings", bookings);
 app.use("/bookmarks", bookmarks);
+app.use("/forum", forum);
 
 // Image URL path configuration
-app.use('/uploads', express.static('uploads'));
+app.use("/uploads", express.static("uploads"));
 
 // Index Route
 app.get("/", (req, res) => {

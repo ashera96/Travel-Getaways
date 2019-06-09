@@ -14,13 +14,15 @@ import { BookingsComponent } from './pages/bookings/bookings.component';
 import { BookmarkComponent } from './pages/bookmark/bookmark.component';
 import { TourDetailComponent } from './pages/tours/tours-content/tour-detail/tour-detail.component';
 import { ToursContentComponent } from './pages/tours/tours-content/tours-content.component';
+import { TourSearchComponent } from './pages/tours/tours-content/tour-search/tour-search.component';
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent},
     { path: 'about', component: AboutComponent},
     { path: 'tours', component: ToursComponent, children: [
         { path: '', component: ToursContentComponent},
-        { path: ':id', component: TourDetailComponent}
+        { path: ':id', component: TourDetailComponent},
+        { path: 'search/:city/:duration', component: TourSearchComponent}
     ]},
     { path: 'testimonials', component: TestimonialsComponent},
     { path: 'contact', component: ContactComponent},

@@ -11,7 +11,8 @@ router.post('/', (req, res, next) => {
         tour_title: req.body.tour_title,
         tour_duration: req.body.tour_duration,
         tour_price_adult: req.body.tour_price_adult,
-        tour_price_child: req.body.tour_price_child
+        tour_price_child: req.body.tour_price_child,
+        tour_image: req.body.tour_image
     });
     newBookmark.save()
         .then(result => {
@@ -24,7 +25,8 @@ router.post('/', (req, res, next) => {
                     tour_title: result.tour_title,
                     tour_duration: result.tour_duration,
                     tour_price_adult: result.tour_price_adult,
-                    tour_price_child: result.tour_price_child
+                    tour_price_child: result.tour_price_child,
+                    tour_image: result.tour_image
                 }
             });
         })

@@ -42,4 +42,11 @@ export class TourService {
   removeBookings(bookingsId: String) {
     return this.http.delete('http://localhost:3000/bookings' + `/${bookingsId}`);
   }
+
+  searchTours(city: string, duration: number) {
+    return this.http.get(
+      'http://localhost:3000/tours/search' + `/${city}` + `/${duration}`,
+      {headers: new HttpHeaders().append('Content-Type', 'application/json')}
+    );
+  }
 }
