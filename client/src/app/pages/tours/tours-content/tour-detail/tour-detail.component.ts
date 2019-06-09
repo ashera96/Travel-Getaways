@@ -15,8 +15,8 @@ import { BookmarkService } from 'src/app/services/bookmark/bookmark.service';
 export class TourDetailComponent implements OnInit {
   bookingForm: FormGroup = new FormGroup({
     dp: new FormControl(null, [Validators.required]),
-    adults: new FormControl(null, [Validators.required]),
-    children: new FormControl(null, [Validators.required])
+    adults: new FormControl(null, [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)]),
+    children: new FormControl(null, [Validators.pattern(/^[0-9]*$/)])
   });
   
   loggedIn: boolean = false;
@@ -102,6 +102,7 @@ export class TourDetailComponent implements OnInit {
     const dp = this.bookingForm.value.dp;
     const adults = this.bookingForm.value.adults;
     const children = this.bookingForm.value.children;
+    const price = this.tour.price_adult * this.bookingForm.value.adults + this.tour.price_child * this.bookingForm.value.children;
 
     const obj = {
       "user_id" : user_id,
@@ -109,7 +110,8 @@ export class TourDetailComponent implements OnInit {
       "tour_title" : tour_title,
       "dp" : dp,
       "adults" : adults,
-      "children" : children
+      "children" : children,
+      "price" : price
     }
 
     if (!this.bookingForm.valid) {
