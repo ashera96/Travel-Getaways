@@ -60,15 +60,6 @@ export const navItems: NavData[] = [
     icon: "icon-plus"
   },
   {
-    name: "Widgets",
-    url: "/widgets",
-    icon: "icon-calculator",
-    badge: {
-      variant: "info",
-      text: "NEW"
-    }
-  },
-  {
     divider: true
   }
 ];
