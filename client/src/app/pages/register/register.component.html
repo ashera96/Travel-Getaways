@@ -38,6 +38,9 @@
                   id="password" 
                   formControlName="password"
                   class="form-control">
+                <span
+                  *ngIf="!registrationForm.get('password').valid && registrationForm.get('password').touched"
+                  class="help-block text-muted">Please enter a valid password</span>
               </div>
               <div class="form-group text-left">
                 <label for="password">Confirm Password</label>
