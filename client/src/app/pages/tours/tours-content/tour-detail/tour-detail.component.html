@@ -18,13 +18,39 @@
 </header>
 <!-- Breadcrumb end -->
 
+
+<!-- Flash Messages start -->
+<div class="row">
+  <div class="container mt-3" style="width: 900px;">
+    <ngb-alert type="success" *ngIf="showBookmarkSuccessMessage" (close)="showBookmarkSuccessMessage=false">
+      Bookmark added successfully
+    </ngb-alert>
+  </div>
+</div>
+<!-- Flash Messages end -->
+
+
 <!-- Displaying tour details start -->
 <ng-template [ngIf]="loggedIn">
-  <button 
-    class="btn btn-light btn-xl js-scroll-trigger btn-custom mt-2 mr-2" 
-    style="background-color:#f4623a; color: #ffffff; float: right;" 
-    type="submit"
-    (click)="addBookmark()"><i class="fas fa-heart"></i> Add to wishlist</button>
+  <ng-template [ngIf]="isBookmarked">
+    <!-- <label
+      class="btn btn-light btn-xl js-scroll-trigger btn-custom mt-2 mr-2" 
+      style="background-color:#f4623a; color: #ffffff; float: right;">
+      <i class="fas fa-heart"></i> Bookmarked
+    </label> -->
+    <button 
+      class="btn btn-light btn-xl js-scroll-trigger btn-custom mt-2 mr-2" 
+      style="background-color:#f4623a; color: #ffffff; float: right;" 
+      type="submit"
+      (click)="removeBookmark()"><i class="far fa-heart"></i> Remove bookmark</button>
+  </ng-template>
+  <ng-template [ngIf]="!isBookmarked">
+    <button 
+      class="btn btn-light btn-xl js-scroll-trigger btn-custom mt-2 mr-2" 
+      style="background-color:#f4623a; color: #ffffff; float: right;" 
+      type="submit"
+      (click)="addBookmark()"><i class="fas fa-heart"></i> Add to wishlist</button>
+  </ng-template>
 </ng-template>
 
 <section class="page-section" id="contact" style="padding: 80px;">

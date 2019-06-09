@@ -1,74 +1,86 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { TourService } from 'src/app/services/tour/tour.service';
 import { Tour } from 'src/app/models/tour.model';
 import { Bookmark } from 'src/app/models/bookmark.model';
-import { BookmarkService } from 'src/app/services/bookmark/bookmark.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { BookmarkService } from 'src/app/services/bookmark/bookmark.service';
 
 @Component({
-  selector: 'app-tours-content',
-  templateUrl: './tours-content.component.html',
-  styleUrls: ['./tours-content.component.css']
+  selector: 'app-tour-search',
+  templateUrl: './tour-search.component.html',
+  styleUrls: ['./tour-search.component.css']
 })
-export class ToursContentComponent implements OnInit {
+export class TourSearchComponent implements OnInit {
   userProfile;
   tours: Tour[];
   bookmarks: Bookmark[];
   isBookmarked: boolean[] = [];
   isLoggedIn: boolean;
-  p: number = 1;
 
-  constructor(private tourService: TourService,
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private tourService: TourService,
               private authService: AuthService,
               private bookmarkService: BookmarkService) { }
 
   ngOnInit() {
-    this.tourService.getTours()
+    this.route.params
       .subscribe(
-        (data: any) => {
-          console.log('Tours retrieved successfully');
-          this.tours = data.messages;
-
-          this.tours.forEach((element, index) => {
-            this.isBookmarked[index] = false;
-          });
-
-          this.authService.getProfile()
+        (params: Params) => {
+          const city = params['city'];
+          const duration = params['duration'];
+          this.tourService.searchTours(city, duration)
             .subscribe(
               (data: any) => {
-                this.userProfile = data.user;
-                this.isLoggedIn = true;
-                console.log(this.userProfile);
-                this.bookmarkService.getBookmarks(this.userProfile._id)
+                console.log('Tour search successfully completed');
+                this.tours = data.messages;
+                console.log(this.tours);
+
+                this.tours.forEach((element, index) => {
+                  this.isBookmarked[index] = false;
+                });
+      
+                this.authService.getProfile()
                   .subscribe(
                     (data: any) => {
-                      this.bookmarks = data.bookmarks;
-                      // Checking already bookmarked tours
-                      this.bookmarks.forEach((element) => {
-                        const bookmark_tour_id = element.tour_id;
-                        this.tours.forEach((element, index) => {
-                          if (bookmark_tour_id === element._id) {
-                            this.isBookmarked[index] = true;
+                      this.userProfile = data.user;
+                      this.isLoggedIn = true;
+                      // console.log(this.userProfile);
+                      this.bookmarkService.getBookmarks(this.userProfile._id)
+                        .subscribe(
+                          (data: any) => {
+                            this.bookmarks = data.bookmarks;
+                            // Checking already bookmarked tours
+                            this.bookmarks.forEach((element) => {
+                              const bookmark_tour_id = element.tour_id;
+                              this.tours.forEach((element, index) => {
+                                if (bookmark_tour_id === element._id) {
+                                  this.isBookmarked[index] = true;
+                                }
+                              });
+                            });
+      
+                          },
+                          (error: any) => {
+                            console.log("Error occured : " + error);
                           }
-                        });
-                      });
-
+                        );
                     },
                     (error: any) => {
-                      console.log("Error occured : " + error);
+                      this.isLoggedIn = false;
+                      console.log('Error occured : ' + error ); 
                     }
                   );
               },
               (error: any) => {
-                this.isLoggedIn = false;
-                console.log('Error occured : ' + error ); 
+                console.log("Error occured : " + error);
               }
             );
-        },  
+        },
         (error: any) => {
-          console.log('Error occured');
-          console.log(error);
+          console.log('Error occured : ' + error);
         }
       );
   }
@@ -120,4 +132,5 @@ export class ToursContentComponent implements OnInit {
       }
     });
   }
+
 }

@@ -1,0 +1,8 @@
+.card-body:focus {
+    outline: none;
+}
+
+.my-pagination /deep/ .ngx-pagination .current {
+    background: #f4623a;
+       
+}

@@ -21,4 +21,11 @@ export class TourService {
       {headers: new HttpHeaders().append('Content-Type', 'application/json')}
     );
   }
+
+  searchTours(city: string, duration: number) {
+    return this.http.get(
+      'http://localhost:3000/tours/search' + `/${city}` + `/${duration}`,
+      {headers: new HttpHeaders().append('Content-Type', 'application/json')}
+    );
+  }
 }

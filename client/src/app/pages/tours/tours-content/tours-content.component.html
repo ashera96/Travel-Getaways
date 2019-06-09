@@ -28,27 +28,45 @@
       </div>
     </div>
     <div class="row justify-content-center">
-      <div *ngFor="let tour of tours; let i = index">
+      <div *ngFor="let tour of tours | paginate: { itemsPerPage: 9, currentPage: p }; let i = index">
         <div class="col-lg-4 col-md-6 mb-5">
-          <div class="card card-style" style="width: 18rem;" routerLink="/tours/{{tour._id}}">
+          <div class="card card-style" style="width: 18rem;">
             <div class="card" style="width: 18rem;">
               <img 
                 class="card-img-top" 
                 src="http://localhost:3000/uploads//{{tour.tour_image}}"
                 alt="Tour image">
-              <div class="card-body">
+
+              <ng-template [ngIf]="isLoggedIn">
+                <!-- Bookmark section start-->
+                <ng-template [ngIf]="!isBookmarked[i]">
+                  <i 
+                    (click)="addBookmark(i)"
+                    class="far fa-heart fa-2x service-icon pull-right"
+                    style="position: absolute; right: 10px; top: 10px;"></i>
+                </ng-template>
+                <ng-template [ngIf]="isBookmarked[i]">
+                  <i 
+                    (click)="removeBookmark(i)"
+                    class="fas fa-heart fa-2x service-icon pull-right"
+                    style="position: absolute; right: 10px; top: 10px;"></i>
+                </ng-template>
+                <!-- Bookmark section end -->
+              </ng-template>
+
+              <div class="card-body" routerLink="/tours/{{tour._id}}">
                 <h5 class="card-title font-weight-bold">{{ tour.title }}</h5>
                 <!-- <p class="card-text"><i class="fas fa-map-marker-alt icon-color"></i> Locations : {{ tour.city}}</p> -->
                 <p class="card-text"><i class="far fa-clock icon-color"></i> Duration : {{ tour.duration }} day</p>
+                <ul class="list-group list-group-flush" style="margin-left: -20px">
+                  <li class="list-group-item">
+                    <i class="fas fa-dollar-sign icon-color"></i>
+                    Pricing <br> 
+                    Rs. {{ tour.price_adult }} / per adult <br>
+                    Rs. {{ tour.price_child }} / per child
+                  </li>
+                </ul>
               </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <i class="fas fa-dollar-sign icon-color"></i>
-                  Pricing <br> 
-                  Rs. {{ tour.price_adult }} / per adult <br>
-                  Rs. {{ tour.price_child }} / per child
-                </li>
-              </ul>
             </div>
           </div>
         </div>
@@ -58,6 +76,15 @@
 </section>
 <!-- Listing tours end -->
 
+<!-- Pagination start -->
+<div class="text-center mb-5" style="margin-top: -100px;">
+  <div class="container">
+    <pagination-controls class="my-pagination" (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+<!-- Pagination end -->
+
 <!-- Loading Footer Component start -->
 <app-footer></app-footer>
 <!-- Loading Footer Component end -->
+

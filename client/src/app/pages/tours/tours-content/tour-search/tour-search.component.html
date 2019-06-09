@@ -1,0 +1,97 @@
+<!-- Loading Header Component start -->
+<app-header></app-header>
+<!-- Loading Header Component end -->
+
+<!-- Breadcrumb start -->
+<header class="tours-breadcrumb">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center justify-content-center text-center">
+      <div class="col-lg-10 align-self-end">
+        <h1 class="text-uppercase text-white font-weight-bold">Search Results</h1>
+        <hr class="divider my-4">
+      </div>
+      <div class="col-lg-8 align-self-baseline">
+        <p class="text-white-75 font-weight-light mb-5"><a routerLink="/" style="color: #f4623a">Home</a> | Search</p>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- Breadcrumb end -->
+
+<!-- Show text if no search results -->
+<ng-template [ngIf]="tours.length === 0">
+  <div class="container">
+    <div class="row justify-content-center mt-5 mb-5">
+      <h3>Sorry we couldn't find any search results</h3>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="tours.length > 0">
+  <!-- Listing tours start -->
+  <section class="page-section" id="contact">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-8 text-center">
+          <h2 class="mt-0">Find tours that suit your style</h2>
+          <hr class="divider my-4">
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div *ngFor="let tour of tours; let i = index">
+          <div class="col-lg-4 col-md-6 mb-5">
+            <div class="card card-style" style="width: 18rem;">
+              <div class="card" style="width: 18rem;">
+                <img 
+                  class="card-img-top" 
+                  src="http://localhost:3000/uploads//{{tour.tour_image}}"
+                  alt="Tour image">
+
+                <ng-template [ngIf]="isLoggedIn">
+                  <!-- Bookmark section start-->
+                  <ng-template [ngIf]="!isBookmarked[i]">
+                    <i 
+                      (click)="addBookmark(i)"
+                      class="far fa-heart fa-2x service-icon pull-right"
+                      style="position: absolute; right: 10px; top: 10px;"></i>
+                  </ng-template>
+                  <ng-template [ngIf]="isBookmarked[i]">
+                    <i 
+                      (click)="removeBookmark(i)"
+                      class="fas fa-heart fa-2x service-icon pull-right"
+                      style="position: absolute; right: 10px; top: 10px;"></i>
+                  </ng-template>
+                  <!-- Bookmark section end -->
+                </ng-template>
+
+                <div class="card-body" routerLink="/tours/{{tour._id}}">
+                  <h5 class="card-title font-weight-bold">{{ tour.title }}</h5>
+                  <!-- <p class="card-text"><i class="fas fa-map-marker-alt icon-color"></i> Locations : {{ tour.city}}</p> -->
+                  <p class="card-text"><i class="far fa-clock icon-color"></i> Duration : {{ tour.duration }} day</p>
+                  <ul class="list-group list-group-flush" style="margin-left: -20px">
+                    <li class="list-group-item">
+                      <i class="fas fa-dollar-sign icon-color"></i>
+                      Pricing <br> 
+                      Rs. {{ tour.price_adult }} / per adult <br>
+                      Rs. {{ tour.price_child }} / per child
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Listing tours end -->
+</ng-template>
+
+<!-- Pagination start -->
+
+<!-- Pagination end -->
+
+<!-- Loading Footer Component start -->
+<app-footer></app-footer>
+<!-- Loading Footer Component end -->
+
