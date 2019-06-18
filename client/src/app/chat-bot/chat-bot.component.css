@@ -99,7 +99,7 @@
   border: none;
   width: 20%;
   height: 50vh;
-  z-index: 100;
+  z-index:1;
 }
 
 .pagecontainer {

@@ -75,7 +75,9 @@ export class ToursComponent implements OnInit {
           console.log(error);
         }
       );
-    window.location.reload()
+    this.currentPage = 1;
+    this.ngOnInit();
+    // window.location.reload()
     // this.router.navigate(['/'], {relativeTo: this.route})
   }
 
@@ -196,7 +198,9 @@ export class ToursComponent implements OnInit {
     this.imagename = '';
     this.editMode = false;
 
-    window.location.reload();
+    this.currentPage = 1;
+    this.ngOnInit();
+    // window.location.reload();
     // this.router.navigate(['/'], {relativeTo: this.route});
   }
 }

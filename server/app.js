@@ -33,8 +33,10 @@ const adminusers = require("./routes/adminuseroutes");
 const adminposts = require("./routes/adminpostsroutes");
 const bot = require("./routes/bot");
 const tours = require("./routes/tours");
+const bookings = require("./routes/bookings");
 const bookmarks = require("./routes/bookmarks");
 const pageview = require("./routes/pageview");
+const forum = require("./routes/forum.js");
 
 // Port Number
 const port = 3000;
@@ -62,8 +64,10 @@ app.use("/adminusers", adminusers);
 app.use("/adminposts", adminposts);
 app.use("/botservice", bot);
 app.use("/tours", tours);
+app.use("/bookings", bookings);
 app.use("/bookmarks", bookmarks);
 app.use("/pageviews", pageview);
+app.use("/forum", forum);
 
 // Image URL path configuration
 app.use("/uploads", express.static("uploads"));

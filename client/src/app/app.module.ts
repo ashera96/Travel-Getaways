@@ -6,6 +6,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgFlashMessagesModule } from 'ng-flash-messages';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppComponent } from "./app.component";
 import { PageNotFoundComponent } from "./pages/page-not-found/page-not-found.component";
@@ -35,6 +36,7 @@ import { ToursContentComponent } from './pages/tours/tours-content/tours-content
 import { TourService } from './services/tour/tour.service';
 import { TourDetailComponent } from './pages/tours/tours-content/tour-detail/tour-detail.component';
 import { BookmarkService } from './services/bookmark/bookmark.service';
+import { TourSearchComponent } from './pages/tours/tours-content/tour-search/tour-search.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,8 @@ import { BookmarkService } from './services/bookmark/bookmark.service';
     BookingsComponent,
     BookingsContentComponent,
     ToursContentComponent,
-    TourDetailComponent
+    TourDetailComponent,
+    TourSearchComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -71,7 +74,8 @@ import { BookmarkService } from './services/bookmark/bookmark.service';
     FormsModule,
     HttpClientModule,
     NgFlashMessagesModule.forRoot(),
-    NgbModule
+    NgbModule,
+    NgxPaginationModule
   ],
   providers: [
     AuthService, 

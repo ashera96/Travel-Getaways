@@ -5,30 +5,39 @@
 <!-- Breadcrumb start -->
 <header class="tour-detail-breadcrumb">
   <div class="container h-100">
-    <div class="row h-100 align-items-center justify-content-center text-center">
+    <div
+      class="row h-100 align-items-center justify-content-center text-center"
+    >
       <div class="col-lg-10 align-self-end">
-        <h1 class="text-uppercase text-white font-weight-bold">Tour Detail Page</h1>
-        <hr class="divider my-4">
+        <h1 class="text-uppercase text-white font-weight-bold">
+          Tour Detail Page
+        </h1>
+        <hr class="divider my-4" />
       </div>
       <div class="col-lg-8 align-self-baseline">
-        <p class="text-white-75 font-weight-light mb-5"><a routerLink="/" style="color: #f4623a">Home</a> | <a routerLink="/tours" style="color: #f4623a">Tours</a> | Detail</p>
+        <p class="text-white-75 font-weight-light mb-5">
+          <a routerLink="/" style="color: #f4623a">Home</a> |
+          <a routerLink="/tours" style="color: #f4623a">Tours</a> | Detail
+        </p>
       </div>
     </div>
   </div>
 </header>
 <!-- Breadcrumb end -->
 
-
 <!-- Flash Messages start -->
 <div class="row">
   <div class="container mt-3" style="width: 900px;">
-    <ngb-alert type="success" *ngIf="showBookmarkSuccessMessage" (close)="showBookmarkSuccessMessage=false">
+    <ngb-alert
+      type="success"
+      *ngIf="showBookmarkSuccessMessage"
+      (close)="showBookmarkSuccessMessage = false"
+    >
       Bookmark added successfully
     </ngb-alert>
   </div>
 </div>
 <!-- Flash Messages end -->
-
 
 <!-- Displaying tour details start -->
 <ng-template [ngIf]="loggedIn">
@@ -58,7 +67,7 @@
     <div class="row justify-content-center">
       <div class="col-lg-8 text-center">
         <h2 class="mt-0">{{ tour.title }}</h2>
-        <hr class="divider my-4">
+        <hr class="divider my-4" />
       </div>
     </div>
     <div class="row">
@@ -75,7 +84,9 @@
           <div class="text-element content-element circles-list">
             <ol *ngFor="let program of tour.program">
               <li>
-                <p><strong>{{ program.title }}</strong></p>
+                <p>
+                  <strong>{{ program.title }}</strong>
+                </p>
                 <p>{{ program.description }}</p>
               </li>
             </ol>
@@ -85,15 +96,19 @@
           <h4>Locations</h4>
           <div class="container">
             <ul *ngFor="let city of cities">
-                <li>{{ city }}</li>
+              <li>{{ city }}</li>
             </ul>
           </div>
         </div>
         <div class="row mb-3">
           <h4>Pricing</h4>
           <div class="container">
-            <p>Price for an adult : Rs. <strong>{{ tour.price_adult }}</strong></p>
-            <p>Price for a child : Rs. <strong>{{ tour.price_child }}</strong></p>
+            <p>
+              Price for an adult : Rs. <strong>{{ tour.price_adult }}</strong>
+            </p>
+            <p>
+              Price for a child : Rs. <strong>{{ tour.price_child }}</strong>
+            </p>
             <strong>Note</strong>
             <ul>
               <li>Children should be accompanied by atleast 1 adult</li>
@@ -103,7 +118,11 @@
         </div>
         <div class="container">
           <div class="img-responsive">
-            <img src="http://localhost:3000/uploads//{{tour.tour_image}}" alt="Tour Image" class="rounded mx-auto d-block">
+            <img
+              src="http://localhost:3000/uploads//{{ tour.tour_image }}"
+              alt="Tour Image"
+              class="rounded mx-auto d-block"
+            />
           </div>
         </div>
       </div>
@@ -112,14 +131,83 @@
           <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
               <h2 class="mt-5">Make a booking</h2>
-              <hr class="divider my-4">
-              <input type="text" placeholder="Start date">
-              <input type="text" placeholder="Guests">
-              <button 
-                class="btn btn-light btn-xl js-scroll-trigger btn-custom mt-2 mr-2" 
-                style="background-color:#f4623a; color: #ffffff; float: right;" 
-                type="submit"
-                (click)="onPurchase()"><i class="fas fa-dollar-sign"></i> Purchase</button>
+              <hr class="divider my-4" />
+            </div>
+            <div class="container">
+              <form [formGroup]="bookingForm">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Pick Start Date</label>
+                      <div class="input-group">
+                        <input
+                          class="form-control"
+                          placeholder="yyyy-mm-dd"
+                          name="dp"
+                          [(ngModel)]="model"
+                          ngbDatepicker
+                          #d="ngbDatepicker"
+                          id="dp"
+                          formControlName="dp"
+                        />
+                        
+                        <div class="input-group-append">
+                          <button
+                            class="fas fa-calendar"
+                            (click)="d.toggle()"
+                            type="button"
+                          ></button>
+                        </div>
+                        <span
+                          *ngIf="
+                            !bookingForm.get('dp').valid && bookingForm.get('dp').touched"
+                            class="help-block text-muted"
+                          >Please enter a correct date</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Adults</label>
+                      <input
+                        class="form-control"
+                        type="number"
+                        id="adults"
+                        formControlName="adults"
+                      />
+                      <span
+                    *ngIf="!bookingForm.get('adults').valid && bookingForm.get('adults').touched"
+                    class="help-block text-muted">Please enter the number of adults participating</span>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Children</label>
+                      <input
+                        class="form-control"
+                        type="number"
+                        id="children"
+                        formControlName="children"
+                      />
+                      <span
+                    *ngIf="!bookingForm.get('children').valid && bookingForm.get('children').touched"
+                    class="help-block text-muted">Please enter the number of children participating</span>
+                    </div>
+                  </div>
+                </div>
+                <button
+                routerLink="/bookings/"
+                  class="btn btn-light btn-xl js-scroll-trigger btn-custom mt-2 mr-2"
+                  style="background-color:#f4623a; color: #ffffff; float: right;"
+                  type="submit"
+                  (click)="onPurchase()"
+                  [disabled]="!bookingForm.valid"
+                >
+                  <i class="fas fa-dollar-sign"></i> Make Booking
+                </button>
+              </form>
             </div>
           </div>
         </div>
