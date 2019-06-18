@@ -10,7 +10,7 @@ import { chart } from "chart.js";
 import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { CommonModule } from "@angular/common";
 import { BrowserModule } from "@angular/platform-browser";
-import { objectsAnalytics } from "../../utils/analytics";
+import { data } from "../../utils/analytics";
 //import { Router } from "@angular/router";
 
 @Component({
@@ -36,6 +36,7 @@ export class DashboardComponent implements OnInit {
       .then(val => {
         //this.mainChartData1 = this.data2;
         console.log(this.data2);
+        data.objectsAnalytics = this.data2;
         //objectsAnalytics =this.data2;
         //console.log(this.mainChartData1);
         // for (let i = 0; i <= 30; i++) {
@@ -47,7 +48,7 @@ export class DashboardComponent implements OnInit {
       .catch(error => {
         console.log(error);
       });
-    var populatedata = objectsAnalytics;
+    var populatedata = data.objectsAnalytics;
     for (let i = 0; i <= 30; i++) {
       this.mainChartData1.push(populatedata[i]);
 
