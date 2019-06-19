@@ -15,8 +15,9 @@ export class Tour {
     public dp: [];
     public children: number;
     public adults: number;
+    public price: number;
 
-    constructor(_id: string, user_id: string, tour_id: string, title: string, tour_title: string, duration: number, description: string, city: string, address: string, price_adult: number, price_child: number, program: [], tour_image: string, dp: [], children: number, adults: number) {
+    constructor(_id: string, user_id: string, tour_id: string, title: string, tour_title: string, duration: number, description: string, city: string, address: string, price_adult: number, price_child: number, program: [], tour_image: string, dp: [], children: number, adults: number, price:number) {
         this._id = _id;
         this.user_id = user_id;
         this.tour_id = tour_id;
@@ -33,5 +34,6 @@ export class Tour {
         this.dp = dp;
         this.children = children;
         this.adults = adults;
+        this.price = price;
     }
 }
