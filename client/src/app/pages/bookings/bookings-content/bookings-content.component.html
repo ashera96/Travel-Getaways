@@ -28,7 +28,6 @@
 </ng-template>
 
 <ng-template [ngIf]="bookings.length > 0">
-  
   <section class="page-section" id="contact">
     <div class="container">
       <div class="row justify-content-center">
@@ -36,37 +35,66 @@
           <div class="col-lg-4 col-md-6 mb-5">
             <div class="card card-style" style="width: 30rem;">
               <div class="card" style="width: 30rem;">
-                
-                <i 
+                <i
                   (click)="removeBookings(i)"
                   class="fas fa-times fa-2x service-icon pull-right"
-                  style="position: absolute; right: 10px; top: 10px;"></i>
-                
-                <div class="card-body" routerLink="/tours/{{booking.tour_id}}">
-                  <h5 class="card-title font-weight-bold">{{ booking.tour_title }}</h5>
+                  style="position: absolute; right: 10px; top: 10px;"
+                ></i>
+
+                <div
+                  class="card-body"
+                  routerLink="/tours/{{ booking.tour_id }}"
+                >
+                  <h5 class="card-title font-weight-bold">
+                    {{ booking.tour_title }}
+                  </h5>
                   <div *ngFor="let date of booking.dp">
-                    <p class="card-text"><i class="far fa-clock icon-color"></i> Date : {{ date.year }}.{{ date.month }}.{{ date.day }}</p>
+                    <p class="card-text">
+                      <i class="far fa-clock icon-color"></i> Date :
+                      {{ date.year }}.{{ date.month }}.{{ date.day }}
+                    </p>
                   </div>
-                  
-                  <ul class="list-group list-group-flush" style="margin-left: -20px">
+
+                  <ul
+                    class="list-group list-group-flush"
+                    style="margin-left: -20px"
+                  >
                     <li class="list-group-item">
-                      Adults : {{ booking.adults }}  <br>
-                      Children : {{ booking.children }} <br> <br> 
+                      Adults : {{ booking.adults }} <br />
+                      Children : {{ booking.children }} <br />
+                      <br />
                       <i class="fas fa-dollar-sign icon-color"></i>
-                      Total Price : {{ booking.price }}
+                      Total Price (Rs): {{ booking.price }}
                     </li>
                   </ul>
                   <button
-                  class="btn btn-light btn-xl js-scroll-trigger btn-custom mt-2 mr-2"
-                  style="background-color:#f4623a; color: #ffffff; float: right;"
-                  
-                >
-                  <i class="fas fa-dollar-sign"></i> Make Payment
-                </button>
+                    class="btn btn-light btn-xl js-scroll-trigger btn-custom mt-2 mr-2"
+                    style="background-color:#f4623a; color: #ffffff; float: right;"
+                  >
+                    <!-- <i class="fas fa-dollar-sign"></i>  -->
+                    Tour Details
+                  </button>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="page-section" id="contact">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h3>Total Price</h3>
+          <h3> Rs: {{ finalAmount }}</h3>
+          <br />
+          <!-- <input
+          type="number"
+          [(ngModel)]="finalAmount"
+        /> -->
+          <h2 *ngIf="paypalLoad">Paypal button is loading</h2>
+          <div id="paypal-checkout-btn"></div>
         </div>
       </div>
     </div>
