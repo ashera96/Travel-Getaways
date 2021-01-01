@@ -31,6 +31,7 @@ export class PaginationsComponent {
           console.log("error getting results");
         } else {
           console.log(results);
+          this.postslist = new Array();
           for (let i = 0; i < results.length; i++) {
             this.postslist.push(results[i]);
           }
@@ -59,5 +60,6 @@ export class PaginationsComponent {
           this.GetPosts();
         }
       });
+    // this.GetPosts();
   }
 }

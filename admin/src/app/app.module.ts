@@ -8,6 +8,7 @@ import { PerfectScrollbarConfigInterface } from "ngx-perfect-scrollbar";
 import { HttpClientModule } from "@angular/common/http";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { MatFormFieldModule } from "@angular/material";
+import { CommonModule } from "@angular/common";
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true

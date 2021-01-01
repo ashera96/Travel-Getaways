@@ -27,7 +27,7 @@ router.post("/GetPosts", (_req, res) => {
 });
 
 router.post("/deletePosts", (req, res) => {
-  console.log("delete posts called");
+  console.log(req.body);
   const client = new MongoClient(uri, { useNewUrlParser: true });
   client.connect(err => {
     const collection = client.db("travelGetaway").collection("posts");
